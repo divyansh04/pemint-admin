@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pemint_admin_app/utilities/app_colors.dart';
+import 'package:pemint_admin_app/view/homescreen/homescreen_contact.dart';
+import 'package:pemint_admin_app/view/homescreen/homescreen_dashboard.dart';
+import 'package:pemint_admin_app/view/homescreen/homescreen_profile.dart';
 import 'package:pemint_admin_app/view/login/business_type.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class HomeScreenHistory extends StatelessWidget {
+  const HomeScreenHistory({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +24,13 @@ class HomeScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Image.asset(
-                  'assets/pemintlogo2.png',
-                  height: 70,
-                  width: 70,
+                Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Image.asset(
+                    'assets/pemintlogo2.png',
+                    height: 70,
+                    width: 70,
+                  ),
                 ),
                 Row(
                   children: [
@@ -82,10 +88,14 @@ class HomeScreen extends StatelessWidget {
                   ),
                   child: Column(
                     children: [
-                      Container(
-                        width: 100,
-                        height: 70,
-                        child: Center(
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(HomeScreenDashboard());
+                        },
+                        child: Container(
+                          margin: EdgeInsets.only(left: 10, right: 10, top: 20),
+                          width: 100,
+                          height: 70,
                           child: Text(
                             'Dashboard',
                             style: TextStyle(
@@ -97,38 +107,16 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Container(
-                        height: 2,
-                        width: 100,
-                        color: AppColor.whiteColor,
-                      ),
-                      Container(decoration: BoxDecoration(color: AppColor.primaryColor,),
-                        height: 70,
-                        width: 100,
-                        
-                        child: Center(
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(HomeScreenContact());
+                        },
+                        child: Container(
+                          margin: EdgeInsets.only(left: 10),
+                          height: 70,
+                          width: 100,
                           child: Text(
                             'Contact',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontFamily: 'Cairo',
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        height: 2,
-                        width: 100,
-                        color: AppColor.whiteColor,
-                      ),
-                      Container(
-                        width: 100,
-                        height: 70,
-                        child: Center(
-                          child: Text(
-                            'History',
                             style: TextStyle(
                               color: Color(0xFF292D32),
                               fontSize: 16,
@@ -139,9 +127,37 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                       Container(
+                        height: 2,
+                        width: 100,
+                        color: AppColor.whiteColor,
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: AppColor.primaryColor,
+                        ),
                         width: 100,
                         height: 70,
                         child: Center(
+                          child: Text(
+                            'History',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontFamily: 'Cairo',
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        height: 2,
+                        width: 100,
+                        color: AppColor.whiteColor,
+                      ),
+                      GestureDetector(onTap: (){Get.to(HomeScreenProfile());},
+                        child: Container(margin: EdgeInsets.only(left: 10,top: 30),
+                          width: 100,
+                          height: 70,
                           child: Text(
                             'Profile',
                             style: TextStyle(
@@ -153,9 +169,53 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                       ),
+                      Container(
+                          margin: EdgeInsets.only(left: 10, ),
+                          decoration: BoxDecoration(),
+                          width: 100,
+                          height: 70,
+                          child: Text(
+                            'Add\nEmployee',
+                            style: TextStyle(
+                              color: Color(0x7F292D32),
+                              fontSize: 16,
+                              fontFamily: 'Cairo',
+                              fontWeight: FontWeight.w500,
+                            ),
+                          )),
+                      Container(
+                          margin: EdgeInsets.only(left: 10),
+                          decoration: BoxDecoration(),
+                          width: 100,
+                          height: 70,
+                          child: Text(
+                            'QR Code\nScan and Pay',
+                            style: TextStyle(
+                              color: Color(0x7F292D32),
+                              fontSize: 16,
+                              fontFamily: 'Cairo',
+                              fontWeight: FontWeight.w500,
+                            ),
+                          )),
+                      Container(
+                        margin: EdgeInsets.only(left: 10),
+                        decoration: BoxDecoration(),
+                        width: 100,
+                        height: 70,
+                        child: Text(
+                          'Bill\nPayment',
+                          style: TextStyle(
+                            color: Color(0x7F292D32),
+                            fontSize: 16,
+                            fontFamily: 'Cairo',
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
+
                 SizedBox(
                   width: 20,
                 ),
@@ -165,24 +225,8 @@ class HomeScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          'Receive Money                                      ',
-                          style: TextStyle(
-                            color: Color(0xFF292D32),
-                            fontSize: 16,
-                            fontFamily: 'Cairo',
-                            fontWeight: FontWeight.w700,
-                            height: 0,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
                         SizedBox(
-                          height: 20,
+                          height: 10,
                         ),
                         Container(
                           height: 40,
@@ -190,8 +234,7 @@ class HomeScreen extends StatelessWidget {
                           decoration: BoxDecoration(
                               color: AppColor.veryLightPurple,
                               borderRadius: BorderRadius.circular(20),
-                              border:
-                                  Border.all(color: AppColor.primaryColor)),
+                              border: Border.all(color: AppColor.primaryColor)),
                           child: Center(
                             child: TextField(
                               style: TextStyle(
@@ -222,60 +265,97 @@ class HomeScreen extends StatelessWidget {
                         SizedBox(
                           height: 40,
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Container(
-                              height: 40,
-                              width: 100,
-                              color: AppColor.veryLightPurple,
-                              child: Center(
-                                child: Text(
-                                  'Contacts',
-                                  style: TextStyle(
-                                    color: Color(0xFF292D32),
-                                    fontSize: 14,
-                                    fontFamily: 'Cairo',
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
+                        GestureDetector(onTap: (){TransactionLinkDialog();print('abc');},
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              CircleAvatar(
+                                child: Icon(Icons.arrow_upward_rounded,color: AppColor.whiteColor,),
+                                backgroundColor: Color(0xFF2E1762),
                               ),
-                            ),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            Container(
-                              height: 40,
-                              width: 100,
-                              color: AppColor.veryLightGreyColor,
-                              child: Center(
-                                child: Text(
-                                  'Groups',
-                                  style: TextStyle(
-                                    color: Color(0xFF9888A4),
-                                    fontSize: 14,
-                                    fontFamily: 'Cairo',
-                                    fontWeight: FontWeight.w400,
-                                    height: 0,
+SizedBox(width: 10,),
+                              Column(mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Abhisek Behera',
+                                    textAlign: TextAlign.start,
+                                    style: TextStyle(
+                                      color: Color(0xFF292D32),
+                                      fontSize: 14,
+                                      fontFamily: 'Cairo',
+                                      fontWeight: FontWeight.w400,
+                                    ),
                                   ),
-                                ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text(
+                                    '11 nov 2023',
+                                    textAlign: TextAlign.start,
+                                    style: TextStyle(
+                                      color: Color(0xFF9888A4),
+                                      fontSize: 12,
+                                      fontFamily: 'Cairo',
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  )
+                                ],
                               ),
-                            )
-                          ],
+                              SizedBox(width: Get.width/5.9),
+                              Column(mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    '₹10,00,000',
+                                    style: TextStyle(
+                                      color: Color(0xFF292D32),
+                                      fontSize: 12,
+                                      fontFamily: 'Cairo',
+                                      fontWeight: FontWeight.w700,
+
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text(
+                                    'Pending',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Color(0xFF00BBF2),
+                                      fontSize: 10,
+                                      fontFamily: 'Cairo',
+                                      fontWeight: FontWeight.w700,
+
+                                    ),
+                                  )
+                                ],
+                              ),
+
+
+                            ],
+                          ),
                         ),
-                        SizedBox(
-                          height: 20,
-                        ),
+                        SizedBox(height: 20,),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
                           children: [
-                            Column(
+                            CircleAvatar(
+                              child: Icon(Icons.arrow_downward_rounded,color: AppColor.whiteColor,),
+                              backgroundColor: Color(0xFF2E1762),
+                            ),
+                            SizedBox(width: 10,),
+                            Column(mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
                                   'Abhisek Behera',
-                                  textAlign: TextAlign.center,
+                                  textAlign: TextAlign.start,
                                   style: TextStyle(
                                     color: Color(0xFF292D32),
                                     fontSize: 14,
@@ -287,8 +367,8 @@ class HomeScreen extends StatelessWidget {
                                   height: 5,
                                 ),
                                 Text(
-                                  '+918658956865',
-                                  textAlign: TextAlign.center,
+                                  '11 nov 2023',
+                                  textAlign: TextAlign.start,
                                   style: TextStyle(
                                     color: Color(0xFF9888A4),
                                     fontSize: 12,
@@ -298,19 +378,38 @@ class HomeScreen extends StatelessWidget {
                                 )
                               ],
                             ),
-                            SizedBox(
-                              width: Get.width / 3,
+                            SizedBox(width: Get.width/5.9),
+                            Column(mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '₹10,00,000',
+                                  style: TextStyle(
+                                    color: Color(0xFF292D32),
+                                    fontSize: 12,
+                                    fontFamily: 'Cairo',
+                                    fontWeight: FontWeight.w700,
+
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  'Success',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Color(0xFF54F15A),
+                                    fontSize: 10,
+                                    fontFamily: 'Cairo',
+                                    fontWeight: FontWeight.w700,
+
+                                  ),
+                                )
+                              ],
                             ),
-                            GestureDetector(
-                              onTap: () {
-                                Get.dialog(DemandDialog());
-                              },
-                              child: Icon(
-                                Icons.add_circle_outline_rounded,
-                                color: AppColor.primaryColor,
-                                size: 30,
-                              ),
-                            )
+
+
                           ],
                         ),
                       ],
@@ -319,6 +418,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               ],
             ),
+
           ],
         ),
       ),
@@ -326,8 +426,8 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-class DemandDialog extends StatelessWidget {
-  const DemandDialog({
+class TransactionLinkDialog extends StatelessWidget {
+  const TransactionLinkDialog({
     Key? key,
   }) : super(key: key);
 

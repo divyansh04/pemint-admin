@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pemint_admin_app/utilities/app_colors.dart';
-import 'package:pemint_admin_app/view/homescreen/homescreen.dart';
+import 'package:pemint_admin_app/view/homescreen/homescreen_contact.dart';
+import 'package:pemint_admin_app/view/homescreen/homescreen_dashboard.dart';
 import 'package:pemint_admin_app/view/login/enter_name_number.dart';
 import 'package:pemint_admin_app/view/login/forgot_password.dart';
 
@@ -123,7 +124,7 @@ class Login extends StatelessWidget {
                 height: 30,
               ),
               GestureDetector(
-                onTap: () {Get.to(HomeScreen());},
+                onTap: () {Get.to(HomeScreenContact());},
                 child: Container(
                   child: Center(
                     child: Text(
@@ -148,7 +149,7 @@ class Login extends StatelessWidget {
         ),
         backgroundColor: AppColor.primaryColor,
         body: Padding(
-          padding: const EdgeInsets.only(top: 100),
+          padding: const EdgeInsets.only(top: 50),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.start,
