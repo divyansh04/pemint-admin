@@ -90,7 +90,7 @@ class MobRegController extends GetxController {
       if (res.statusCode == 200) {
         print(res);
         numberController.text = phone;
-        LoginData loginData = LoginData.fromJson(res.data);
+        SignupData loginData = SignupData.fromJson(res.data);
         await SharedPref().setSession(loginData.session);
       }
     } catch (e) {
@@ -107,9 +107,7 @@ class MobRegController extends GetxController {
     if (otpFormKey.currentState!.validate() == true) {
       final sessionId = await SharedPref().getSession();
       Map parameter = {
-        NetworkConstant.PARAM_USERNAME: numberController.text,
-        NetworkConstant.PARAM_OTP: otpController.text,
-        NetworkConstant.PARAM_SESSION: sessionId
+       
       };
 
       isLoading.value = true;
@@ -117,30 +115,30 @@ class MobRegController extends GetxController {
       try {
         var res = await _authRepository.verifyOTP(parameter: parameter);
         if (res.statusCode == 200) {
-          VerifyOtpData verifyOtpData = VerifyOtpData.fromJson(res.data);
-          SharedPref()
-              .setAccessToken(verifyOtpData.authenticationResult.accessToken);
+          // VerifyOtpData verifyOtpData = VerifyOtpData.fromJson(res.data);
+          // SharedPref()
+          //     .setAccessToken(verifyOtpData.authenticationResult.accessToken);
 
-          SharedPref().setIdToken(verifyOtpData.authenticationResult.idToken);
-          SharedPref()
-              .setRefreshToken(verifyOtpData.authenticationResult.refreshToken);
-          await saveTokenExpiryTimestamp(
-              verifyOtpData.authenticationResult.expiresIn);
+          // SharedPref().setIdToken(verifyOtpData.authenticationResult.idToken);
+          // SharedPref()
+          //     .setRefreshToken(verifyOtpData.authenticationResult.refreshToken);
+          // await saveTokenExpiryTimestamp(
+          //     verifyOtpData.authenticationResult.expiresIn);
 
-          var customerRes = await _userRepository.customerMeApi();
+        //   var customerRes = await _userRepository.customerMeApi();
 
-          if (customerRes.statusCode == 200) {
-            await SharedPref().saveLogin(true);
-            CustomerMeData customerMeData =
-                CustomerMeData.fromJson(customerRes.data);
-            SharedPref().setCustomerMeInfo(customerMeData);
-            SharedPref().setCustomerId(customerMeData.customer.customerId);
+        //   if (customerRes.statusCode == 200) {
+        //     await SharedPref().saveLogin(true);
+        //     CustomerMeData customerMeData =
+        //         CustomerMeData.fromJson(customerRes.data);
+        //     SharedPref().setCustomerMeInfo(customerMeData);
+        //     SharedPref().setCustomerId(customerMeData.customer.customerId);
 
-            Get.offAndToNamed(RouteName.selectLang);
-          }
-        } else if (res.statusCode == 400) {
-          errorText.value = "Invalid OTP";
-          update();
+        //     Get.offAndToNamed(RouteName.selectLang);
+        //   }
+        // } else if (res.statusCode == 400) {
+        //   errorText.value = "Invalid OTP";
+        //   update();
         }
       } catch (e) {
         print(e.toString());
