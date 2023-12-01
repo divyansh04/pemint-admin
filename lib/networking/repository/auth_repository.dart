@@ -13,7 +13,7 @@ class AuthRepository {
 
   Future<BaseResponses> loginApi({required Map parameter}) async {
     dynamic response = await _apiService.postBeforeAuth(
-        parameter, NetworkConstant.END_POINT_SIGNUP);
+        parameter, NetworkConstant.END_POINT_LOGIN);
     return response;
   }
 
@@ -25,7 +25,7 @@ class AuthRepository {
 
   Future<BaseResponses> verifyOTP({required Map parameter}) async {
     dynamic response = await _apiService.postBeforeAuth(
-        parameter, NetworkConstant.END_POINT_SIGNUP);
+        parameter, NetworkConstant.END_POINT_VERIFYOTP);
     return response;
   }
 }

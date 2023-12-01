@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pemint_admin_app/utilities/app_colors.dart';
+import 'package:pemint_admin_app/view/homescreen/homescreen_dashboard.dart';
 import 'package:pemint_admin_app/view/login/otp.dart';
 
 class BankDetails extends StatelessWidget {
@@ -11,13 +12,19 @@ class BankDetails extends StatelessWidget {
     return SafeArea(
         child: Scaffold(
       bottomNavigationBar: Padding(
-        padding: EdgeInsets.only(bottom: 50, left: 30, right: 30),
+        padding: const EdgeInsets.only(bottom: 50, left: 30, right: 30),
         child: GestureDetector(
           onTap: () {
-            Get.to(Enter_OTP());
+            Get.to(const HomeScreenDashboard());
+            // Get.to(Enter_OTP());
           },
           child: Container(
-            child: Center(
+            height: 51,
+            width: Get.width,
+            decoration: BoxDecoration(
+                color: AppColor.whiteColor,
+                borderRadius: BorderRadius.circular(20)),
+            child: const Center(
               child: Text(
                 'Next',
                 style: TextStyle(
@@ -28,11 +35,6 @@ class BankDetails extends StatelessWidget {
                 ),
               ),
             ),
-            height: 51,
-            width: Get.width,
-            decoration: BoxDecoration(
-                color: AppColor.whiteColor,
-                borderRadius: BorderRadius.circular(20)),
           ),
         ),
       ),
@@ -43,7 +45,7 @@ class BankDetails extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Upload KYC',
               style: TextStyle(
                 color: Colors.white,
@@ -53,7 +55,7 @@ class BankDetails extends StatelessWidget {
                 height: 0,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Row(
@@ -87,10 +89,10 @@ class BankDetails extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
-            Text(
+            const Text(
               'Enter Account Number',
               style: TextStyle(
                 color: Colors.white,
@@ -100,7 +102,7 @@ class BankDetails extends StatelessWidget {
                 height: 0,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
@@ -114,28 +116,30 @@ class BankDetails extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 20),
                 child: Center(
                     child: TextFormField(
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Color(0xFF292D32),
                     fontSize: 20,
                     fontFamily: 'Cairo',
                     fontWeight: FontWeight.w600,
                   ),
                   keyboardType: TextInputType.name,
-                  decoration: InputDecoration(hintText: '*************',hintStyle:  TextStyle(
-                    color: Color(0xFF292D32),
-                    fontSize: 20,
-                    fontFamily: 'Cairo',
-                    fontWeight: FontWeight.w600,
-                    height: 0,
-                  ),
+                  decoration: const InputDecoration(
+                      hintText: '*************',
+                      hintStyle: TextStyle(
+                        color: Color(0xFF292D32),
+                        fontSize: 20,
+                        fontFamily: 'Cairo',
+                        fontWeight: FontWeight.w600,
+                        height: 0,
+                      ),
                       border: InputBorder.none),
                 )),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            Text(
+            const Text(
               'Re enter Account Number',
               style: TextStyle(
                 color: Colors.white,
@@ -145,7 +149,7 @@ class BankDetails extends StatelessWidget {
                 height: 0,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
@@ -159,28 +163,30 @@ class BankDetails extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 20),
                 child: Center(
                     child: TextFormField(
-                      style: TextStyle(
-                        color: Color(0xFF292D32),
-                        fontSize: 20,
-                        fontFamily: 'Cairo',
-                        fontWeight: FontWeight.w600,
-                      ),
-                      keyboardType: TextInputType.name,
-                      decoration: InputDecoration(hintText: '*************',hintStyle:  TextStyle(
+                  style: const TextStyle(
+                    color: Color(0xFF292D32),
+                    fontSize: 20,
+                    fontFamily: 'Cairo',
+                    fontWeight: FontWeight.w600,
+                  ),
+                  keyboardType: TextInputType.name,
+                  decoration: const InputDecoration(
+                      hintText: '*************',
+                      hintStyle: TextStyle(
                         color: Color(0xFF292D32),
                         fontSize: 20,
                         fontFamily: 'Cairo',
                         fontWeight: FontWeight.w600,
                         height: 0,
                       ),
-                          border: InputBorder.none),
-                    )),
+                      border: InputBorder.none),
+                )),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            Text(
+            const Text(
               'IFSC Code',
               style: TextStyle(
                 color: Colors.white,
@@ -190,7 +196,7 @@ class BankDetails extends StatelessWidget {
                 height: 0,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
@@ -204,28 +210,30 @@ class BankDetails extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 20, right: 10),
                 child: Center(
                     child: TextFormField(
-                      style: TextStyle(
-                        color: Color(0xFF292D32),
-                        fontSize: 20,
-                        fontFamily: 'Cairo',
-                        fontWeight: FontWeight.w600,
-                      ),
-                      keyboardType: TextInputType.name,
-                      decoration: InputDecoration(hintText: '*************',hintStyle:  TextStyle(
+                  style: const TextStyle(
+                    color: Color(0xFF292D32),
+                    fontSize: 20,
+                    fontFamily: 'Cairo',
+                    fontWeight: FontWeight.w600,
+                  ),
+                  keyboardType: TextInputType.name,
+                  decoration: const InputDecoration(
+                      hintText: '*************',
+                      hintStyle: TextStyle(
                         color: Color(0xFF292D32),
                         fontSize: 20,
                         fontFamily: 'Cairo',
                         fontWeight: FontWeight.w600,
                         height: 0,
                       ),
-                          border: InputBorder.none),
-                    )),
+                      border: InputBorder.none),
+                )),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            Text(
+            const Text(
               'Account Holder Name',
               style: TextStyle(
                 color: Colors.white,
@@ -235,7 +243,7 @@ class BankDetails extends StatelessWidget {
                 height: 0,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
@@ -248,39 +256,39 @@ class BankDetails extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(left: 20, right: 10),
                 child: Center(
-                    child:TextFormField(
-                      style: TextStyle(
-                        color: Color(0xFF292D32),
-                        fontSize: 20,
-                        fontFamily: 'Cairo',
-                        fontWeight: FontWeight.w600,
-                      ),
-                      keyboardType: TextInputType.name,
-                      decoration: InputDecoration(hintStyle:  TextStyle(
+                    child: TextFormField(
+                  style: const TextStyle(
+                    color: Color(0xFF292D32),
+                    fontSize: 20,
+                    fontFamily: 'Cairo',
+                    fontWeight: FontWeight.w600,
+                  ),
+                  keyboardType: TextInputType.name,
+                  decoration: const InputDecoration(
+                      hintStyle: TextStyle(
                         color: Color(0xFF292D32),
                         fontSize: 20,
                         fontFamily: 'Cairo',
                         fontWeight: FontWeight.w600,
                         height: 0,
                       ),
-                          border: InputBorder.none),
-                    )),
+                      border: InputBorder.none),
+                )),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            Text(
+            const Text(
               'Cancelled Cheque',
               style: TextStyle(
                 color: Color(0xFFF6F5FA),
                 fontSize: 20,
                 fontFamily: 'Cairo',
                 fontWeight: FontWeight.w600,
-
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
@@ -296,7 +304,7 @@ class BankDetails extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      const Text(
                         "*****",
                         style: TextStyle(
                           color: Color(0xFF292D32),
@@ -314,7 +322,7 @@ class BankDetails extends StatelessWidget {
                               color: AppColor.contentColorBlue,
                               borderRadius: BorderRadius.circular(8),
                             ),
-                            child: Center(
+                            child: const Center(
                               child: Text(
                                 'Upload',
                                 style: TextStyle(
@@ -322,7 +330,6 @@ class BankDetails extends StatelessWidget {
                                   fontSize: 16,
                                   fontFamily: 'Cairo',
                                   fontWeight: FontWeight.w700,
-
                                 ),
                               ),
                             ),
@@ -330,7 +337,7 @@ class BankDetails extends StatelessWidget {
                     ],
                   )),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
           ],

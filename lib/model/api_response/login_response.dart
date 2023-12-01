@@ -4,83 +4,96 @@
 
 import 'dart:convert';
 
-SignupApiResponse signUpApiResponseFromJson(String str) =>
-    SignupApiResponse.fromJson(json.decode(str));
+LoginApiResponse loginApiResponseFromJson(String str) => LoginApiResponse.fromJson(json.decode(str));
 
-String signUpApiResponseToJson(SignupApiResponse data) =>
-    json.encode(data.toJson());
+String loginApiResponseToJson(LoginApiResponse data) => json.encode(data.toJson());
 
-class SignupApiResponse {
-  bool success;
-  String message;
-  SignupData data;
+class LoginApiResponse {
+    int statusCode;
+    bool success;
+    String message;
+    LoginData data;
 
-  SignupApiResponse({
-    required this.success,
-    required this.message,
-    required this.data,
-  });
+    LoginApiResponse({
+        required this.statusCode,
+        required this.success,
+        required this.message,
+        required this.data,
+    });
 
-  factory SignupApiResponse.fromJson(Map<String, dynamic> json) =>
-      SignupApiResponse(
+    factory LoginApiResponse.fromJson(Map<String, dynamic> json) => LoginApiResponse(
+        statusCode: json["statusCode"],
         success: json["success"],
         message: json["message"],
-        data: SignupData.fromJson(json["data"]),
-      );
+        data: LoginData.fromJson(json["data"]),
+    );
 
-  Map<String, dynamic> toJson() => {
+    Map<String, dynamic> toJson() => {
+        "statusCode": statusCode,
         "success": success,
         "message": message,
         "data": data.toJson(),
-      };
+    };
 }
 
-class SignupData {
-  String challengeName;
-  String session;
-  ChallengeParameters challengeParameters;
+class LoginData {
+    ChallengeParameters challengeParameters;
+    AuthenticationResult authenticationResult;
 
-  SignupData({
-    required this.challengeName,
-    required this.session,
-    required this.challengeParameters,
-  });
+    LoginData({
+        required this.challengeParameters,
+        required this.authenticationResult,
+    });
 
-  factory SignupData.fromJson(Map<String, dynamic> json) => SignupData(
-        challengeName: json["ChallengeName"],
-        session: json["Session"],
-        challengeParameters:
-            ChallengeParameters.fromJson(json["ChallengeParameters"]),
-      );
+    factory LoginData.fromJson(Map<String, dynamic> json) => LoginData(
+        challengeParameters: ChallengeParameters.fromJson(json["ChallengeParameters"]),
+        authenticationResult: AuthenticationResult.fromJson(json["AuthenticationResult"]),
+    );
 
-  Map<String, dynamic> toJson() => {
-        "ChallengeName": challengeName,
-        "Session": session,
+    Map<String, dynamic> toJson() => {
         "ChallengeParameters": challengeParameters.toJson(),
-      };
+        "AuthenticationResult": authenticationResult.toJson(),
+    };
+}
+
+class AuthenticationResult {
+    String accessToken;
+    int expiresIn;
+    String tokenType;
+    String refreshToken;
+    String idToken;
+
+    AuthenticationResult({
+        required this.accessToken,
+        required this.expiresIn,
+        required this.tokenType,
+        required this.refreshToken,
+        required this.idToken,
+    });
+
+    factory AuthenticationResult.fromJson(Map<String, dynamic> json) => AuthenticationResult(
+        accessToken: json["AccessToken"],
+        expiresIn: json["ExpiresIn"],
+        tokenType: json["TokenType"],
+        refreshToken: json["RefreshToken"],
+        idToken: json["IdToken"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "AccessToken": accessToken,
+        "ExpiresIn": expiresIn,
+        "TokenType": tokenType,
+        "RefreshToken": refreshToken,
+        "IdToken": idToken,
+    };
 }
 
 class ChallengeParameters {
-  String codeDeliveryDestination;
-  String userIdForSrp;
-  String codeDeliveryDeliveryMedium;
+    ChallengeParameters();
 
-  ChallengeParameters({
-    required this.codeDeliveryDestination,
-    required this.userIdForSrp,
-    required this.codeDeliveryDeliveryMedium,
-  });
+    factory ChallengeParameters.fromJson(Map<String, dynamic> json) => ChallengeParameters(
+    );
 
-  factory ChallengeParameters.fromJson(Map<String, dynamic> json) =>
-      ChallengeParameters(
-        codeDeliveryDestination: json["CODE_DELIVERY_DESTINATION"],
-        userIdForSrp: json["USER_ID_FOR_SRP"],
-        codeDeliveryDeliveryMedium: json["CODE_DELIVERY_DELIVERY_MEDIUM"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "CODE_DELIVERY_DESTINATION": codeDeliveryDestination,
-        "USER_ID_FOR_SRP": userIdForSrp,
-        "CODE_DELIVERY_DELIVERY_MEDIUM": codeDeliveryDeliveryMedium,
-      };
+    Map<String, dynamic> toJson() => {
+    };
 }

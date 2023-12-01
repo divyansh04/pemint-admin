@@ -7,8 +7,12 @@ import 'package:get/get.dart';
 import 'package:mobile_number/mobile_number.dart';
 import 'package:pemint_admin_app/helper/ToastHelper.dart';
 import 'package:pemint_admin_app/model/api_response/login_response.dart';
+import 'package:pemint_admin_app/model/api_response/signup_response.dart';
 import 'package:pemint_admin_app/networking/SharedPref.dart';
 import 'package:pemint_admin_app/networking/repository/auth_repository.dart';
+import 'package:pemint_admin_app/view/homescreen/homescreen_contact.dart';
+import 'package:pemint_admin_app/view/login/business_type.dart';
+import 'package:pemint_admin_app/view/login/otp.dart';
 
 class MobRegController extends GetxController {
   final currentPageIndex = 0.obs;
@@ -65,6 +69,36 @@ class MobRegController extends GetxController {
         numberController.text = phone;
         SignupData loginData = SignupData.fromJson(res.data);
         await SharedPref().setSession(loginData.session);
+        sendOTP();
+        Get.to(const Enter_OTP());
+      }
+    } catch (e) {
+      print(e.toString());
+      ToastHelper().showErrorToast(message: "Something Went Wrong. Try again.");
+    }
+
+    isLoading.value = false;
+    update();
+  }
+
+  void login() async {
+    isLoading.value = true;
+    update();
+
+    Map parameter = {
+      "username": "+91${numberController.text}",
+      "password": passwordController.text
+    };
+
+    try {
+      var res = await _authRepository.loginApi(parameter: parameter);
+      if (res.statusCode == 200) {
+        print(res);
+        LoginData loginData = LoginData.fromJson(res.data);
+        await SharedPref().setAccessToken(loginData.authenticationResult.accessToken);
+        await SharedPref().setIdToken(loginData.authenticationResult.idToken);
+        await SharedPref().setRefreshToken(loginData.authenticationResult.refreshToken);
+        Get.to(const HomeScreenContact());
       }
     } catch (e) {
       print(e.toString());
@@ -97,7 +131,6 @@ class MobRegController extends GetxController {
       print(e.toString());
       ToastHelper().showErrorToast(message: "Something Went Wrong. Try again.");
     }
-
     isLoading.value = false;
     update();
   }
@@ -107,7 +140,8 @@ class MobRegController extends GetxController {
     if (otpFormKey.currentState!.validate() == true) {
       final sessionId = await SharedPref().getSession();
       Map parameter = {
-       
+        "username": "+91${numberController.text}",
+        "confirmation_code": otpController.text
       };
 
       isLoading.value = true;
@@ -125,20 +159,20 @@ class MobRegController extends GetxController {
           // await saveTokenExpiryTimestamp(
           //     verifyOtpData.authenticationResult.expiresIn);
 
-        //   var customerRes = await _userRepository.customerMeApi();
+          //   var customerRes = await _userRepository.customerMeApi();
 
-        //   if (customerRes.statusCode == 200) {
-        //     await SharedPref().saveLogin(true);
-        //     CustomerMeData customerMeData =
-        //         CustomerMeData.fromJson(customerRes.data);
-        //     SharedPref().setCustomerMeInfo(customerMeData);
-        //     SharedPref().setCustomerId(customerMeData.customer.customerId);
+          //   if (customerRes.statusCode == 200) {
+          //     await SharedPref().saveLogin(true);
+          //     CustomerMeData customerMeData =
+          //         CustomerMeData.fromJson(customerRes.data);
+          //     SharedPref().setCustomerMeInfo(customerMeData);
+          //     SharedPref().setCustomerId(customerMeData.customer.customerId);
 
-        //     Get.offAndToNamed(RouteName.selectLang);
-        //   }
-        // } else if (res.statusCode == 400) {
-        //   errorText.value = "Invalid OTP";
-        //   update();
+          Get.to(const BusinessType());
+          //   }
+          // } else if (res.statusCode == 400) {
+          //   errorText.value = "Invalid OTP";
+          //   update();
         }
       } catch (e) {
         print(e.toString());
