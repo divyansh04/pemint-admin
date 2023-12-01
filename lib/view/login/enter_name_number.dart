@@ -2,19 +2,35 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pemint_admin_app/utilities/app_colors.dart';
 import 'package:pemint_admin_app/view/login/otp.dart';
+import 'package:pemint_admin_app/view_model/auth_cotroller.dart';
 
-class Enter_Name_Number extends StatelessWidget {
-  const Enter_Name_Number({Key? key}) : super(key: key);
+class EnterNameNumber extends StatefulWidget {
+  const EnterNameNumber({Key? key}) : super(key: key);
+
+  @override
+  State<EnterNameNumber> createState() => _EnterNameNumberState();
+}
+
+class _EnterNameNumberState extends State<EnterNameNumber> {
+  final MobRegController viewModel = Get.put(MobRegController());
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
       bottomNavigationBar: Padding(
-        padding: EdgeInsets.only(bottom: 50, left: 30, right: 30),
-        child: GestureDetector(onTap: (){Get.to(Enter_OTP());},
+        padding: const EdgeInsets.only(bottom: 50, left: 30, right: 30),
+        child: GestureDetector(
+          onTap: () {
+            Get.to(const Enter_OTP());
+          },
           child: Container(
-            child: Center(
+            height: 51,
+            width: Get.width,
+            decoration: BoxDecoration(
+                color: AppColor.whiteColor,
+                borderRadius: BorderRadius.circular(20)),
+            child: const Center(
               child: Text(
                 'Next',
                 style: TextStyle(
@@ -25,11 +41,6 @@ class Enter_Name_Number extends StatelessWidget {
                 ),
               ),
             ),
-            height: 51,
-            width: Get.width,
-            decoration: BoxDecoration(
-                color: AppColor.whiteColor,
-                borderRadius: BorderRadius.circular(20)),
           ),
         ),
       ),
@@ -40,7 +51,7 @@ class Enter_Name_Number extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Basic Info',
               style: TextStyle(
                 color: Colors.white,
@@ -50,7 +61,7 @@ class Enter_Name_Number extends StatelessWidget {
                 height: 0,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Row(
@@ -84,10 +95,10 @@ class Enter_Name_Number extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
-            Text(
+            const Text(
               'Your Name',
               style: TextStyle(
                 color: Colors.white,
@@ -97,7 +108,7 @@ class Enter_Name_Number extends StatelessWidget {
                 height: 0,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
@@ -111,21 +122,22 @@ class Enter_Name_Number extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 20),
                 child: Center(
                     child: TextFormField(
-                  style: TextStyle(
+                  controller: viewModel.nameController,
+                  style: const TextStyle(
                     color: Color(0xFF292D32),
                     fontSize: 20,
                     fontFamily: 'Cairo',
                     fontWeight: FontWeight.w600,
                   ),
                   keyboardType: TextInputType.name,
-                  decoration: InputDecoration(border: InputBorder.none),
+                  decoration: const InputDecoration(border: InputBorder.none),
                 )),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            Text(
+            const Text(
               'Mobile Number*',
               style: TextStyle(
                 color: Colors.white,
@@ -135,7 +147,7 @@ class Enter_Name_Number extends StatelessWidget {
                 height: 0,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
@@ -149,18 +161,22 @@ class Enter_Name_Number extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 20),
                 child: Center(
                     child: TextFormField(
-                  style: TextStyle(
+                  controller: viewModel.numberController,
+                  style: const TextStyle(
                     color: Color(0xFF292D32),
                     fontSize: 20,
                     fontFamily: 'Cairo',
                     fontWeight: FontWeight.w600,
                   ),
                   keyboardType: TextInputType.number,
-                  decoration: InputDecoration(border: InputBorder.none),
+                  decoration: const InputDecoration(border: InputBorder.none),
                 )),
               ),
-            ),SizedBox(height: 20,),
-            Text(
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const Text(
               'Password',
               style: TextStyle(
                 color: Colors.white,
@@ -170,7 +186,7 @@ class Enter_Name_Number extends StatelessWidget {
                 height: 0,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
@@ -181,24 +197,32 @@ class Enter_Name_Number extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Padding(
-                padding: const EdgeInsets.only(left: 20,right: 10),
+                padding: const EdgeInsets.only(left: 20, right: 10),
                 child: Center(
-                    child: TextFormField(obscureText: true,
-                      style: TextStyle(
-                        color: Color(0xFF292D32),
-                        fontSize: 20,
-                        fontFamily: 'Cairo',
-                        fontWeight: FontWeight.w600,
+                    child: TextFormField(
+                  controller: viewModel.passwordController,
+                  obscureText: true,
+                  style: const TextStyle(
+                    color: Color(0xFF292D32),
+                    fontSize: 20,
+                    fontFamily: 'Cairo',
+                    fontWeight: FontWeight.w600,
+                  ),
+                  keyboardType: TextInputType.name,
+                  decoration: const InputDecoration(
+                      suffixIcon: Icon(
+                        Icons.lock_outline_rounded,
+                        color: AppColor.primaryColor,
+                        size: 25,
                       ),
-                      keyboardType: TextInputType.name,
-                      decoration: InputDecoration(suffixIcon: Icon(Icons.lock_outline_rounded,color: AppColor.primaryColor,size: 25,),
-                          border: InputBorder.none),
-                    )),
+                      border: InputBorder.none),
+                )),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
-            ), Text(
+            ),
+            const Text(
               'Re enter Password',
               style: TextStyle(
                 color: Colors.white,
@@ -208,7 +232,7 @@ class Enter_Name_Number extends StatelessWidget {
                 height: 0,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
@@ -219,22 +243,29 @@ class Enter_Name_Number extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Padding(
-                padding: const EdgeInsets.only(left: 20,right: 10),
+                padding: const EdgeInsets.only(left: 20, right: 10),
                 child: Center(
-                    child: TextFormField(obscureText: true,
-                      style: TextStyle(
-                        color: Color(0xFF292D32),
-                        fontSize: 20,
-                        fontFamily: 'Cairo',
-                        fontWeight: FontWeight.w600,
+                    child: TextFormField(
+                  controller: viewModel.password2Controller,
+                  obscureText: true,
+                  style: const TextStyle(
+                    color: Color(0xFF292D32),
+                    fontSize: 20,
+                    fontFamily: 'Cairo',
+                    fontWeight: FontWeight.w600,
+                  ),
+                  keyboardType: TextInputType.name,
+                  decoration: const InputDecoration(
+                      suffixIcon: Icon(
+                        Icons.lock_outline_rounded,
+                        color: AppColor.primaryColor,
+                        size: 25,
                       ),
-                      keyboardType: TextInputType.name,
-                      decoration: InputDecoration(suffixIcon: Icon(Icons.lock_outline_rounded,color: AppColor.primaryColor,size: 25,),
-                          border: InputBorder.none),
-                    )),
+                      border: InputBorder.none),
+                )),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
           ],

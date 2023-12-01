@@ -16,7 +16,10 @@ class InitialScreen extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              GestureDetector(onTap: (){Get.to(Login());},
+              GestureDetector(
+                onTap: () {
+                  Get.to(Login());
+                },
                 child: Container(
                     height: 50,
                     width: Get.width,
@@ -69,9 +72,15 @@ class InitialScreen extends StatelessWidget {
                     color: AppColor.whiteColor,
                   ),
                 ],
-              ),SizedBox(height: 20,),
-              GestureDetector(onTap: (){print('AVC');
-                Get.to(Enter_Name_Number());},
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              GestureDetector(
+                onTap: () {
+                  print('AVC');
+                  Get.to(EnterNameNumber());
+                },
                 child: Container(
                     height: 50,
                     width: Get.width,
