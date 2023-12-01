@@ -1,86 +1,85 @@
 // To parse this JSON data, do
 //
-//     final loginApiResponse = loginApiResponseFromJson(jsonString);
+//     final signupApiResponse = signupApiResponseFromJson(jsonString);
 
 import 'dart:convert';
 
-SignupApiResponse signUpApiResponseFromJson(String str) =>
-    SignupApiResponse.fromJson(json.decode(str));
+SignupApiResponse signupApiResponseFromJson(String str) => SignupApiResponse.fromJson(json.decode(str));
 
-String signUpApiResponseToJson(SignupApiResponse data) =>
-    json.encode(data.toJson());
+String signupApiResponseToJson(SignupApiResponse data) => json.encode(data.toJson());
 
 class SignupApiResponse {
-  bool success;
-  String message;
-  SignupData data;
+    int statusCode;
+    bool success;
+    String message;
+    SignupData data;
 
-  SignupApiResponse({
-    required this.success,
-    required this.message,
-    required this.data,
-  });
+    SignupApiResponse({
+        required this.statusCode,
+        required this.success,
+        required this.message,
+        required this.data,
+    });
 
-  factory SignupApiResponse.fromJson(Map<String, dynamic> json) =>
-      SignupApiResponse(
+    factory SignupApiResponse.fromJson(Map<String, dynamic> json) => SignupApiResponse(
+        statusCode: json["statusCode"],
         success: json["success"],
         message: json["message"],
         data: SignupData.fromJson(json["data"]),
-      );
+    );
 
-  Map<String, dynamic> toJson() => {
+    Map<String, dynamic> toJson() => {
+        "statusCode": statusCode,
         "success": success,
         "message": message,
         "data": data.toJson(),
-      };
+    };
 }
 
 class SignupData {
-  String challengeName;
-  String session;
-  ChallengeParameters challengeParameters;
+    bool userConfirmed;
+    CodeDeliveryDetails codeDeliveryDetails;
+    String userSub;
 
-  SignupData({
-    required this.challengeName,
-    required this.session,
-    required this.challengeParameters,
-  });
+    SignupData({
+        required this.userConfirmed,
+        required this.codeDeliveryDetails,
+        required this.userSub,
+    });
 
-  factory SignupData.fromJson(Map<String, dynamic> json) => SignupData(
-        challengeName: json["ChallengeName"],
-        session: json["Session"],
-        challengeParameters:
-            ChallengeParameters.fromJson(json["ChallengeParameters"]),
-      );
+    factory SignupData.fromJson(Map<String, dynamic> json) => SignupData(
+        userConfirmed: json["UserConfirmed"],
+        codeDeliveryDetails: CodeDeliveryDetails.fromJson(json["CodeDeliveryDetails"]),
+        userSub: json["UserSub"],
+    );
 
-  Map<String, dynamic> toJson() => {
-        "ChallengeName": challengeName,
-        "Session": session,
-        "ChallengeParameters": challengeParameters.toJson(),
-      };
+    Map<String, dynamic> toJson() => {
+        "UserConfirmed": userConfirmed,
+        "CodeDeliveryDetails": codeDeliveryDetails.toJson(),
+        "UserSub": userSub,
+    };
 }
 
-class ChallengeParameters {
-  String codeDeliveryDestination;
-  String userIdForSrp;
-  String codeDeliveryDeliveryMedium;
+class CodeDeliveryDetails {
+    String destination;
+    String deliveryMedium;
+    String attributeName;
 
-  ChallengeParameters({
-    required this.codeDeliveryDestination,
-    required this.userIdForSrp,
-    required this.codeDeliveryDeliveryMedium,
-  });
+    CodeDeliveryDetails({
+        required this.destination,
+        required this.deliveryMedium,
+        required this.attributeName,
+    });
 
-  factory ChallengeParameters.fromJson(Map<String, dynamic> json) =>
-      ChallengeParameters(
-        codeDeliveryDestination: json["CODE_DELIVERY_DESTINATION"],
-        userIdForSrp: json["USER_ID_FOR_SRP"],
-        codeDeliveryDeliveryMedium: json["CODE_DELIVERY_DELIVERY_MEDIUM"],
-      );
+    factory CodeDeliveryDetails.fromJson(Map<String, dynamic> json) => CodeDeliveryDetails(
+        destination: json["Destination"],
+        deliveryMedium: json["DeliveryMedium"],
+        attributeName: json["AttributeName"],
+    );
 
-  Map<String, dynamic> toJson() => {
-        "CODE_DELIVERY_DESTINATION": codeDeliveryDestination,
-        "USER_ID_FOR_SRP": userIdForSrp,
-        "CODE_DELIVERY_DELIVERY_MEDIUM": codeDeliveryDeliveryMedium,
-      };
+    Map<String, dynamic> toJson() => {
+        "Destination": destination,
+        "DeliveryMedium": deliveryMedium,
+        "AttributeName": attributeName,
+    };
 }

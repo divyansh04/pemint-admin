@@ -2,14 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pemint_admin_app/utilities/app_colors.dart';
 import 'package:pemint_admin_app/view/login/business_type.dart';
+import 'package:pemint_admin_app/view_model/auth_controller.dart';
 
 class ResetPassword extends StatelessWidget {
-  const ResetPassword({Key? key}) : super(key: key);
+  ResetPassword({Key? key}) : super(key: key);
 
+  final MobRegController viewModel = Get.put(MobRegController());
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Scaffold(
+        child: Stack(
+      children: [
+        Scaffold(
           bottomNavigationBar: Padding(
             padding: EdgeInsets.only(bottom: 50, left: 30, right: 30),
             child: GestureDetector(
@@ -52,7 +56,6 @@ class ResetPassword extends StatelessWidget {
                     fontWeight: FontWeight.w400,
                   ),
                 ),
-
                 SizedBox(
                   height: 30,
                 ),
@@ -63,7 +66,6 @@ class ResetPassword extends StatelessWidget {
                     fontSize: 20,
                     fontFamily: 'Cairo',
                     fontWeight: FontWeight.w600,
-
                   ),
                 ),
                 SizedBox(
@@ -78,31 +80,32 @@ class ResetPassword extends StatelessWidget {
                   ),
                   child: Center(
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 20),
-                        child: TextFormField(textAlign: TextAlign.start,
-                          style: TextStyle(
-                            color: Color(0xFF292D32),
+                    padding: const EdgeInsets.only(left: 20),
+                    child: TextFormField(
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        color: Color(0xFF292D32),
+                        fontSize: 20,
+                        fontFamily: 'Cairo',
+                        fontWeight: FontWeight.w600,
+                      ),
+                      keyboardType: TextInputType.text,
+                      decoration: InputDecoration(
+                          alignLabelWithHint: true,
+                          hintStyle: TextStyle(
+                            color: Color(0xFF7E6491),
                             fontSize: 20,
                             fontFamily: 'Cairo',
                             fontWeight: FontWeight.w600,
-
+                            height: 0,
                           ),
-                          keyboardType: TextInputType.text,
-                          decoration: InputDecoration(
-
-                              alignLabelWithHint: true,
-                              hintStyle: TextStyle(
-                                color: Color(0xFF7E6491),
-                                fontSize: 20,
-                                fontFamily: 'Cairo',
-                                fontWeight: FontWeight.w600,
-                                height: 0,
-                              ),
-                              border: InputBorder.none),
-                        ),
-                      )),
+                          border: InputBorder.none),
+                    ),
+                  )),
                 ),
-                SizedBox(height: 30,),
+                SizedBox(
+                  height: 30,
+                ),
                 Text(
                   'Re Enter Password',
                   style: TextStyle(
@@ -110,7 +113,6 @@ class ResetPassword extends StatelessWidget {
                     fontSize: 20,
                     fontFamily: 'Cairo',
                     fontWeight: FontWeight.w600,
-
                   ),
                 ),
                 SizedBox(
@@ -125,34 +127,52 @@ class ResetPassword extends StatelessWidget {
                   ),
                   child: Center(
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 20),
-                        child: TextFormField(textAlign: TextAlign.start,
-                          style: TextStyle(
-                            color: Color(0xFF292D32),
+                    padding: const EdgeInsets.only(left: 20),
+                    child: TextFormField(
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        color: Color(0xFF292D32),
+                        fontSize: 20,
+                        fontFamily: 'Cairo',
+                        fontWeight: FontWeight.w600,
+                      ),
+                      keyboardType: TextInputType.text,
+                      decoration: InputDecoration(
+                          alignLabelWithHint: true,
+                          hintStyle: TextStyle(
+                            color: Color(0xFF7E6491),
                             fontSize: 20,
                             fontFamily: 'Cairo',
                             fontWeight: FontWeight.w600,
-
+                            height: 0,
                           ),
-                          keyboardType: TextInputType.text,
-                          decoration: InputDecoration(
-
-                              alignLabelWithHint: true,
-                              hintStyle: TextStyle(
-                                color: Color(0xFF7E6491),
-                                fontSize: 20,
-                                fontFamily: 'Cairo',
-                                fontWeight: FontWeight.w600,
-                                height: 0,
-                              ),
-                              border: InputBorder.none),
-                        ),
-                      )),
+                          border: InputBorder.none),
+                    ),
+                  )),
                 ),
-
               ],
             ),
           ),
-        ));
+        ),
+        GetBuilder(
+            init: MobRegController(),
+            builder: (controller) {
+              if (controller.isLoading.value == true) {
+                return Container(
+                  color: Colors.black.withOpacity(0.5),
+                  child: Center(
+                    child: CircularProgressIndicator.adaptive(
+                      backgroundColor: Colors.white.withOpacity(0.5),
+                      valueColor: const AlwaysStoppedAnimation<Color>(
+                          AppColor.primaryColor),
+                    ),
+                  ),
+                );
+              } else {
+                return Container();
+              }
+            }),
+      ],
+    ));
   }
 }

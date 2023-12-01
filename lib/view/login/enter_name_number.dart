@@ -20,6 +20,7 @@ class _EnterNameNumberState extends State<EnterNameNumber> {
         child: Stack(
       children: [
         Scaffold(
+          resizeToAvoidBottomInset: false,
           bottomNavigationBar: Padding(
             padding: const EdgeInsets.only(bottom: 50, left: 30, right: 30),
             child: GestureDetector(

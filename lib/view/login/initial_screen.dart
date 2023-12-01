@@ -26,7 +26,7 @@ class InitialScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                         color: AppColor.whiteColor,
                         borderRadius: BorderRadius.circular(20)),
-                    child: Center(
+                    child: const Center(
                       child: Text(
                         'Log In',
                         style: TextStyle(
@@ -39,7 +39,7 @@ class InitialScreen extends StatelessWidget {
                       ),
                     )),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Row(
@@ -53,7 +53,7 @@ class InitialScreen extends StatelessWidget {
                   SizedBox(
                     width: Get.width * .05,
                   ),
-                  Text(
+                  const Text(
                     'OR',
                     style: TextStyle(
                       color: Color(0xFF9888A4),
@@ -73,13 +73,13 @@ class InitialScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               GestureDetector(
                 onTap: () {
                   print('AVC');
-                  Get.to(EnterNameNumber());
+                  Get.to(const EnterNameNumber());
                 },
                 child: Container(
                     height: 50,
@@ -87,7 +87,7 @@ class InitialScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                         color: AppColor.whiteColor,
                         borderRadius: BorderRadius.circular(20)),
-                    child: Center(
+                    child: const Center(
                       child: Text(
                         'Sign Up',
                         style: TextStyle(

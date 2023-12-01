@@ -13,6 +13,7 @@ import 'package:pemint_admin_app/networking/repository/auth_repository.dart';
 import 'package:pemint_admin_app/view/homescreen/homescreen_contact.dart';
 import 'package:pemint_admin_app/view/login/business_type.dart';
 import 'package:pemint_admin_app/view/login/otp.dart';
+import 'package:pemint_admin_app/view/login/reset_password.dart';
 
 class MobRegController extends GetxController {
   final currentPageIndex = 0.obs;
@@ -68,7 +69,6 @@ class MobRegController extends GetxController {
         print(res);
         numberController.text = phone;
         SignupData loginData = SignupData.fromJson(res.data);
-        await SharedPref().setSession(loginData.session);
         sendOTP();
         Get.to(const Enter_OTP());
       }
@@ -95,9 +95,11 @@ class MobRegController extends GetxController {
       if (res.statusCode == 200) {
         print(res);
         LoginData loginData = LoginData.fromJson(res.data);
-        await SharedPref().setAccessToken(loginData.authenticationResult.accessToken);
+        await SharedPref()
+            .setAccessToken(loginData.authenticationResult.accessToken);
         await SharedPref().setIdToken(loginData.authenticationResult.idToken);
-        await SharedPref().setRefreshToken(loginData.authenticationResult.refreshToken);
+        await SharedPref()
+            .setRefreshToken(loginData.authenticationResult.refreshToken);
         Get.to(const HomeScreenContact());
       }
     } catch (e) {
@@ -122,10 +124,7 @@ class MobRegController extends GetxController {
     try {
       var res = await _authRepository.sendOTP(parameter: parameter);
       if (res.statusCode == 200) {
-        print(res);
         numberController.text = phone;
-        SignupData loginData = SignupData.fromJson(res.data);
-        await SharedPref().setSession(loginData.session);
       }
     } catch (e) {
       print(e.toString());
@@ -148,31 +147,8 @@ class MobRegController extends GetxController {
       update();
       try {
         var res = await _authRepository.verifyOTP(parameter: parameter);
-        if (res.statusCode == 200) {
-          // VerifyOtpData verifyOtpData = VerifyOtpData.fromJson(res.data);
-          // SharedPref()
-          //     .setAccessToken(verifyOtpData.authenticationResult.accessToken);
-
-          // SharedPref().setIdToken(verifyOtpData.authenticationResult.idToken);
-          // SharedPref()
-          //     .setRefreshToken(verifyOtpData.authenticationResult.refreshToken);
-          // await saveTokenExpiryTimestamp(
-          //     verifyOtpData.authenticationResult.expiresIn);
-
-          //   var customerRes = await _userRepository.customerMeApi();
-
-          //   if (customerRes.statusCode == 200) {
-          //     await SharedPref().saveLogin(true);
-          //     CustomerMeData customerMeData =
-          //         CustomerMeData.fromJson(customerRes.data);
-          //     SharedPref().setCustomerMeInfo(customerMeData);
-          //     SharedPref().setCustomerId(customerMeData.customer.customerId);
-
+        if (res.statusCode == 200 && res.data == true) {
           Get.to(const BusinessType());
-          //   }
-          // } else if (res.statusCode == 400) {
-          //   errorText.value = "Invalid OTP";
-          //   update();
         }
       } catch (e) {
         print(e.toString());
@@ -180,6 +156,52 @@ class MobRegController extends GetxController {
             .showErrorToast(message: "Something Went Wrong. Try again.");
       }
     }
+    isLoading.value = false;
+    update();
+  }
+
+  void requestResetPassword() async {
+    isLoading.value = true;
+    update();
+
+    Map parameter = {
+      "username": "+91${numberController.text}",
+    };
+
+    try {
+      var res = await _authRepository.forgotPassword(parameter: parameter);
+      if (res.statusCode == 200) {
+        Get.to(ResetPassword());
+      }
+    } catch (e) {
+      print(e.toString());
+      ToastHelper().showErrorToast(message: "Something Went Wrong. Try again.");
+    }
+
+    isLoading.value = false;
+    update();
+  }
+
+  void resetPassword() async {
+    isLoading.value = true;
+    update();
+
+    Map parameter = {
+      "username": "+91${numberController.text}",
+      "otp": otpController.text,
+      "newPassword": passwordController.text
+    };
+
+    try {
+      var res = await _authRepository.resetPassword(parameter: parameter);
+      if (res.statusCode == 200) {
+        Get.to(ResetPassword());
+      }
+    } catch (e) {
+      print(e.toString());
+      ToastHelper().showErrorToast(message: "Something Went Wrong. Try again.");
+    }
+
     isLoading.value = false;
     update();
   }
