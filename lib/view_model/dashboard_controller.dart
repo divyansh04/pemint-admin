@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pemint_admin_app/helper/ToastHelper.dart';
+import 'package:pemint_admin_app/model/api_response/create_demand_response.dart';
 import 'package:pemint_admin_app/networking/repository/user_repository.dart';
+import 'package:share_plus/share_plus.dart';
 
 class DashboardController extends GetxController {
   final isLoading = false.obs;
   final _userRepository = UserRepository();
   final TextEditingController partnerIdController = TextEditingController();
-  final TextEditingController customermobileController = TextEditingController();
+  final TextEditingController customermobileController =
+      TextEditingController();
   final TextEditingController customernameController = TextEditingController();
   final TextEditingController amountController = TextEditingController();
   final TextEditingController dueDateController = TextEditingController();
@@ -16,8 +19,6 @@ class DashboardController extends GetxController {
   final TextEditingController customerEmailController = TextEditingController();
   final TextEditingController groupnameController = TextEditingController();
   final TextEditingController noteController = TextEditingController();
-
-  RxBool loading = false.obs;
 
   void createDemand() async {
     isLoading.value = true;
@@ -40,6 +41,8 @@ class DashboardController extends GetxController {
       var res = await _userRepository.createDemand(parameter: parameter);
       if (res.statusCode == 200) {
         print(res);
+        CreateDemandData data = CreateDemandData.fromJson(res.data);
+        Share.share(data.tinyUrl);
       }
     } catch (e) {
       print(e.toString());
