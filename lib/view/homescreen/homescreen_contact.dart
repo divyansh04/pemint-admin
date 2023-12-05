@@ -5,9 +5,12 @@ import 'package:pemint_admin_app/view/homescreen/homescreen_dashboard.dart';
 import 'package:pemint_admin_app/view/homescreen/homescreen_history.dart';
 import 'package:pemint_admin_app/view/homescreen/homescreen_profile.dart';
 import 'package:pemint_admin_app/view/login/business_type.dart';
+import 'package:pemint_admin_app/view_model/dashboard_controller.dart';
 
 class HomeScreenContact extends StatelessWidget {
-  const HomeScreenContact({Key? key}) : super(key: key);
+  HomeScreenContact({Key? key}) : super(key: key);
+
+  final DashboardController viewModel = Get.put(DashboardController());
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +33,7 @@ class HomeScreenContact extends StatelessWidget {
                   width: 70,
                 ),
                 Row(
-                  children: [
+                  children: const [
                     Text.rich(
                       TextSpan(
                         children: [
@@ -68,7 +71,7 @@ class HomeScreenContact extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Row(
@@ -77,8 +80,8 @@ class HomeScreenContact extends StatelessWidget {
               children: [
                 Container(
                   height: Get.height / 1.223,
-                  width: 100,
-                  decoration: BoxDecoration(
+                  width: 90,
+                  decoration: const BoxDecoration(
                     borderRadius:
                         BorderRadius.only(topRight: Radius.circular(12)),
                     color: AppColor.contentColorBlue,
@@ -87,13 +90,13 @@ class HomeScreenContact extends StatelessWidget {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          Get.to(HomeScreenDashboard());
+                          Get.to(const HomeScreenDashboard());
                         },
                         child: Container(
-                          margin: EdgeInsets.only(left: 10,  top: 20),
+                          margin: const EdgeInsets.only(left: 10, top: 20),
                           width: 100,
                           height: 50,
-                          child: Text(
+                          child: const Text(
                             'Dashboard',
                             style: TextStyle(
                               color: Color(0xFF292D32),
@@ -110,12 +113,12 @@ class HomeScreenContact extends StatelessWidget {
                         color: AppColor.whiteColor,
                       ),
                       Container(
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: AppColor.primaryColor,
                         ),
                         height: 70,
                         width: 100,
-                        child: Center(
+                        child: const Center(
                           child: Text(
                             'Contact',
                             style: TextStyle(
@@ -134,14 +137,14 @@ class HomeScreenContact extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Get.to(HomeScreenHistory());
+                          Get.to(const HomeScreenHistory());
                         },
                         child: Container(
-                          margin: EdgeInsets.only(left: 10,top: 30),
-                          decoration: BoxDecoration(),
+                          margin: const EdgeInsets.only(left: 10, top: 30),
+                          decoration: const BoxDecoration(),
                           width: 100,
                           height: 70,
-                          child: Text(
+                          child: const Text(
                             'History',
                             style: TextStyle(
                               color: Color(0xFF292D32),
@@ -152,11 +155,15 @@ class HomeScreenContact extends StatelessWidget {
                           ),
                         ),
                       ),
-                      GestureDetector(onTap: (){Get.to(HomeScreenProfile());},
-                        child: Container(margin: EdgeInsets.only(left: 10),
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(const HomeScreenProfile());
+                        },
+                        child: Container(
+                          margin: const EdgeInsets.only(left: 10),
                           width: 100,
                           height: 70,
-                          child: Text(
+                          child: const Text(
                             'Profile',
                             style: TextStyle(
                               color: Color(0xFF292D32),
@@ -168,11 +175,13 @@ class HomeScreenContact extends StatelessWidget {
                         ),
                       ),
                       Container(
-                          margin: EdgeInsets.only(left: 10, ),
-                          decoration: BoxDecoration(),
+                          margin: const EdgeInsets.only(
+                            left: 10,
+                          ),
+                          decoration: const BoxDecoration(),
                           width: 100,
                           height: 70,
-                          child: Text(
+                          child: const Text(
                             'Add\nEmployee',
                             style: TextStyle(
                               color: Color(0x7F292D32),
@@ -182,11 +191,11 @@ class HomeScreenContact extends StatelessWidget {
                             ),
                           )),
                       Container(
-                          margin: EdgeInsets.only(left: 10),
-                          decoration: BoxDecoration(),
+                          margin: const EdgeInsets.only(left: 10),
+                          decoration: const BoxDecoration(),
                           width: 100,
                           height: 70,
-                          child: Text(
+                          child: const Text(
                             'QR Code\nScan and Pay',
                             style: TextStyle(
                               color: Color(0x7F292D32),
@@ -196,11 +205,11 @@ class HomeScreenContact extends StatelessWidget {
                             ),
                           )),
                       Container(
-                        margin: EdgeInsets.only(left: 10),
-                        decoration: BoxDecoration(),
+                        margin: const EdgeInsets.only(left: 10),
+                        decoration: const BoxDecoration(),
                         width: 100,
                         height: 70,
-                        child: Text(
+                        child: const Text(
                           'Bill\nPayment',
                           style: TextStyle(
                             color: Color(0x7F292D32),
@@ -213,7 +222,7 @@ class HomeScreenContact extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 20,
                 ),
                 Column(
@@ -221,7 +230,10 @@ class HomeScreenContact extends StatelessWidget {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [SizedBox(height: 20,),
+                      children: const [
+                        SizedBox(
+                          height: 20,
+                        ),
                         Text(
                           'Receive Money                                      ',
                           style: TextStyle(
@@ -238,7 +250,7 @@ class HomeScreenContact extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         Container(
@@ -248,7 +260,7 @@ class HomeScreenContact extends StatelessWidget {
                               color: AppColor.veryLightPurple,
                               borderRadius: BorderRadius.circular(20),
                               border: Border.all(color: AppColor.primaryColor)),
-                          child: Center(
+                          child: const Center(
                             child: TextField(
                               style: TextStyle(
                                   color: Color(0xFF292D32),
@@ -275,7 +287,7 @@ class HomeScreenContact extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 40,
                         ),
                         Row(
@@ -286,7 +298,7 @@ class HomeScreenContact extends StatelessWidget {
                               height: 40,
                               width: 100,
                               color: AppColor.veryLightPurple,
-                              child: Center(
+                              child: const Center(
                                 child: Text(
                                   'Contacts',
                                   style: TextStyle(
@@ -298,14 +310,14 @@ class HomeScreenContact extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 20,
                             ),
                             Container(
                               height: 40,
                               width: 100,
                               color: AppColor.veryLightGreyColor,
-                              child: Center(
+                              child: const Center(
                                 child: Text(
                                   'Groups',
                                   style: TextStyle(
@@ -320,7 +332,7 @@ class HomeScreenContact extends StatelessWidget {
                             )
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         Row(
@@ -328,9 +340,9 @@ class HomeScreenContact extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Column(
-                              children: [
+                              children: const [
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 20),
+                                  padding: EdgeInsets.only(left: 20),
                                   child: Text(
                                     'Abhisek Behera',
                                     textAlign: TextAlign.center,
@@ -346,7 +358,7 @@ class HomeScreenContact extends StatelessWidget {
                                   height: 5,
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 10),
+                                  padding: EdgeInsets.only(left: 10),
                                   child: Text(
                                     '+918658956865',
                                     textAlign: TextAlign.center,
@@ -365,9 +377,9 @@ class HomeScreenContact extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
-                                Get.dialog(DemandDialog());
+                                Get.dialog(const DemandDialog());
                               },
-                              child: Icon(
+                              child: const Icon(
                                 Icons.add_circle_outline_rounded,
                                 color: AppColor.primaryColor,
                                 size: 30,
@@ -416,12 +428,18 @@ class DemandDialog extends StatelessWidget {
                           onTap: () {
                             Get.back();
                           },
-                          child: CircleAvatar(backgroundColor:AppColor.primaryColor,radius: 15,
-                              child: Icon(Icons.close,color: AppColor.whiteColor,size: 18,))),
+                          child: const CircleAvatar(
+                              backgroundColor: AppColor.primaryColor,
+                              radius: 15,
+                              child: Icon(
+                                Icons.close,
+                                color: AppColor.whiteColor,
+                                size: 18,
+                              ))),
                     )
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Center(
@@ -431,8 +449,8 @@ class DemandDialog extends StatelessWidget {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
                         border: Border.all(color: AppColor.contentColorBlue)),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 10, right: 10),
+                    child: const Padding(
+                      padding: EdgeInsets.only(left: 10, right: 10),
                       child: Center(
                         child: TextField(
                           textAlign: TextAlign.right,
@@ -467,7 +485,7 @@ class DemandDialog extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Padding(
@@ -483,8 +501,8 @@ class DemandDialog extends StatelessWidget {
                             borderRadius: BorderRadius.circular(5),
                             border:
                                 Border.all(color: AppColor.contentColorBlue)),
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 5, right: 5),
+                        child: const Padding(
+                          padding: EdgeInsets.only(left: 5, right: 5),
                           child: TextField(
                             textAlign: TextAlign.start,
                             textAlignVertical: TextAlignVertical.center,
@@ -507,7 +525,7 @@ class DemandDialog extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Text(
+                      const Text(
                         'Add details +',
                         textAlign: TextAlign.right,
                         style: TextStyle(
@@ -521,7 +539,7 @@ class DemandDialog extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Padding(
@@ -536,7 +554,7 @@ class DemandDialog extends StatelessWidget {
                             border:
                                 Border.all(color: AppColor.greyColor, width: 2),
                             borderRadius: BorderRadius.circular(5)),
-                        child: Center(
+                        child: const Center(
                           child: Text(
                             'Invoice number',
                             style: TextStyle(
@@ -549,21 +567,21 @@ class DemandDialog extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
-                      Icon(
+                      const Icon(
                         Icons.file_present_rounded,
                         color: AppColor.greyColor,
                       )
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 30, right: 30),
+                const Padding(
+                  padding: EdgeInsets.only(left: 30, right: 30),
                   child: Text(
                     'Invoice date:',
                     style: TextStyle(
@@ -575,7 +593,7 @@ class DemandDialog extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
                 Padding(
@@ -590,7 +608,7 @@ class DemandDialog extends StatelessWidget {
                             border:
                                 Border.all(color: AppColor.greyColor, width: 2),
                             borderRadius: BorderRadius.circular(5)),
-                        child: Center(
+                        child: const Center(
                           child: Text(
                             'dd',
                             style: TextStyle(
@@ -603,7 +621,7 @@ class DemandDialog extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 5,
                       ),
                       Container(
@@ -613,7 +631,7 @@ class DemandDialog extends StatelessWidget {
                             border:
                                 Border.all(color: AppColor.greyColor, width: 2),
                             borderRadius: BorderRadius.circular(5)),
-                        child: Center(
+                        child: const Center(
                           child: Text(
                             'mm',
                             style: TextStyle(
@@ -626,7 +644,7 @@ class DemandDialog extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 5,
                       ),
                       Container(
@@ -636,7 +654,7 @@ class DemandDialog extends StatelessWidget {
                             border:
                                 Border.all(color: AppColor.greyColor, width: 2),
                             borderRadius: BorderRadius.circular(5)),
-                        child: Center(
+                        child: const Center(
                           child: Text(
                             'year',
                             style: TextStyle(
@@ -649,12 +667,17 @@ class DemandDialog extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(width: 10,),
-                      Icon(Icons.calendar_month,color: AppColor.greyColor,)
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      const Icon(
+                        Icons.calendar_month,
+                        color: AppColor.greyColor,
+                      )
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 40,
                 ),
                 Row(
@@ -669,7 +692,7 @@ class DemandDialog extends StatelessWidget {
                           color: AppColor.primaryColor),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
+                        children: const [
                           Text(
                             'Genearte link & Share',
                             style: TextStyle(

@@ -12,7 +12,9 @@ import 'package:pemint_admin_app/networking/SharedPref.dart';
 import 'package:pemint_admin_app/networking/repository/auth_repository.dart';
 import 'package:pemint_admin_app/view/homescreen/homescreen_contact.dart';
 import 'package:pemint_admin_app/view/login/business_type.dart';
+import 'package:pemint_admin_app/view/login/login.dart';
 import 'package:pemint_admin_app/view/login/otp.dart';
+import 'package:pemint_admin_app/view/login/reset_pass_otp.dart';
 import 'package:pemint_admin_app/view/login/reset_password.dart';
 
 class MobRegController extends GetxController {
@@ -100,7 +102,7 @@ class MobRegController extends GetxController {
         await SharedPref().setIdToken(loginData.authenticationResult.idToken);
         await SharedPref()
             .setRefreshToken(loginData.authenticationResult.refreshToken);
-        Get.to(const HomeScreenContact());
+        Get.to(HomeScreenContact());
       }
     } catch (e) {
       print(e.toString());
@@ -171,7 +173,7 @@ class MobRegController extends GetxController {
     try {
       var res = await _authRepository.forgotPassword(parameter: parameter);
       if (res.statusCode == 200) {
-        Get.to(ResetPassword());
+        Get.to(const ResetPasswordOTP());
       }
     } catch (e) {
       print(e.toString());
@@ -195,11 +197,14 @@ class MobRegController extends GetxController {
     try {
       var res = await _authRepository.resetPassword(parameter: parameter);
       if (res.statusCode == 200) {
-        Get.to(ResetPassword());
+        Get.to(Login());
+        ToastHelper().showToast(message: "Password Reset Successful");
       }
     } catch (e) {
       print(e.toString());
       ToastHelper().showErrorToast(message: "Something Went Wrong. Try again.");
+      Get.back();
+      Get.back();
     }
 
     isLoading.value = false;

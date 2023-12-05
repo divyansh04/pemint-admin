@@ -9,4 +9,5 @@ class NetworkConstant {
   static const String END_POINT_VERIFYOTP = '/admin/user/confirm-signup';
   static const String END_POINT_FORGOTPASSWORD = '/admin/user/forget-password';
   static const String END_POINT_RESETPASSWORD = '/admin/user/reset-password';
+  static const String END_POINT_CREATE_DEMAND = '/small-business/create-demand';
 }
