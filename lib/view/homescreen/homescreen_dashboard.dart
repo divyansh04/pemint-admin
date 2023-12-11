@@ -79,7 +79,7 @@ class HomeScreenDashboard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Container(
-                  height: Get.height / 1.223,
+                  height: Get.height / 1.242,
                   width: 100,
                   decoration: BoxDecoration(
                     borderRadius:
@@ -239,7 +239,7 @@ class HomeScreenDashboard extends StatelessWidget {
                               ),
                             ),
                             SizedBox(
-                              width: 20,
+                              width: 8,
                             ),
                             Text(
                               'This week',
@@ -252,7 +252,7 @@ class HomeScreenDashboard extends StatelessWidget {
                               ),
                             ),
                             SizedBox(
-                              width: 20,
+                              width: 8,
                             ),
                             Text(
                               'This month',
@@ -265,7 +265,7 @@ class HomeScreenDashboard extends StatelessWidget {
                               ),
                             ),
                             SizedBox(
-                              width: 20,
+                              width: 8,
                             ),
                             Icon(
                               Icons.calendar_month_rounded,

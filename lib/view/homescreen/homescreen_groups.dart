@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pemint_admin_app/utilities/app_colors.dart';
+import 'package:pemint_admin_app/view/homescreen/homescreen_contact.dart';
 import 'package:pemint_admin_app/view/homescreen/homescreen_dashboard.dart';
-import 'package:pemint_admin_app/view/homescreen/homescreen_groups.dart';
 import 'package:pemint_admin_app/view/homescreen/homescreen_history.dart';
 import 'package:pemint_admin_app/view/homescreen/homescreen_profile.dart';
 import 'package:pemint_admin_app/view/login/business_type.dart';
 import 'package:pemint_admin_app/view_model/dashboard_controller.dart';
 
-class HomeScreenContact extends StatelessWidget {
-  HomeScreenContact({Key? key}) : super(key: key);
+class Groups extends StatelessWidget {
+  Groups({Key? key}) : super(key: key);
 
   final DashboardController viewModel = Get.put(DashboardController());
 
@@ -298,33 +298,17 @@ class HomeScreenContact extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Container(
-                                  height: 40,
-                                  width: 100,
-                                  color: AppColor.veryLightPurple,
-                                  child: const Center(
-                                    child: Text(
-                                      'Contacts',
-                                      style: TextStyle(
-                                        color: Color(0xFF292D32),
-                                        fontSize: 14,
-                                        fontFamily: 'Cairo',
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  width: 20,
-                                ),
-                                GestureDetector(onTap: (){Get.to(Groups());},
+                                GestureDetector(
+                                  onTap: () {
+                                    Get.to(HomeScreenContact());
+                                  },
                                   child: Container(
                                     height: 40,
                                     width: 100,
                                     color: AppColor.veryLightGreyColor,
                                     child: const Center(
                                       child: Text(
-                                        'Groups',
+                                        'Contacts',
                                         style: TextStyle(
                                           color: Color(0xFF9888A4),
                                           fontSize: 14,
@@ -335,7 +319,26 @@ class HomeScreenContact extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                )
+                                ),
+                                const SizedBox(
+                                  width: 20,
+                                ),
+                                Container(
+                                  height: 40,
+                                  width: 100,
+                                  color: AppColor.veryLightPurple,
+                                  child: const Center(
+                                    child: Text(
+                                      'Groups',
+                                      style: TextStyle(
+                                        color: Color(0xFF292D32),
+                                        fontSize: 14,
+                                        fontFamily: 'Cairo',
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ),
+                                ),
                               ],
                             ),
                             const SizedBox(
@@ -345,52 +348,82 @@ class HomeScreenContact extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
+                                CircleAvatar(
+                                  radius: 18,
+                                  backgroundColor: AppColor.greyColor,
+                                  child: Icon(
+                                    Icons.groups,
+                                    color: AppColor.contentColorBlue,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 8,
+                                ),
+                                GestureDetector(
+                                    onTap: () {
+                                      Get.dialog(ViewGroup());
+                                    },
+                                    child: const Text(
+                                      'Create New Group',
+                                      style: TextStyle(
+                                        color: Color(0xFF00BBF2),
+                                        fontSize: 14,
+                                        fontFamily: 'Cairo',
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    ))
+                              ],
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Container(
+                              height: 1,
+                              width: Get.width / 1.5,
+                              color: AppColor.lightGreyColor,
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                CircleAvatar(
+                                  radius: 18,
+                                  backgroundColor: AppColor.greyColor,
+                                  child: Icon(
+                                    Icons.groups,
+                                    color: AppColor.contentColorBlue,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 8,
+                                ),
                                 Column(
-                                  children: const [
-                                    Padding(
-                                      padding: EdgeInsets.only(left: 10),
-                                      child: Text(
-                                        'Sumit Singh',
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          color: Color(0xFF292D32),
-                                          fontSize: 14,
-                                          fontFamily: 'Cairo',
-                                          fontWeight: FontWeight.w400,
-                                        ),
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Z1 Society',
+                                      style: TextStyle(
+                                        color: Color(0xFF292D32),
+                                        fontSize: 14,
+                                        fontFamily: 'Cairo',
+                                        fontWeight: FontWeight.w400,
                                       ),
                                     ),
-                                    SizedBox(
-                                      height: 5,
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(left: 0),
-                                      child: Text(
-                                        '9503783093',
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          color: Color(0xFF9888A4),
-                                          fontSize: 12,
-                                          fontFamily: 'Cairo',
-                                          fontWeight: FontWeight.w400,
-                                        ),
+                                    Text(
+                                      '7 members',
+                                      style: TextStyle(
+                                        color: Color(0xFF9888A4),
+                                        fontSize: 12,
+                                        fontFamily: 'Cairo',
+                                        fontWeight: FontWeight.w400,
                                       ),
                                     )
                                   ],
                                 ),
-                                SizedBox(
-                                  width: Get.width / 4,
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    Get.dialog(DemandDialog());
-                                  },
-                                  child: const Icon(
-                                    Icons.add_circle_outline_rounded,
-                                    color: AppColor.primaryColor,
-                                    size: 30,
-                                  ),
-                                )
                               ],
                             ),
                           ],
@@ -426,8 +459,8 @@ class HomeScreenContact extends StatelessWidget {
   }
 }
 
-class DemandDialog extends StatelessWidget {
-  DemandDialog({
+class ViewGroup extends StatelessWidget {
+  ViewGroup({
     Key? key,
   }) : super(key: key);
 
@@ -439,318 +472,321 @@ class DemandDialog extends StatelessWidget {
       children: [
         Center(
           child: Dialog(
-            backgroundColor: AppColor.veryLightGreyColor,
+            backgroundColor: AppColor.whiteColor,
             child: Container(
-              height: 380,
+              height: Get.height / 1.5,
               width: Get.width / 1.2,
               child: Padding(
-                padding: const EdgeInsets.only(left: 20, right: 5),
+                padding: const EdgeInsets.all(8.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8),
-                          child: GestureDetector(
-                              onTap: () {
-                                Get.back();
-                              },
-                              child: const CircleAvatar(
-                                  backgroundColor: AppColor.primaryColor,
-                                  radius: 15,
-                                  child: Icon(
-                                    Icons.close,
-                                    color: AppColor.whiteColor,
-                                    size: 18,
-                                  ))),
-                        )
-                      ],
-                    ),
-                    const SizedBox(
+                    SizedBox(
                       height: 10,
                     ),
-                    Center(
-                      child: Container(
-                        height: 40,
-                        width: 250,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            border:
-                                Border.all(color: AppColor.contentColorBlue)),
-                        child: const Padding(
-                          padding: EdgeInsets.only(left: 10, right: 10),
-                          child: Center(
-                            child: TextField(
-                              textAlign: TextAlign.right,
-                              keyboardType: TextInputType.number,
-                              style: TextStyle(
-                                color: Color(0xFF292D32),
-                                fontSize: 14,
-                                fontFamily: 'Cairo',
-                                fontWeight: FontWeight.w700,
-                              ),
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                prefix: Text(
-                                  'Enter amount',
-                                  style: TextStyle(
-                                    color: Color(0xFF9888A4),
-                                    fontSize: 12,
-                                    fontFamily: 'Cairo',
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                hintText: '₹00',
-                                hintStyle: TextStyle(
-                                  color: Color(0xFF9888A4),
-                                  fontSize: 14,
-                                  fontFamily: 'Cairo',
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 30, right: 30),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                            width: Get.width/1.8,
                             height: 40,
-                            width: 150,
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
                                 border: Border.all(
-                                    color: AppColor.contentColorBlue)),
-                            child: const Padding(
-                              padding: EdgeInsets.only(left: 5, right: 5),
-                              child: TextField(
-                                textAlign: TextAlign.start,
-                                textAlignVertical: TextAlignVertical.center,
-                                style: TextStyle(
-                                  color: Color(0xFF292D32),
-                                  fontSize: 12,
-                                  fontFamily: 'Cairo',
-                                  fontWeight: FontWeight.w400,
-                                ),
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintStyle: TextStyle(
-                                    color: Color(0xFF9888A4),
-                                    fontSize: 12,
-                                    fontFamily: 'Cairo',
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                  hintText: 'Transaction note',
-                                ),
-                              ),
-                            ),
-                          ),
-                          const Text(
-                            'Add details +',
-                            textAlign: TextAlign.right,
+                                    color: AppColor.contentColorBlue, width: 1),
+                                borderRadius: BorderRadius.circular(5)),child:
+                        Center(
+                          child: Text(
+                            'Enter group name                              ',
                             style: TextStyle(
-                              color: Color(0xFF00BBF2),
+                              color: Color(0xFF9888A4),
                               fontSize: 12,
                               fontFamily: 'Cairo',
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w400,
                               height: 0,
                             ),
                           ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 30, right: 30),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: 40,
-                            width: 150,
-                            decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: AppColor.greyColor, width: 2),
-                                borderRadius: BorderRadius.circular(5)),
-                            child: const Center(
-                              child: Text(
-                                'Invoice number',
-                                style: TextStyle(
-                                  color: Color(0xFFBEBEBE),
-                                  fontSize: 12,
-                                  fontFamily: 'Cairo',
-                                  fontWeight: FontWeight.w400,
-                                  height: 0,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          const Icon(
-                            Icons.file_present_rounded,
-                            color: AppColor.greyColor,
-                          )
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 30, right: 30),
-                      child: Text(
-                        'Invoice date:',
-                        style: TextStyle(
-                          color: Color(0xFFBEBEBE),
-                          fontSize: 10,
-                          fontFamily: 'Cairo',
-                          fontWeight: FontWeight.w400,
-                          height: 0,
+                        ),),
+                        SizedBox(
+                          width: 10,
                         ),
-                      ),
+                        Container(
+                          width: 38,
+                          height: 38,
+                          decoration: BoxDecoration(
+                            color: AppColor.primaryColor,
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: Icon(
+                            Icons.check,
+                            color: AppColor.whiteColor,
+                          ),
+                        ),
+                      ],
                     ),
-                    const SizedBox(
-                      height: 5,
+                    SizedBox(
+                      height: 20,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 30, right: 30),
+                    Container(
+                      width: Get.width / 1.48,
+                      color: AppColor.lightGreyColor,
+                      height: 1,
+                    ),
+                    SizedBox(height: 20,),
+                    Container(height: 50,
+                      decoration: BoxDecoration(color: AppColor.veryLightPurple,borderRadius: BorderRadius.circular(5)),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Container(
-                            height: 25,
-                            width: 40,
-                            decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: AppColor.greyColor, width: 2),
-                                borderRadius: BorderRadius.circular(5)),
-                            child: const Center(
-                              child: Text(
-                                'dd',
-                                style: TextStyle(
-                                  color: Color(0xFFBEBEBE),
-                                  fontSize: 12,
-                                  fontFamily: 'Cairo',
-                                  fontWeight: FontWeight.w400,
-                                  height: 0,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          Container(
-                            height: 25,
-                            width: 40,
-                            decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: AppColor.greyColor, width: 2),
-                                borderRadius: BorderRadius.circular(5)),
-                            child: const Center(
-                              child: Text(
-                                'mm',
-                                style: TextStyle(
-                                  color: Color(0xFFBEBEBE),
-                                  fontSize: 12,
-                                  fontFamily: 'Cairo',
-                                  fontWeight: FontWeight.w400,
-                                  height: 0,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          Container(
-                            height: 25,
-                            width: 70,
-                            decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: AppColor.greyColor, width: 2),
-                                borderRadius: BorderRadius.circular(5)),
-                            child: const Center(
-                              child: Text(
-                                'year',
-                                style: TextStyle(
-                                  color: Color(0xFFBEBEBE),
-                                  fontSize: 12,
-                                  fontFamily: 'Cairo',
-                                  fontWeight: FontWeight.w400,
-                                  height: 0,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          const Icon(
-                            Icons.calendar_month,
-                            color: AppColor.greyColor,
-                          )
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 40,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        viewModel.createDemand();
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Center(
-                              child: Container(
-                            height: 40,
-                            width: 250,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                color: AppColor.primaryColor),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
-                                Text(
-                                  'Generate link & Share',
+                          SizedBox(width: 10,),
+                          Column(mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Padding(
+                                padding: EdgeInsets.only(left: 10),
+                                child: Text(
+                                  'Sumit Singh',
+                                  textAlign: TextAlign.center,
                                   style: TextStyle(
-                                    color: Colors.white,
+                                    color: Color(0xFF292D32),
                                     fontSize: 14,
                                     fontFamily: 'Cairo',
-                                    fontWeight: FontWeight.w700,
-                                    height: 0,
+                                    fontWeight: FontWeight.w600,
                                   ),
                                 ),
-                                SizedBox(
-                                  width: 5,
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(left: 0),
+                                child: Text(
+                                  ' 9503783093',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 12,
+                                    fontFamily: 'Cairo',
+                                    fontWeight: FontWeight.w400,
+                                  ),
                                 ),
-                                Icon(
-                                  Icons.share,
-                                  color: AppColor.whiteColor,
-                                  size: 20,
-                                )
-                              ],
-                            ),
-                          )),
+                              )
+                            ],
+                          ),
+
+
                         ],
                       ),
+                    ), SizedBox(height: 20,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(width: 10,),
+                        Column(
+                          children: const [
+                            Padding(
+                              padding: EdgeInsets.only(left: 10),
+                              child: Text(
+                                'Sumit Singh',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Color(0xFF292D32),
+                                  fontSize: 14,
+                                  fontFamily: 'Cairo',
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(left: 0),
+                              child: Text(
+                                '9503783093',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Color(0xFF9888A4),
+                                  fontSize: 12,
+                                  fontFamily: 'Cairo',
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+
+
+                      ],
+                    ), SizedBox(height: 20,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(width: 10,),
+                        Column(
+                          children: const [
+                            Padding(
+                              padding: EdgeInsets.only(left: 10),
+                              child: Text(
+                                'Sumit Singh',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Color(0xFF292D32),
+                                  fontSize: 14,
+                                  fontFamily: 'Cairo',
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(left: 0),
+                              child: Text(
+                                '9503783093',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Color(0xFF9888A4),
+                                  fontSize: 12,
+                                  fontFamily: 'Cairo',
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+
+
+                      ],
+                    ), SizedBox(height: 20,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(width: 10,),
+                        Column(
+                          children: const [
+                            Padding(
+                              padding: EdgeInsets.only(left: 10),
+                              child: Text(
+                                'Sumit Singh',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Color(0xFF292D32),
+                                  fontSize: 14,
+                                  fontFamily: 'Cairo',
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(left: 0),
+                              child: Text(
+                                '9503783093',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Color(0xFF9888A4),
+                                  fontSize: 12,
+                                  fontFamily: 'Cairo',
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+
+
+                      ],
+                    ), SizedBox(height: 20,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(width: 10,),
+                        Column(
+                          children: const [
+                            Padding(
+                              padding: EdgeInsets.only(left: 10),
+                              child: Text(
+                                'Sumit Singh',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Color(0xFF292D32),
+                                  fontSize: 14,
+                                  fontFamily: 'Cairo',
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(left: 0),
+                              child: Text(
+                                '9503783093',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Color(0xFF9888A4),
+                                  fontSize: 12,
+                                  fontFamily: 'Cairo',
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+
+
+                      ],
+                    ), SizedBox(height: 20,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(width: 10,),
+                        Column(
+                          children: const [
+                            Padding(
+                              padding: EdgeInsets.only(left: 10),
+                              child: Text(
+                                'Sumit Singh',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Color(0xFF292D32),
+                                  fontSize: 14,
+                                  fontFamily: 'Cairo',
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(left: 0),
+                              child: Text(
+                                '9503783093',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Color(0xFF9888A4),
+                                  fontSize: 12,
+                                  fontFamily: 'Cairo',
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+
+
+                      ],
                     ),
                   ],
                 ),

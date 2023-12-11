@@ -79,8 +79,8 @@ class HomeScreenHistory extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Container(
-                  height: Get.height / 1.223,
-                  width: 100,
+                  height: Get.height / 1.242,
+                  width: 90,
                   decoration: BoxDecoration(
                     borderRadius:
                         BorderRadius.only(topRight: Radius.circular(12)),
@@ -217,7 +217,7 @@ class HomeScreenHistory extends StatelessWidget {
                 ),
 
                 SizedBox(
-                  width: 20,
+                  width: 10,
                 ),
                 Column(
                   children: [
@@ -304,7 +304,7 @@ SizedBox(width: 10,),
                                   )
                                 ],
                               ),
-                              SizedBox(width: Get.width/5.9),
+                              SizedBox(width: Get.width/9),
                               Column(mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -378,7 +378,7 @@ SizedBox(width: 10,),
                                 )
                               ],
                             ),
-                            SizedBox(width: Get.width/5.9),
+                            SizedBox(width: Get.width/9),
                             Column(mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [

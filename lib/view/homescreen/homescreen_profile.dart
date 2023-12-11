@@ -79,8 +79,8 @@ class HomeScreenProfile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Container(
-                  height: Get.height / 1.223,
-                  width: 100,
+                  height: Get.height / 1.242,
+                  width: 90,
                   decoration: BoxDecoration(
                     borderRadius:
                         BorderRadius.only(topRight: Radius.circular(12)),
@@ -247,14 +247,14 @@ class HomeScreenProfile extends StatelessWidget {
                                   'Basic Info',
                                   style: TextStyle(
                                     color: Color(0xFF292D32),
-                                    fontSize: 22,
+                                    fontSize: 20,
                                     fontFamily: 'Cairo',
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
                                 Icon(
                                   Icons.account_circle_sharp,
-                                  size: 35,
+                                  size: 30,
                                   color: Colors.blueGrey,
                                 )
                               ],
@@ -332,14 +332,14 @@ class HomeScreenProfile extends StatelessWidget {
                                   'Business Profile',
                                   style: TextStyle(
                                     color: Color(0xFF292D32),
-                                    fontSize: 22,
+                                    fontSize: 20,
                                     fontFamily: 'Cairo',
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
                                 Icon(
                                   Icons.account_circle_sharp,
-                                  size: 35,
+                                  size: 30,
                                   color: Colors.blueGrey,
                                 )
                               ],
