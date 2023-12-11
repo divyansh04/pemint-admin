@@ -1,5 +1,7 @@
+import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:pemint_admin_app/helper/ToastHelper.dart';
 import 'package:pemint_admin_app/model/api_response/create_demand_response.dart';
 import 'package:pemint_admin_app/networking/repository/user_repository.dart';
@@ -20,21 +22,21 @@ class DashboardController extends GetxController {
   final TextEditingController groupnameController = TextEditingController();
   final TextEditingController noteController = TextEditingController();
 
-  void createDemand() async {
+  void createDemand(Contact contact) async {
     isLoading.value = true;
     update();
 
     Map parameter = {
       "PartnerId": "123111",
-      "CustomerMobileNo": "8130524691",
-      "CustomerName": "Harsh",
-      "Amount": 1,
-      "DueDate": "2023-11-11",
+      "CustomerMobileNo": contact.phones!.first,
+      "CustomerName": contact.displayName,
+      "Amount": int.parse(amountController.text),
+      "DueDate": DateFormat('yyyy-MM-dd').format(DateTime.now()),
       "InvoiceNo": "7654",
-      "InvoiceDate": "2023-11-11",
-      "CustomerEmailId": "hb8130524691@gmail.com",
-      "GroupName": "Society",
-      "Note": "Create New Demand"
+      "InvoiceDate": DateFormat('yyyy-MM-dd').format(DateTime.now()),
+      "CustomerEmailId": "infogopik@gmail.com",
+      "GroupName": "",
+      "Note": noteController.text
     };
 
     try {

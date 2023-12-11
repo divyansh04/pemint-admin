@@ -1,3 +1,4 @@
+import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pemint_admin_app/utilities/app_colors.dart';
@@ -7,11 +8,108 @@ import 'package:pemint_admin_app/view/homescreen/homescreen_history.dart';
 import 'package:pemint_admin_app/view/homescreen/homescreen_profile.dart';
 import 'package:pemint_admin_app/view/login/business_type.dart';
 import 'package:pemint_admin_app/view_model/dashboard_controller.dart';
+import 'package:permission_handler/permission_handler.dart';
 
-class HomeScreenContact extends StatelessWidget {
+class HomeScreenContact extends StatefulWidget {
   HomeScreenContact({Key? key}) : super(key: key);
 
+  @override
+  State<HomeScreenContact> createState() => _HomeScreenContactState();
+}
+
+class _HomeScreenContactState extends State<HomeScreenContact> {
   final DashboardController viewModel = Get.put(DashboardController());
+  PermissionStatus? _status;
+  Future<void> _checkPermissionStatus() async {
+    final status = await Permission.contacts.status;
+
+    _status = status;
+    _buildPermissionScreen();
+  }
+
+  Future<void> _requestPermission() async {
+    final status = await Permission.contacts.request();
+
+    _status = status;
+    _buildPermissionScreen();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _checkPermissionStatus();
+  }
+
+  Widget contactsBody = Container();
+  Future<void> _buildPermissionScreen() async {
+    if (_status == null ||
+        _status == PermissionStatus.denied ||
+        _status == PermissionStatus.permanentlyDenied) {
+      contactsBody = Column(
+        children: [
+          const Text('Permission denied.\nPlease enable contacts permission.'),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: _requestPermission,
+            child: const Text('Retry Permission'),
+          ),
+        ],
+      );
+    } else {
+      final Iterable<Contact> contacts = await ContactsService.getContacts();
+      setState(() {
+        _contactsList = contacts.toList();
+        contactsBody = _buildContactsList(_contactsList);
+      });
+    }
+  }
+
+  List<Contact> _contactsList = [];
+
+  Widget _buildContactsList(List<Contact> contacts) {
+    return SizedBox(
+      height: 300,
+      width: 200,
+      child: ListView.builder(
+        itemCount: contacts.length,
+        itemBuilder: (context, index) {
+          final Contact contact = contacts[index];
+          return ListTile(
+            title: Text(
+              contact.displayName ?? '',
+              style: const TextStyle(
+                color: Color(0xFF292D32),
+                fontSize: 14,
+                fontFamily: 'Cairo',
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+            subtitle: Text(
+              contact.phones!.isNotEmpty ? contact.phones!.first.value! : '',
+              style: const TextStyle(
+                color: Color(0xFF9888A4),
+                fontSize: 12,
+                fontFamily: 'Cairo',
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+            trailing: GestureDetector(
+              onTap: () {
+                Get.dialog(DemandDialog(
+                  contact: contact,
+                ));
+              },
+              child: const Icon(
+                Icons.add_circle_outline_rounded,
+                color: AppColor.primaryColor,
+                size: 30,
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -317,7 +415,10 @@ class HomeScreenContact extends StatelessWidget {
                                 const SizedBox(
                                   width: 20,
                                 ),
-                                GestureDetector(onTap: (){Get.to(Groups());},
+                                GestureDetector(
+                                  onTap: () {
+                                    Get.to(Groups());
+                                  },
                                   child: Container(
                                     height: 40,
                                     width: 100,
@@ -341,58 +442,7 @@ class HomeScreenContact extends StatelessWidget {
                             const SizedBox(
                               height: 20,
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Column(
-                                  children: const [
-                                    Padding(
-                                      padding: EdgeInsets.only(left: 10),
-                                      child: Text(
-                                        'Sumit Singh',
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          color: Color(0xFF292D32),
-                                          fontSize: 14,
-                                          fontFamily: 'Cairo',
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 5,
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(left: 0),
-                                      child: Text(
-                                        '9503783093',
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          color: Color(0xFF9888A4),
-                                          fontSize: 12,
-                                          fontFamily: 'Cairo',
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                SizedBox(
-                                  width: Get.width / 4,
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    Get.dialog(DemandDialog());
-                                  },
-                                  child: const Icon(
-                                    Icons.add_circle_outline_rounded,
-                                    color: AppColor.primaryColor,
-                                    size: 30,
-                                  ),
-                                )
-                              ],
-                            ),
+                            contactsBody,
                           ],
                         ),
                       ],
@@ -429,7 +479,10 @@ class HomeScreenContact extends StatelessWidget {
 class DemandDialog extends StatelessWidget {
   DemandDialog({
     Key? key,
+    required this.contact,
   }) : super(key: key);
+
+  final Contact contact;
 
   final DashboardController viewModel = Get.put(DashboardController());
 
@@ -480,19 +533,20 @@ class DemandDialog extends StatelessWidget {
                             borderRadius: BorderRadius.circular(5),
                             border:
                                 Border.all(color: AppColor.contentColorBlue)),
-                        child: const Padding(
-                          padding: EdgeInsets.only(left: 10, right: 10),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 10, right: 10),
                           child: Center(
                             child: TextField(
+                              controller: viewModel.amountController,
                               textAlign: TextAlign.right,
                               keyboardType: TextInputType.number,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: Color(0xFF292D32),
                                 fontSize: 14,
                                 fontFamily: 'Cairo',
                                 fontWeight: FontWeight.w700,
                               ),
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 border: InputBorder.none,
                                 prefix: Text(
                                   'Enter amount',
@@ -532,18 +586,19 @@ class DemandDialog extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(5),
                                 border: Border.all(
                                     color: AppColor.contentColorBlue)),
-                            child: const Padding(
-                              padding: EdgeInsets.only(left: 5, right: 5),
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 5, right: 5),
                               child: TextField(
+                                controller: viewModel.noteController,
                                 textAlign: TextAlign.start,
                                 textAlignVertical: TextAlignVertical.center,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: Color(0xFF292D32),
                                   fontSize: 12,
                                   fontFamily: 'Cairo',
                                   fontWeight: FontWeight.w400,
                                 ),
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                   border: InputBorder.none,
                                   hintStyle: TextStyle(
                                     color: Color(0xFF9888A4),
@@ -713,7 +768,7 @@ class DemandDialog extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        viewModel.createDemand();
+                        viewModel.createDemand(contact);
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
