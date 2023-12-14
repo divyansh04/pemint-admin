@@ -40,6 +40,20 @@ class _HomeScreenContactState extends State<HomeScreenContact> {
     _checkPermissionStatus();
   }
 
+  final TextEditingController _searchController = TextEditingController();
+
+  List<Contact> _filterContacts(List<Contact> contacts, String query) {
+    return contacts
+        .where((contact) =>
+            contact.displayName?.toLowerCase().contains(query.toLowerCase()) ==
+                true ||
+            contact.phones?.any((phone) =>
+                    phone.value?.toLowerCase().contains(query.toLowerCase()) ==
+                    true) ==
+                true)
+        .toList();
+  }
+
   Widget contactsBody = Container();
   Future<void> _buildPermissionScreen() async {
     if (_status == null ||
@@ -59,12 +73,14 @@ class _HomeScreenContactState extends State<HomeScreenContact> {
       final Iterable<Contact> contacts = await ContactsService.getContacts();
       setState(() {
         _contactsList = contacts.toList();
+        _orig_contactsList = contacts.toList();
         contactsBody = _buildContactsList(_contactsList);
       });
     }
   }
 
   List<Contact> _contactsList = [];
+  List<Contact> _orig_contactsList = [];
 
   Widget _buildContactsList(List<Contact> contacts) {
     return SizedBox(
@@ -180,6 +196,7 @@ class _HomeScreenContactState extends State<HomeScreenContact> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
+                    //drawer
                     Container(
                       height: Get.height / 1.23,
                       width: 100,
@@ -324,9 +341,7 @@ class _HomeScreenContactState extends State<HomeScreenContact> {
                         ],
                       ),
                     ),
-                    const SizedBox(
-                      width: 20,
-                    ),
+                    const SizedBox(width: 20),
                     Column(
                       children: [
                         Column(
@@ -363,9 +378,18 @@ class _HomeScreenContactState extends State<HomeScreenContact> {
                                   borderRadius: BorderRadius.circular(20),
                                   border:
                                       Border.all(color: AppColor.primaryColor)),
-                              child: const Center(
+                              child: Center(
                                 child: TextField(
-                                  style: TextStyle(
+                                  controller: _searchController,
+                                  onChanged: (query) {
+                                    setState(() {
+                                      _contactsList =
+                                          _filterContacts(_contactsList, query);
+                                      contactsBody =
+                                          _buildContactsList(_contactsList);
+                                    });
+                                  },
+                                  style: const TextStyle(
                                       color: Color(0xFF292D32),
                                       fontSize: 14,
                                       fontFamily: 'Cairo',
@@ -375,12 +399,24 @@ class _HomeScreenContactState extends State<HomeScreenContact> {
                                   textAlignVertical: TextAlignVertical.center,
                                   decoration: InputDecoration(
                                     border: InputBorder.none,
-                                    prefixIcon: Icon(
+                                    prefixIcon: const Icon(
                                       Icons.search,
                                       color: AppColor.purpleAccent,
                                     ),
+                                    suffixIcon: GestureDetector(
+                                      child: const Icon(
+                                        Icons.cancel,
+                                        color: AppColor.purpleAccent,
+                                      ),
+                                      onTap: () {
+                                        contactsBody = _buildContactsList(
+                                            _orig_contactsList);
+                                        _searchController.clear();
+                                        setState(() {});
+                                      },
+                                    ),
                                     hintText: 'Enter a mobile number or name',
-                                    hintStyle: TextStyle(
+                                    hintStyle: const TextStyle(
                                       color: Color(0xFF9888A4),
                                       fontSize: 14,
                                       fontFamily: 'Cairo',
@@ -501,7 +537,7 @@ class AddToGroupDialog extends StatelessWidget {
           insetPadding: EdgeInsets.only(left: Get.width / 2, right: 20),
           backgroundColor: AppColor.whiteColor,
           child: Container(
-            decoration: BoxDecoration(),
+            decoration: const BoxDecoration(),
             height: 100,
             width: 100,
             child: Padding(
@@ -510,7 +546,7 @@ class AddToGroupDialog extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     'Add to Group',
                     style: TextStyle(
                       color: Color(0xFF52378F),
@@ -519,7 +555,7 @@ class AddToGroupDialog extends StatelessWidget {
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-                  Text(
+                  const Text(
                     'Create new group',
                     style: TextStyle(
                       color: Color(0xFF52378F),
@@ -533,7 +569,7 @@ class AddToGroupDialog extends StatelessWidget {
                     onTap: () {
                       Get.back();
                     },
-                    child: Text(
+                    child: const Text(
                       'Cancel',
                       style: TextStyle(
                         color: Color(0xFF52378F),
@@ -569,7 +605,9 @@ class DemandDialog extends StatelessWidget {
     return Stack(
       children: [
         Center(
-          child: Dialog(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+          child: Dialog(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
             backgroundColor: AppColor.veryLightGreyColor,
             child: Container(
               height: 400,

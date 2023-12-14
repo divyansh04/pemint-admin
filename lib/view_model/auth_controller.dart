@@ -88,7 +88,7 @@ class MobRegController extends GetxController {
     update();
 
     Map parameter = {
-      "username": "+91${numberController.text}",
+      "username": numberController.text,
       "password": passwordController.text
     };
 
@@ -102,6 +102,7 @@ class MobRegController extends GetxController {
         await SharedPref().setIdToken(loginData.authenticationResult.idToken);
         await SharedPref()
             .setRefreshToken(loginData.authenticationResult.refreshToken);
+        await SharedPref().saveLogin(true);
         Get.to(HomeScreenContact());
       }
     } catch (e) {
@@ -141,7 +142,7 @@ class MobRegController extends GetxController {
     if (otpFormKey.currentState!.validate() == true) {
       final sessionId = await SharedPref().getSession();
       Map parameter = {
-        "username": "+91${numberController.text}",
+        "username": numberController.text,
         "confirmation_code": otpController.text
       };
 
@@ -167,7 +168,7 @@ class MobRegController extends GetxController {
     update();
 
     Map parameter = {
-      "username": "+91${numberController.text}",
+      "username": numberController.text,
     };
 
     try {
@@ -189,7 +190,7 @@ class MobRegController extends GetxController {
     update();
 
     Map parameter = {
-      "username": "+91${numberController.text}",
+      "username": numberController.text,
       "otp": otpController.text,
       "newPassword": passwordController.text
     };

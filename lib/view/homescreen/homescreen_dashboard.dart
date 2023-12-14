@@ -11,8 +11,9 @@ class HomeScreenDashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child:
-        Scaffold(resizeToAvoidBottomInset: false,
+    return SafeArea(
+        child: Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Padding(
         padding: const EdgeInsets.only(
           right: 10,
@@ -78,6 +79,7 @@ class HomeScreenDashboard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                //drawer
                 Container(
                   height: Get.height / 1.23,
                   width: 100,
@@ -117,8 +119,12 @@ class HomeScreenDashboard extends StatelessWidget {
                         width: 100,
                         color: AppColor.whiteColor,
                       ),
-                      GestureDetector(onTap: (){Get.to(HomeScreenContact());},
-                        child: Container(margin: EdgeInsets.only(left: 10,top: 20),
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(HomeScreenContact());
+                        },
+                        child: Container(
+                          margin: EdgeInsets.only(left: 10, top: 20),
                           height: 70,
                           width: 100,
                           child: Text(
@@ -132,8 +138,12 @@ class HomeScreenDashboard extends StatelessWidget {
                           ),
                         ),
                       ),
-                      GestureDetector(onTap: (){Get.to(HomeScreenHistory());},
-                        child: Container(margin: EdgeInsets.only(left: 10),
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(HomeScreenHistory());
+                        },
+                        child: Container(
+                          margin: EdgeInsets.only(left: 10),
                           decoration: BoxDecoration(),
                           width: 100,
                           height: 70,
@@ -148,8 +158,12 @@ class HomeScreenDashboard extends StatelessWidget {
                           ),
                         ),
                       ),
-                      GestureDetector(onTap: (){Get.to(HomeScreenProfile());},
-                        child: Container(margin: EdgeInsets.only(left: 10),
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(HomeScreenProfile());
+                        },
+                        child: Container(
+                          margin: EdgeInsets.only(left: 10),
                           width: 100,
                           height: 70,
                           child: Text(
@@ -164,7 +178,9 @@ class HomeScreenDashboard extends StatelessWidget {
                         ),
                       ),
                       Container(
-                          margin: EdgeInsets.only(left: 10, ),
+                          margin: EdgeInsets.only(
+                            left: 10,
+                          ),
                           decoration: BoxDecoration(),
                           width: 100,
                           height: 70,
@@ -209,9 +225,7 @@ class HomeScreenDashboard extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(
-                  width: 20,
-                ),
+                SizedBox(width: 20),
                 Column(
                   children: [
                     Column(
@@ -313,7 +327,9 @@ class HomeScreenDashboard extends StatelessWidget {
                                 SizedBox(
                                   height: 20,
                                 ),
-                                Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Column(
                                       mainAxisAlignment:
@@ -352,13 +368,13 @@ class HomeScreenDashboard extends StatelessWidget {
                                         fontSize: 6,
                                         fontFamily: 'Cairo',
                                         fontWeight: FontWeight.w600,
-
                                       ),
                                     ),
-
                                   ],
                                 ),
-                                SizedBox(height: 20,),
+                                SizedBox(
+                                  height: 20,
+                                ),
                                 Row(
                                   children: [
                                     Container(
@@ -381,7 +397,9 @@ class HomeScreenDashboard extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                SizedBox(height: 20,),
+                                SizedBox(
+                                  height: 20,
+                                ),
                                 Text(
                                   '₹2,80,000',
                                   style: TextStyle(
@@ -396,7 +414,9 @@ class HomeScreenDashboard extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(height: 20,),
+                        SizedBox(
+                          height: 20,
+                        ),
                         Container(
                           height: 180,
                           width: Get.width / 1.6,
@@ -434,13 +454,15 @@ class HomeScreenDashboard extends StatelessWidget {
                                 SizedBox(
                                   height: 20,
                                 ),
-                                Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Column(
                                       mainAxisAlignment:
-                                      MainAxisAlignment.start,
+                                          MainAxisAlignment.start,
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           '400',
@@ -461,7 +483,7 @@ class HomeScreenDashboard extends StatelessWidget {
                                           decoration: BoxDecoration(
                                               color: AppColor.whiteColor,
                                               borderRadius:
-                                              BorderRadius.circular(20)),
+                                                  BorderRadius.circular(20)),
                                         )
                                       ],
                                     ),
@@ -473,13 +495,13 @@ class HomeScreenDashboard extends StatelessWidget {
                                         fontSize: 6,
                                         fontFamily: 'Cairo',
                                         fontWeight: FontWeight.w600,
-
                                       ),
                                     ),
-
                                   ],
                                 ),
-                                SizedBox(height: 20,),
+                                SizedBox(
+                                  height: 20,
+                                ),
                                 Row(
                                   children: [
                                     Container(
@@ -502,7 +524,9 @@ class HomeScreenDashboard extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                SizedBox(height: 20,),
+                                SizedBox(
+                                  height: 20,
+                                ),
                                 Text(
                                   '230',
                                   style: TextStyle(
