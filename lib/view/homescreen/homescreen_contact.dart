@@ -117,6 +117,7 @@ class _HomeScreenContactState extends State<HomeScreenContact> {
         child: Stack(
       children: [
         Scaffold(
+          resizeToAvoidBottomInset: false,
           body: Padding(
             padding: const EdgeInsets.only(
               right: 10,
@@ -180,8 +181,8 @@ class _HomeScreenContactState extends State<HomeScreenContact> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Container(
-                      height: Get.height / 1.242,
-                      width: 90,
+                      height: Get.height / 1.23,
+                      width: 100,
                       decoration: const BoxDecoration(
                         borderRadius:
                             BorderRadius.only(topRight: Radius.circular(12)),
@@ -442,7 +443,12 @@ class _HomeScreenContactState extends State<HomeScreenContact> {
                             const SizedBox(
                               height: 20,
                             ),
-                            contactsBody,
+                            GestureDetector(
+                                onTap: () {
+                                  print('abc');
+                                  Get.dialog(AddToGroupDialog());
+                                },
+                                child: contactsBody),
                           ],
                         ),
                       ],
@@ -476,6 +482,78 @@ class _HomeScreenContactState extends State<HomeScreenContact> {
   }
 }
 
+class AddToGroupDialog extends StatelessWidget {
+  AddToGroupDialog({
+    Key? key,
+  }) : super(key: key);
+
+  final DashboardController viewModel = Get.put(DashboardController());
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Dialog(
+          alignment: Alignment.centerRight,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          insetPadding: EdgeInsets.only(left: Get.width / 2, right: 20),
+          backgroundColor: AppColor.whiteColor,
+          child: Container(
+            decoration: BoxDecoration(),
+            height: 100,
+            width: 100,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 20),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Add to Group',
+                    style: TextStyle(
+                      color: Color(0xFF52378F),
+                      fontSize: 16,
+                      fontFamily: 'Cairo',
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  Text(
+                    'Create new group',
+                    style: TextStyle(
+                      color: Color(0xFF52378F),
+                      fontSize: 16,
+                      fontFamily: 'Cairo',
+                      fontWeight: FontWeight.w700,
+                      height: 0,
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Get.back();
+                    },
+                    child: Text(
+                      'Cancel',
+                      style: TextStyle(
+                        color: Color(0xFF52378F),
+                        fontSize: 16,
+                        fontFamily: 'Cairo',
+                        fontWeight: FontWeight.w700,
+                        height: 0,
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
 class DemandDialog extends StatelessWidget {
   DemandDialog({
     Key? key,
@@ -491,10 +569,10 @@ class DemandDialog extends StatelessWidget {
     return Stack(
       children: [
         Center(
-          child: Dialog(
+          child: Dialog(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
             backgroundColor: AppColor.veryLightGreyColor,
             child: Container(
-              height: 380,
+              height: 400,
               width: Get.width / 1.2,
               child: Padding(
                 padding: const EdgeInsets.only(left: 20, right: 5),
@@ -523,7 +601,7 @@ class DemandDialog extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 30,
                     ),
                     Center(
                       child: Container(
@@ -571,7 +649,7 @@ class DemandDialog extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 30,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 30, right: 30),

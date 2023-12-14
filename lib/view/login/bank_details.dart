@@ -10,7 +10,7 @@ class BankDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Scaffold(
+        child: Scaffold(resizeToAvoidBottomInset: false,
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.only(bottom: 50, left: 30, right: 30),
         child: GestureDetector(

@@ -27,16 +27,27 @@ class DashboardController extends GetxController {
     update();
 
     Map parameter = {
-      "PartnerId": "123111",
-      "CustomerMobileNo": contact.phones!.first,
-      "CustomerName": contact.displayName,
-      "Amount": int.parse(amountController.text),
-      "DueDate": DateFormat('yyyy-MM-dd').format(DateTime.now()),
-      "InvoiceNo": "7654",
-      "InvoiceDate": DateFormat('yyyy-MM-dd').format(DateTime.now()),
-      "CustomerEmailId": "infogopik@gmail.com",
-      "GroupName": "",
-      "Note": noteController.text
+    "PartnerId": "123111",
+    "CustomerMobileNo": '9416400508',
+    "CustomerName": contact.displayName,
+    "Amount": 1,
+    "DueDate": DateFormat('yyyy-MM-dd').format(DateTime.now()),
+    "InvoiceNo": "1",
+    "InvoiceDate": DateFormat('yyyy-MM-dd').format(DateTime.now()),
+    "CustomerEmailId": "infogopik@gmail.com",
+    "GroupName": "",
+    "Note": noteController.text
+
+      // "PartnerId": "123111",
+      // "CustomerMobileNo": contact.phones?.first ?? '',
+      // "CustomerName": contact.displayName,
+      // "Amount": int.parse(amountController.text),
+      // "DueDate": DateFormat('yyyy-MM-dd').format(DateTime.now()),
+      // "InvoiceNo": "1",
+      // "InvoiceDate": DateFormat('yyyy-MM-dd').format(DateTime.now()),
+      // "CustomerEmailId": "infogopik@gmail.com",
+      // "GroupName": "aa",
+      // "Note": noteController.text
     };
 
     try {

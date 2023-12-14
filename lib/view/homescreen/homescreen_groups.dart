@@ -19,6 +19,7 @@ class Groups extends StatelessWidget {
         child: Stack(
       children: [
         Scaffold(
+          resizeToAvoidBottomInset: false,
           body: Padding(
             padding: const EdgeInsets.only(
               right: 10,
@@ -82,7 +83,7 @@ class Groups extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Container(
-                      height: Get.height / 1.242,
+                      height: Get.height / 1.23,
                       width: 90,
                       decoration: const BoxDecoration(
                         borderRadius:
@@ -361,7 +362,7 @@ class Groups extends StatelessWidget {
                                 ),
                                 GestureDetector(
                                     onTap: () {
-                                      Get.dialog(ViewGroup());
+                                      Get.dialog(CreateGroup());
                                     },
                                     child: const Text(
                                       'Create New Group',
@@ -400,29 +401,37 @@ class Groups extends StatelessWidget {
                                 SizedBox(
                                   width: 8,
                                 ),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Z1 Society',
-                                      style: TextStyle(
-                                        color: Color(0xFF292D32),
-                                        fontSize: 14,
-                                        fontFamily: 'Cairo',
-                                        fontWeight: FontWeight.w400,
+                                GestureDetector(
+                                  onTap: () {
+                                    Get.dialog(
+                                      ViewGroup(),
+                                    );
+                                  },
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Z1 Society',
+                                        style: TextStyle(
+                                          color: Color(0xFF292D32),
+                                          fontSize: 14,
+                                          fontFamily: 'Cairo',
+                                          fontWeight: FontWeight.w400,
+                                        ),
                                       ),
-                                    ),
-                                    Text(
-                                      '7 members',
-                                      style: TextStyle(
-                                        color: Color(0xFF9888A4),
-                                        fontSize: 12,
-                                        fontFamily: 'Cairo',
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    )
-                                  ],
+                                      Text(
+                                        '7 members',
+                                        style: TextStyle(
+                                          color: Color(0xFF9888A4),
+                                          fontSize: 12,
+                                          fontFamily: 'Cairo',
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),
@@ -460,7 +469,398 @@ class Groups extends StatelessWidget {
 }
 
 class ViewGroup extends StatelessWidget {
-  ViewGroup({
+  const ViewGroup({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      alignment: Alignment.bottomRight,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+      backgroundColor: AppColor.veryLightGreyColor,
+      child: Container(
+        height: Get.height / 1.75,
+        width: Get.width / 1.2,
+        child: Padding(
+          padding:
+              const EdgeInsets.only(left: 15, right: 15, top: 5, bottom: 5),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  CircleAvatar(
+                      radius: 18,
+                      backgroundColor: AppColor.greyColor,
+                      child: Icon(
+                        Icons.groups_outlined,
+                        color: AppColor.blackColor,
+                        size: 22,
+                      )),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Z1 Society',
+                        style: TextStyle(
+                          color: Color(0xFF292D32),
+                          fontSize: 14,
+                          fontFamily: 'Cairo',
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        '10 members',
+                        style: TextStyle(
+                          color: Color(0xFF9888A4),
+                          fontSize: 12,
+                          fontFamily: 'Cairo',
+                          fontWeight: FontWeight.w400,
+                          height: 0.10,
+                        ),
+                      )
+                    ],
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                width: Get.width / 1.4,
+                height: 1,
+                color: AppColor.greyColor,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 5, bottom: 5, top: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: Get.width / 3,
+                      height: 30,
+                      decoration: BoxDecoration(
+                          color: AppColor.whiteColor,
+                          border: Border.all( width: .1,
+                            color: AppColor.blackColor,
+                          ),
+                          borderRadius: BorderRadius.circular(5)),
+                      child: Center(
+                        child: Text(
+                          '                    ₹1,000',
+                          style: TextStyle(
+                            color: Color(0xFF292D32),
+                            fontSize: 14,
+                            fontFamily: 'Cairo',
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: Get.width / 3,
+                      height: 30,
+                      decoration: BoxDecoration(
+                          color: AppColor.primaryColor,
+                          borderRadius: BorderRadius.circular(5)),
+                      child: Center(
+                        child: Text(
+                          'Receive same amount \nfrom all members',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 10,
+                            fontFamily: 'Cairo',
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              Padding(
+                padding: const EdgeInsets.only(right: 10,top: 25),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Abhisek Behera Road 1',
+                      style: TextStyle(
+                        color: Color(0xFF292D32),
+                        fontSize: 14,
+                        fontFamily: 'Cairo',
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    Container(
+                      height: 25,
+                      width: 80,
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                            color: AppColor.blackColor,
+                            width: .1,
+                          ),
+                          color: AppColor.whiteColor,
+                          borderRadius: BorderRadius.circular(5)),
+                   child: Center(
+                     child: Text(
+                       '       ₹1,000',
+                       style: TextStyle(
+                         color: Color(0xFF292D32),
+                         fontSize: 12,
+                         fontFamily: 'Cairo',
+                         fontWeight: FontWeight.w400,
+
+                       ),
+                     ),
+                   ), ),
+                    Icon(Icons.link,color: AppColor.contentColorBlue,)
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 10,top: 25),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Abhisek Behera Road 1',
+                      style: TextStyle(
+                        color: Color(0xFF292D32),
+                        fontSize: 14,
+                        fontFamily: 'Cairo',
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    Container(
+                      height: 25,
+                      width: 80,
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                            color: AppColor.veryLightPurple,
+                            width: 1,
+                          ),
+                          color: AppColor.whiteColor,
+                          borderRadius: BorderRadius.circular(5)),
+                      child: Center(
+                        child: Text(
+                          '       ₹1,000',
+                          style: TextStyle(
+                            color: Color(0xFF292D32),
+                            fontSize: 12,
+                            fontFamily: 'Cairo',
+                            fontWeight: FontWeight.w400,
+
+                          ),
+                        ),
+                      ), ),
+                    Icon(Icons.link,color: AppColor.contentColorBlue,)
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 10,top: 25),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(width:Get.width/2.8,
+                      child: Text(
+                        'Abhisek Behera Road 9',
+                        style: TextStyle(
+                          color: Color(0xFF292D32),
+                          fontSize: 14,
+                          fontFamily: 'Cairo',
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: 25,
+                      width: 80,
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                            color: AppColor.veryLightPurple,
+                            width: 1,
+                          ),
+                          color: AppColor.whiteColor,
+                          borderRadius: BorderRadius.circular(5)),
+                      child: Center(
+                        child: Text(
+                          '       ₹1,000',
+                          style: TextStyle(
+                            color: Color(0xFF292D32),
+                            fontSize: 12,
+                            fontFamily: 'Cairo',
+                            fontWeight: FontWeight.w400,
+
+                          ),
+                        ),
+                      ), ),
+                    Icon(Icons.link,color: AppColor.contentColorBlue,)
+                  ],
+                ),
+              ), Padding(
+                padding: const EdgeInsets.only(right: 10,top: 25),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(width:Get.width/2.8,
+                      child: Text(
+                        'Abhisek Behera Road 2',
+                        style: TextStyle(
+                          color: Color(0xFF292D32),
+                          fontSize: 14,
+                          fontFamily: 'Cairo',
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: 25,
+                      width: 80,
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                            color: AppColor.veryLightPurple,
+                            width: 1,
+                          ),
+                          color: AppColor.whiteColor,
+                          borderRadius: BorderRadius.circular(5)),
+                      child: Center(
+                        child: Text(
+                          '       ₹1,000',
+                          style: TextStyle(
+                            color: Color(0xFF292D32),
+                            fontSize: 12,
+                            fontFamily: 'Cairo',
+                            fontWeight: FontWeight.w400,
+
+                          ),
+                        ),
+                      ), ),
+                    Icon(Icons.link,color: AppColor.contentColorBlue,)
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 10,top: 25),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(width:Get.width/2.8,
+                      child: Text(
+                        'Abhisek Behera Road 3',
+                        style: TextStyle(
+                          color: Color(0xFF292D32),
+                          fontSize: 14,
+                          fontFamily: 'Cairo',
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: 25,
+                      width: 80,
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                            color: AppColor.veryLightPurple,
+                            width: 1,
+                          ),
+                          color: AppColor.whiteColor,
+                          borderRadius: BorderRadius.circular(5)),
+                      child: Center(
+                        child: Text(
+                          '       ₹1,000',
+                          style: TextStyle(
+                            color: Color(0xFF292D32),
+                            fontSize: 12,
+                            fontFamily: 'Cairo',
+                            fontWeight: FontWeight.w400,
+
+                          ),
+                        ),
+                      ), ),
+                    Icon(Icons.link,color: AppColor.contentColorBlue,)
+                  ],
+                ),
+              ), Padding(
+                padding: const EdgeInsets.only(right: 10,top: 25),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(width:Get.width/2.8,
+                      child: Text(
+                        'Ram Singh',
+                        style: TextStyle(
+                          color: Color(0xFF292D32),
+                          fontSize: 14,
+                          fontFamily: 'Cairo',
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: 25,
+                      width: 80,
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                            color: AppColor.veryLightPurple,
+                            width: 1,
+                          ),
+                          color: AppColor.whiteColor,
+                          borderRadius: BorderRadius.circular(5)),
+                      child: Center(
+                        child: Text(
+                          '       ₹1,000',
+                          style: TextStyle(
+                            color: Color(0xFF292D32),
+                            fontSize: 12,
+                            fontFamily: 'Cairo',
+                            fontWeight: FontWeight.w400,
+
+                          ),
+                        ),
+                      ), ),
+                    Icon(Icons.link,color: AppColor.contentColorBlue,)
+                  ],
+                ),
+              ),
+
+
+
+
+
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class CreateGroup extends StatelessWidget {
+  CreateGroup({
     Key? key,
   }) : super(key: key);
 
@@ -470,32 +870,33 @@ class ViewGroup extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Center(
-          child: Dialog(
-            backgroundColor: AppColor.whiteColor,
-            child: Container(
-              height: Get.height / 1.5,
-              width: Get.width / 1.2,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                            width: Get.width/1.8,
-                            height: 40,
-                            decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: AppColor.contentColorBlue, width: 1),
-                                borderRadius: BorderRadius.circular(5)),child:
-                        Center(
+        Dialog(
+          alignment: Alignment.bottomRight,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          backgroundColor: AppColor.whiteColor,
+          child: Container(
+            height: Get.height / 1.75,
+            width: Get.width / 1.2,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: Get.width / 1.66,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                                color: AppColor.contentColorBlue, width: 1),
+                            borderRadius: BorderRadius.circular(5)),
+                        child: Center(
                           child: Text(
                             'Enter group name                              ',
                             style: TextStyle(
@@ -506,41 +907,104 @@ class ViewGroup extends StatelessWidget {
                               height: 0,
                             ),
                           ),
-                        ),),
-                        SizedBox(
-                          width: 10,
                         ),
-                        Container(
-                          width: 38,
-                          height: 38,
-                          decoration: BoxDecoration(
-                            color: AppColor.primaryColor,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: Icon(
-                            Icons.check,
-                            color: AppColor.whiteColor,
-                          ),
+                      ),
+                      SizedBox(
+                        width: 8,
+                      ),
+                      Container(
+                        width: 38,
+                        height: 38,
+                        decoration: BoxDecoration(
+                          color: AppColor.primaryColor,
+                          borderRadius: BorderRadius.circular(5),
                         ),
-                      ],
+                        child: Icon(
+                          Icons.check,
+                          color: AppColor.whiteColor,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: Text(
+                      'Selected members - 1',
+                      style: TextStyle(
+                        color: Color(0xFF00BBF2),
+                        fontSize: 14,
+                        fontFamily: 'Cairo',
+                        fontWeight: FontWeight.w400,
+                        height: 0.08,
+                      ),
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      width: Get.width / 1.48,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: Container(
+                      width: Get.width / 1.42,
                       color: AppColor.lightGreyColor,
                       height: 1,
                     ),
-                    SizedBox(height: 20,),
-                    Container(height: 50,
-                      decoration: BoxDecoration(color: AppColor.veryLightPurple,borderRadius: BorderRadius.circular(5)),
+                  ),SizedBox(height: 10,),
+                  Center(
+                    child: Container(
+                      height: 40,
+                      width: Get.width / 1.4,
+                      decoration: BoxDecoration(
+                          color: AppColor.veryLightPurple,
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(color: AppColor.primaryColor)),
+                      child: Center(
+                        child: TextField(
+                          style: TextStyle(
+                              color: Color(0xFF292D32),
+                              fontSize: 14,
+                              fontFamily: 'Cairo',
+                              fontWeight: FontWeight.w600,
+                              height: 1.5),
+                          textAlign: TextAlign.start,
+                          textAlignVertical: TextAlignVertical.center,
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            prefixIcon: Icon(
+                              Icons.search,
+                              color: AppColor.purpleAccent,
+                            ),
+                            hintText: 'Search Contact',
+                            hintStyle: TextStyle(
+                              color: Color(0xFF9888A4),
+                              fontSize: 14,
+                              fontFamily: 'Cairo',
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8, right: 15),
+                    child: Container(
+                      height: 50,
+                      decoration: BoxDecoration(
+                          color: AppColor.veryLightPurple,
+                          borderRadius: BorderRadius.circular(5)),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          SizedBox(width: 10,),
-                          Column(mainAxisAlignment: MainAxisAlignment.center,
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: const [
                               Padding(
                                 padding: EdgeInsets.only(left: 10),
@@ -573,223 +1037,192 @@ class ViewGroup extends StatelessWidget {
                               )
                             ],
                           ),
-
-
                         ],
                       ),
-                    ), SizedBox(height: 20,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SizedBox(width: 10,),
-                        Column(
-                          children: const [
-                            Padding(
-                              padding: EdgeInsets.only(left: 10),
-                              child: Text(
-                                'Sumit Singh',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Color(0xFF292D32),
-                                  fontSize: 14,
-                                  fontFamily: 'Cairo',
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: 0),
-                              child: Text(
-                                '9503783093',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Color(0xFF9888A4),
-                                  fontSize: 12,
-                                  fontFamily: 'Cairo',
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-
-
-                      ],
-                    ), SizedBox(height: 20,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SizedBox(width: 10,),
-                        Column(
-                          children: const [
-                            Padding(
-                              padding: EdgeInsets.only(left: 10),
-                              child: Text(
-                                'Sumit Singh',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Color(0xFF292D32),
-                                  fontSize: 14,
-                                  fontFamily: 'Cairo',
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: 0),
-                              child: Text(
-                                '9503783093',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Color(0xFF9888A4),
-                                  fontSize: 12,
-                                  fontFamily: 'Cairo',
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-
-
-                      ],
-                    ), SizedBox(height: 20,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SizedBox(width: 10,),
-                        Column(
-                          children: const [
-                            Padding(
-                              padding: EdgeInsets.only(left: 10),
-                              child: Text(
-                                'Sumit Singh',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Color(0xFF292D32),
-                                  fontSize: 14,
-                                  fontFamily: 'Cairo',
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: 0),
-                              child: Text(
-                                '9503783093',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Color(0xFF9888A4),
-                                  fontSize: 12,
-                                  fontFamily: 'Cairo',
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-
-
-                      ],
-                    ), SizedBox(height: 20,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SizedBox(width: 10,),
-                        Column(
-                          children: const [
-                            Padding(
-                              padding: EdgeInsets.only(left: 10),
-                              child: Text(
-                                'Sumit Singh',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Color(0xFF292D32),
-                                  fontSize: 14,
-                                  fontFamily: 'Cairo',
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: 0),
-                              child: Text(
-                                '9503783093',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Color(0xFF9888A4),
-                                  fontSize: 12,
-                                  fontFamily: 'Cairo',
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-
-
-                      ],
-                    ), SizedBox(height: 20,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SizedBox(width: 10,),
-                        Column(
-                          children: const [
-                            Padding(
-                              padding: EdgeInsets.only(left: 10),
-                              child: Text(
-                                'Sumit Singh',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Color(0xFF292D32),
-                                  fontSize: 14,
-                                  fontFamily: 'Cairo',
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: 0),
-                              child: Text(
-                                '9503783093',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Color(0xFF9888A4),
-                                  fontSize: 12,
-                                  fontFamily: 'Cairo',
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-
-
-                      ],
                     ),
-                  ],
-                ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Column(
+                        children: const [
+                          Padding(
+                            padding: EdgeInsets.only(left: 10),
+                            child: Text(
+                              'Sumit Singh',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Color(0xFF292D32),
+                                fontSize: 14,
+                                fontFamily: 'Cairo',
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(left: 0),
+                            child: Text(
+                              '9503783093',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Color(0xFF9888A4),
+                                fontSize: 12,
+                                fontFamily: 'Cairo',
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Column(
+                        children: const [
+                          Padding(
+                            padding: EdgeInsets.only(left: 10),
+                            child: Text(
+                              'Sumit Singh',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Color(0xFF292D32),
+                                fontSize: 14,
+                                fontFamily: 'Cairo',
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(left: 0),
+                            child: Text(
+                              '9503783093',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Color(0xFF9888A4),
+                                fontSize: 12,
+                                fontFamily: 'Cairo',
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Column(
+                        children: const [
+                          Padding(
+                            padding: EdgeInsets.only(left: 10),
+                            child: Text(
+                              'Sumit Singh',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Color(0xFF292D32),
+                                fontSize: 14,
+                                fontFamily: 'Cairo',
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(left: 0),
+                            child: Text(
+                              '9503783093',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Color(0xFF9888A4),
+                                fontSize: 12,
+                                fontFamily: 'Cairo',
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Column(
+                        children: const [
+                          Padding(
+                            padding: EdgeInsets.only(left: 10),
+                            child: Text(
+                              'Sumit Singh',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Color(0xFF292D32),
+                                fontSize: 14,
+                                fontFamily: 'Cairo',
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(left: 0),
+                            child: Text(
+                              '9503783093',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Color(0xFF9888A4),
+                                fontSize: 12,
+                                fontFamily: 'Cairo',
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ),

@@ -18,6 +18,7 @@ class Login extends StatelessWidget {
       child: Stack(
         children: [
           Scaffold(
+            resizeToAvoidBottomInset: false,
             bottomNavigationBar: Padding(
               padding: const EdgeInsets.only(left: 30, right: 30, bottom: 50),
               child: Column(
@@ -88,6 +89,8 @@ class Login extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 20, right: 10),
                       child: Center(
                           child: TextFormField(
+                        scrollPadding: EdgeInsets.only(
+                            bottom: MediaQuery.of(context).viewInsets.bottom),
                         controller: viewModel.passwordController,
                         obscureText: true,
                         style: TextStyle(
@@ -135,7 +138,7 @@ class Login extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                     viewModel.login();
+                      viewModel.login();
                     },
                     child: Container(
                       child: Center(

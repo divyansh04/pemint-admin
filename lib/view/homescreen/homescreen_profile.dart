@@ -12,7 +12,7 @@ class HomeScreenProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Scaffold(
+        child: Scaffold(resizeToAvoidBottomInset: false,
       body: Padding(
         padding: const EdgeInsets.only(
           right: 10,
@@ -79,12 +79,12 @@ class HomeScreenProfile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Container(
-                  height: Get.height / 1.242,
-                  width: 90,
+                  height: Get.height / 1.23,
+                  width: 100,
                   decoration: BoxDecoration(
                     borderRadius:
                         BorderRadius.only(topRight: Radius.circular(12)),
-                    color: AppColor.contentColorBlue,
+                    color: Color.fromARGB(255, 33, 170, 243),
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,

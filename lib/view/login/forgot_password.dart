@@ -15,7 +15,7 @@ class ForgotPassword extends StatelessWidget {
     return SafeArea(
         child: Stack(
       children: [
-        Scaffold(
+        Scaffold(resizeToAvoidBottomInset: false,
           bottomNavigationBar: Padding(
             padding: EdgeInsets.only(bottom: 50, left: 30, right: 30),
             child: GestureDetector(
