@@ -349,90 +349,97 @@ class _HomeScreenHistoryState extends State<HomeScreenHistory> {
                                     }
                                     print('abc');
                                   },
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      CircleAvatar(
-                                        backgroundColor:
-                                            const Color(0xFF2E1762),
-                                        child: Icon(
-                                          isSuccess
-                                              ? Icons.arrow_downward_rounded
-                                              : Icons.arrow_upward_rounded,
-                                          color: AppColor.whiteColor,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(bottom: 10),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            CircleAvatar(
+                                              backgroundColor:
+                                                  const Color(0xFF2E1762),
+                                              child: Icon(
+                                                isSuccess
+                                                    ? Icons.check
+                                                    : Icons.priority_high,
+                                                color: AppColor.whiteColor,
+                                              ),
+                                            ), const SizedBox(
+                                              width: 15,
+                                            ),
+                                            Column(
+                                              mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  demand.customerName,
+                                                  textAlign: TextAlign.start,
+                                                  style: const TextStyle(
+                                                    color: Color(0xFF292D32),
+                                                    fontSize: 14,
+                                                    fontFamily: 'Cairo',
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
+                                                ),
+                                                const SizedBox(
+                                                  height: 5,
+                                                ),
+                                                 Text(
+                                                  '$transactionDetailData',
+                                                  textAlign: TextAlign.start,
+                                                  style: TextStyle(
+                                                    color: Color(0xFF9888A4),
+                                                    fontSize: 12,
+                                                    fontFamily: 'Cairo',
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ],
                                         ),
-                                      ),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            demand.customerName,
-                                            textAlign: TextAlign.start,
-                                            style: const TextStyle(
-                                              color: Color(0xFF292D32),
-                                              fontSize: 14,
-                                              fontFamily: 'Cairo',
-                                              fontWeight: FontWeight.w400,
+
+                                        // SizedBox(width: Get.width / 9),
+                                        Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                             Text(
+                                             '₹ '+ demand.amount.toString(),
+                                              style: TextStyle(
+                                                color: Color(0xFF292D32),
+                                                fontSize: 12,
+                                                fontFamily: 'Cairo',
+                                                fontWeight: FontWeight.w700,
+                                              ),
                                             ),
-                                          ),
-                                          const SizedBox(
-                                            height: 5,
-                                          ),
-                                          const Text(
-                                            '11 nov 2023',
-                                            textAlign: TextAlign.start,
-                                            style: TextStyle(
-                                              color: Color(0xFF9888A4),
-                                              fontSize: 12,
-                                              fontFamily: 'Cairo',
-                                              fontWeight: FontWeight.w400,
+                                            const SizedBox(
+                                              height: 5,
                                             ),
-                                          )
-                                        ],
-                                      ),
-                                      SizedBox(width: Get.width / 9),
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          const Text(
-                                            '₹10,00,000',
-                                            style: TextStyle(
-                                              color: Color(0xFF292D32),
-                                              fontSize: 12,
-                                              fontFamily: 'Cairo',
-                                              fontWeight: FontWeight.w700,
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            height: 5,
-                                          ),
-                                          Text(
-                                            demand.paymentStatus,
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              color: isSuccess
-                                                  ? Color(0xFF54F15A)
-                                                  : Color(0xFF00BBF2),
-                                              fontSize: 10,
-                                              fontFamily: 'Cairo',
-                                              fontWeight: FontWeight.w700,
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ],
+                                            Text(
+                                              demand.paymentStatus,
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                color: isSuccess
+                                                    ? Color(0xFF54F15A)
+                                                    : Color(0xFF00BBF2),
+                                                fontSize: 10,
+                                                fontFamily: 'Cairo',
+                                                fontWeight: FontWeight.w700,
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 );
                               }),
@@ -478,12 +485,12 @@ class TransactionLinkDialog extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
           ),
-          insetPadding: EdgeInsets.only(left: Get.width / 3.5, right: 20),
+          insetPadding: EdgeInsets.only(),
           backgroundColor: AppColor.whiteColor,
           child: Container(
             decoration: const BoxDecoration(),
             height: 120,
-            width: 100,
+            width:320,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -497,7 +504,7 @@ class TransactionLinkDialog extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.black,
-                        fontSize: 18,
+                        fontSize: 16,
                         fontFamily: 'Cairo',
                         fontWeight: FontWeight.w400,
                       ),
@@ -574,7 +581,7 @@ class TransactionDetailDialog extends StatelessWidget {
                       fontSize: 14,
                       fontFamily: 'Cairo',
                       fontWeight: FontWeight.w400,
-                      height: 0.08,
+
                     ),
                   ),
                   const Text(
@@ -584,17 +591,17 @@ class TransactionDetailDialog extends StatelessWidget {
                       fontSize: 14,
                       fontFamily: 'Cairo',
                       fontWeight: FontWeight.w700,
-                      height: 0.08,
+
                     ),
                   ),
-                  const Text(
-                    '08/11/2023',
+                   Text(
+                     transactionDetailData.transDate,
                     style: TextStyle(
                       color: Color(0xFF292D32),
                       fontSize: 14,
                       fontFamily: 'Cairo',
                       fontWeight: FontWeight.w400,
-                      height: 0.08,
+
                     ),
                   ),
                   const Text(
@@ -604,17 +611,17 @@ class TransactionDetailDialog extends StatelessWidget {
                       fontSize: 14,
                       fontFamily: 'Cairo',
                       fontWeight: FontWeight.w700,
-                      height: 0.08,
+
                     ),
                   ),
-                  const Text(
-                    'UPI',
+                   Text(
+                    transactionDetailData.paymentMode,
                     style: TextStyle(
                       color: Color(0xFF292D32),
                       fontSize: 14,
                       fontFamily: 'Cairo',
                       fontWeight: FontWeight.w400,
-                      height: 0.08,
+
                     ),
                   )
                 ],
