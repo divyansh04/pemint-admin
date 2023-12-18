@@ -70,6 +70,7 @@ dependencies:
   share_plus: ^7.2.1
   permission_handler: ^11.0.0
   contacts_service: ^0.6.3
+  flutter_slidable: ^2.0.0
 
 
 dev_dependencies:
