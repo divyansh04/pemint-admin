@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
@@ -387,58 +388,65 @@ class Groups extends StatelessWidget {
                               width: Get.width / 1.5,
                               color: AppColor.lightGreyColor,
                             ),
+                            // SizedBox(
+                            //   height: 10,
+                            // ),
+                            // Row(
+                            //   mainAxisAlignment: MainAxisAlignment.start,
+                            //   crossAxisAlignment: CrossAxisAlignment.center,
+                            //   children: [
+                            //     CircleAvatar(
+                            //       radius: 18,
+                            //       backgroundColor: AppColor.greyColor,
+                            //       child: Icon(
+                            //         Icons.groups,
+                            //         color: AppColor.contentColorBlue,
+                            //       ),
+                            //     ),
+                            //     SizedBox(
+                            //       width: 8,
+                            //     ),
+                            //     GestureDetector(
+                            //       onTap: () {
+                            //         Get.dialog(
+                            //           ViewGroup(),
+                            //         );
+                            //       },
+                            //       child: Column(
+                            //         mainAxisAlignment: MainAxisAlignment.start,
+                            //         crossAxisAlignment:
+                            //             CrossAxisAlignment.start,
+                            //         children: [
+                            //           Text(
+                            //             'Z1 Society',
+                            //             style: TextStyle(
+                            //               color: Color(0xFF292D32),
+                            //               fontSize: 14,
+                            //               fontFamily: 'Cairo',
+                            //               fontWeight: FontWeight.w400,
+                            //             ),
+                            //           ),
+                            //           Text(
+                            //             '7 members',
+                            //             style: TextStyle(
+                            //               color: Color(0xFF9888A4),
+                            //               fontSize: 12,
+                            //               fontFamily: 'Cairo',
+                            //               fontWeight: FontWeight.w400,
+                            //             ),
+                            //           )
+                            //         ],
+                            //       ),
+                            //     ),
+                            //   ],
+                            // ),
                             SizedBox(
                               height: 10,
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                CircleAvatar(
-                                  radius: 18,
-                                  backgroundColor: AppColor.greyColor,
-                                  child: Icon(
-                                    Icons.groups,
-                                    color: AppColor.contentColorBlue,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 8,
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    Get.dialog(
-                                      ViewGroup(),
-                                    );
-                                  },
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Z1 Society',
-                                        style: TextStyle(
-                                          color: Color(0xFF292D32),
-                                          fontSize: 14,
-                                          fontFamily: 'Cairo',
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                      Text(
-                                        '7 members',
-                                        style: TextStyle(
-                                          color: Color(0xFF9888A4),
-                                          fontSize: 12,
-                                          fontFamily: 'Cairo',
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
+                            Container(
+                                width: Get.width / 1.5,
+                                height: Get.height / 2.2,
+                                child: SlideableList())
                           ],
                         ),
                       ],
@@ -881,44 +889,146 @@ class ViewGroup extends StatelessWidget {
     );
   }
 }
-class SlideableList extends StatelessWidget {
-  final List<Contacts> contacts = [
-    Contacts(name: 'John Doe', phoneNumber: '123-456-7890'),
-    Contacts(name: 'Jane Smith', phoneNumber: '987-654-3210'),
-    // Add more contacts as needed
-  ];
 
+class SlideableList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: contacts.length,
+      itemCount: 5,
       itemBuilder: (context, index) {
-        final contact = contacts[index];
         return Slidable(
-         endActionPane: ActionPane(
-           motion: ScrollMotion(),
-           children: [
-             SlidableAction(onPressed: (buildContext){},
-               // An action can be bigger than the others.
-               flex: 2,
+            direction: Axis.horizontal,
+            endActionPane: ActionPane(
+              extentRatio: .4,
+              motion: ScrollMotion(),
+              children: [
+                SlidableAction(
+                  flex: 2,
+                  onPressed: (buildContext) {
+                    Get.dialog(EditGroup());
+                  },
+                  // An action can be bigger than the others.
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(5),
+                      bottomLeft: Radius.circular(5)),
 
-               backgroundColor: Color(0xFF7BC043),
-               foregroundColor: Colors.white,
-               icon: Icons.archive,
-               label: 'Delete',
-             ),
+                  backgroundColor: Color(0xFFD6CCFF),
+                  foregroundColor: AppColor.primaryColor,
+                  icon: Icons.edit,
+                ),
+                SlidableAction(
+                  flex: 2,
+                  onPressed: (buildContext) {
+                    Get.bottomSheet(Container(
+                      decoration: BoxDecoration(
+                          color: AppColor.whiteColor,
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(40),
+                              topRight: Radius.circular(40))),
+                      height: 200,
+                      width: Get.width,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Are you sure you want to Delete \nthis Group?',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Color(0xFF292D32),
+                              fontSize: 20,
+                              fontFamily: 'Cairo',
+                              fontWeight: FontWeight.w600,
+                              height: 0,
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                height: 40,
+                                width: 150,
+                                decoration: BoxDecoration(
+                                    color: AppColor.primaryColor,
+                                    borderRadius: BorderRadius.circular(12)),
+                                child: GestureDetector(onTap: (){Get.back();},
+                                  child: Center(
+                                    child: Text(
+                                      'No',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 14,
+                                        fontFamily: 'Cairo',
+                                        fontWeight: FontWeight.w700,
+                                        height: 0,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Container(
+                                child: Center(
+                                  child: Text(
+                                    'Yes',
+                                    style: TextStyle(
+                                      color: Color(0x9B9888A4),
+                                      fontSize: 14,
+                                      fontFamily: 'Cairo',
+                                      fontWeight: FontWeight.w700,
+                                      height: 0,
+                                    ),
+                                  ),
+                                ),
+                                height: 40,
+                                width: 150,
+                                decoration: BoxDecoration(
+                                    color: Color(0xFFE9E6F8),
+                                    borderRadius: BorderRadius.circular(12)),
+                              )
+                            ],
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                          )
+                        ],
+                      ),
+                    ));
+                  },
+                  // An action can be bigger than the others.
 
-           ],
-         ), child: const ListTile(title: Text('Slide me')),
-        );
+                  backgroundColor: Color(0xFFEEE9FF),
+                  foregroundColor: AppColor.primaryColor,
+                  icon: Icons.delete_outline_rounded,
+                ),
+              ],
+            ),
+            child: GestureDetector(
+              onTap: () {
+                Get.dialog(ViewGroup());
+              },
+              child: const ListTile(
+                leading: CircleAvatar(
+                  backgroundColor: AppColor.greyColor,
+                  radius: 18,
+                  child: Icon(
+                    Icons.groups,
+                    color: AppColor.contentColorBlue,
+                  ),
+                ),
+                title: Text('Z1 Society'),
+                subtitle: Text(
+                  '7 members',
+                  style: TextStyle(
+                    color: Color(0xFF9888A4),
+                    fontSize: 12,
+                    fontFamily: 'Cairo',
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ),
+            ));
       },
     );
   }
-}
-
-class Contacts {
-  final String name;
-  final String phoneNumber;
-
-  Contacts({required this.name, required this.phoneNumber});
 }

@@ -153,13 +153,16 @@ class _CreateGroupState extends State<CreateGroup> {
                       height: 10,
                     ),
                     SizedBox(
-                      height: 280,
-                      width: 200,
+                     height: Get.height/3,
+                      width: Get.width/1.4,
                       child: ListView.builder(
                           itemCount: controller.searchedContacts.length,
                           itemBuilder: (context, index) {
-                            return ContactTile(
-                              contact: controller.searchedContacts[index],
+                            return Padding(
+                              padding: const EdgeInsets.only(top: 10),
+                              child: ContactTile(
+                                contact: controller.searchedContacts[index],
+                              ),
                             );
                           }),
                     ),
@@ -220,17 +223,20 @@ class ContactTile extends StatelessWidget {
             children: [
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(left: 10),
                     child: Text(
                       contact.displayName ?? "-",
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
+                      textAlign: TextAlign.start,
+
+                      style: TextStyle(
                         color: Color(0xFF292D32),
-                        fontSize: 14,
+                        fontSize: 16,
                         fontFamily: 'Cairo',
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.w400,
+
                       ),
                     ),
                   ),
@@ -240,13 +246,14 @@ class ContactTile extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 0),
                     child: Text(
-                      contact.phones?.first.value ?? "-",
+                          contact.phones?.first.value ?? "-",
                       textAlign: TextAlign.center,
                       style: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 12,
+                        color: Color(0xFF9888A4),
+                        fontSize: 14,
                         fontFamily: 'Cairo',
                         fontWeight: FontWeight.w400,
+
                       ),
                     ),
                   ),
