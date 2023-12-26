@@ -19,19 +19,14 @@ class HomeScreenContact extends StatefulWidget {
 
 class _HomeScreenContactState extends State<HomeScreenContact> {
   final DashboardController viewModel = Get.put(DashboardController());
-  PermissionStatus? _status;
   Future<void> _checkPermissionStatus() async {
     final status = await Permission.contacts.status;
 
-    _status = status;
-    _buildPermissionScreen();
+    _buildPermissionScreen(status);
   }
 
   Future<void> _requestPermission() async {
-    final status = await Permission.contacts.request();
-
-    _status = status;
-    _buildPermissionScreen();
+    _buildPermissionScreen(await Permission.contacts.request());
   }
 
   @override
@@ -55,21 +50,27 @@ class _HomeScreenContactState extends State<HomeScreenContact> {
   }
 
   Widget contactsBody = Container();
-  Future<void> _buildPermissionScreen() async {
-    if (_status == null ||
-        _status == PermissionStatus.denied ||
-        _status == PermissionStatus.permanentlyDenied) {
+  Future<void> _buildPermissionScreen(PermissionStatus status) async {
+    if (status == PermissionStatus.denied ||
+        status == PermissionStatus.permanentlyDenied) {
       contactsBody = Column(
         children: [
           const Text('Permission denied.\nPlease enable contacts permission.'),
           const SizedBox(height: 20),
           ElevatedButton(
-            onPressed: _requestPermission,
+            onPressed: () async {
+              await _requestPermission();
+            },
             child: const Text('Retry Permission'),
           ),
         ],
       );
+      setState(() {});
     } else {
+      contactsBody = const Center(
+        child: CircularProgressIndicator.adaptive(),
+      );
+      setState(() {});
       final Iterable<Contact> contacts = await ContactsService.getContacts();
       setState(() {
         _contactsList = contacts.toList();
@@ -150,8 +151,8 @@ class _HomeScreenContactState extends State<HomeScreenContact> {
                       height: 70,
                       width: 70,
                     ),
-                    Row(
-                      children: const [
+                    const Row(
+                      children: [
                         Text.rich(
                           TextSpan(
                             children: [
@@ -344,10 +345,10 @@ class _HomeScreenContactState extends State<HomeScreenContact> {
                     const SizedBox(width: 20),
                     Column(
                       children: [
-                        Column(
+                        const Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
+                          children: [
                             SizedBox(
                               height: 20,
                             ),
@@ -896,9 +897,9 @@ class DemandDialog extends StatelessWidget {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(5),
                                 color: AppColor.primaryColor),
-                            child: Row(
+                            child: const Row(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
+                              children: [
                                 Text(
                                   'Generate link & Share',
                                   style: TextStyle(

@@ -1,6 +1,9 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pemint_admin_app/view/login/initial_screen.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import 'networking/SharedPref.dart';
 import 'view/homescreen/homescreen_contact.dart';
@@ -20,6 +23,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     getLoginStatus();
+    // _buildPermissionScreen();
     super.initState();
   }
 
@@ -27,6 +31,32 @@ class _MyAppState extends State<MyApp> {
   getLoginStatus() async {
     isLogin = await SharedPref().isLogin() ?? false;
     setState(() {});
+  }
+
+  Future<void> _buildPermissionScreen() async {
+    final _status = await Permission.contacts.status;
+    if (_status == PermissionStatus.denied) {
+      await Permission.contacts.request();
+    }
+    if (_status == PermissionStatus.permanentlyDenied) {
+      showDialog<void>(
+          context: context,
+          barrierColor: Colors.grey.withOpacity(0.5),
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return WillPopScope(
+                onWillPop: () async => false,
+                child: const Dialog(
+                    backgroundColor: Colors.transparent,
+                    elevation: 0,
+                    child: Center(
+                      child: SizedBox(
+                          height: 80,
+                          width: 80,
+                          child: Text('Contacts Permission is required !')),
+                    )));
+          });
+    }
   }
 
   // This widget is the root of your application.
@@ -46,8 +76,6 @@ class _MyAppState extends State<MyApp> {
           // is not restarted.
           primarySwatch: Colors.blue,
         ),
-        home:
-        isLogin ? HomeScreenContact() :
-        InitialScreen());
+        home: isLogin ? HomeScreenContact() : const InitialScreen());
   }
 }

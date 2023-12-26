@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pemint_admin_app/utilities/app_colors.dart';
 import 'package:pemint_admin_app/view_model/dashboard_controller.dart';
+import 'package:pemint_admin_app/view_model/group_controller.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class CreateGroup extends StatefulWidget {
@@ -15,7 +16,7 @@ class CreateGroup extends StatefulWidget {
 }
 
 class _CreateGroupState extends State<CreateGroup> {
-  final DashboardController controller = Get.put(DashboardController());
+  final GroupController controller = Get.put(GroupController());
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,10 @@ class _CreateGroupState extends State<CreateGroup> {
               width: Get.width / 1.2,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Column(
+                child: 
+                
+                
+                Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
