@@ -46,6 +46,8 @@ class _MyAppState extends State<MyApp> {
           // is not restarted.
           primarySwatch: Colors.blue,
         ),
-        home: isLogin ? HomeScreenContact() : InitialScreen());
+        home:
+        isLogin ? HomeScreenContact() :
+        InitialScreen());
   }
 }

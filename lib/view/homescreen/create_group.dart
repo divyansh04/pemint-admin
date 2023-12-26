@@ -28,7 +28,7 @@ class _CreateGroupState extends State<CreateGroup> {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
             backgroundColor: AppColor.whiteColor,
             child: Container(
-              height: Get.height / 1.75,
+              height: Get.height / 1.74,
               width: Get.width / 1.2,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -153,7 +153,7 @@ class _CreateGroupState extends State<CreateGroup> {
                       height: 10,
                     ),
                     SizedBox(
-                     height: Get.height/3,
+                     height: Get.height/3.1,
                       width: Get.width/1.4,
                       child: ListView.builder(
                           itemCount: controller.searchedContacts.length,
