@@ -2,7 +2,7 @@ import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pemint_admin_app/utilities/app_colors.dart';
-import 'package:pemint_admin_app/view_model/dashboard_controller.dart';
+import 'package:pemint_admin_app/view_model/contact_controller.dart';
 import 'package:pemint_admin_app/view_model/group_controller.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -33,10 +33,7 @@ class _CreateGroupState extends State<CreateGroup> {
               width: Get.width / 1.2,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: 
-                
-                
-                Column(
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -157,8 +154,8 @@ class _CreateGroupState extends State<CreateGroup> {
                       height: 10,
                     ),
                     SizedBox(
-                     height: Get.height/3.1,
-                      width: Get.width/1.4,
+                      height: Get.height / 3.1,
+                      width: Get.width / 1.4,
                       child: ListView.builder(
                           itemCount: controller.searchedContacts.length,
                           itemBuilder: (context, index) {
@@ -204,7 +201,7 @@ class ContactTile extends StatelessWidget {
 
   final Contact contact;
 
-  final DashboardController controller = Get.put(DashboardController());
+  final ContactsController controller = Get.put(ContactsController());
 
   @override
   Widget build(BuildContext context) {
@@ -234,13 +231,11 @@ class ContactTile extends StatelessWidget {
                     child: Text(
                       contact.displayName ?? "-",
                       textAlign: TextAlign.start,
-
                       style: TextStyle(
                         color: Color(0xFF292D32),
                         fontSize: 16,
                         fontFamily: 'Cairo',
                         fontWeight: FontWeight.w400,
-
                       ),
                     ),
                   ),
@@ -250,14 +245,13 @@ class ContactTile extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 0),
                     child: Text(
-                          contact.phones?.first.value ?? "-",
+                      contact.phones?.first.value ?? "-",
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         color: Color(0xFF9888A4),
                         fontSize: 14,
                         fontFamily: 'Cairo',
                         fontWeight: FontWeight.w400,
-
                       ),
                     ),
                   ),

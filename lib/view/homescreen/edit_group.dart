@@ -2,7 +2,7 @@ import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pemint_admin_app/utilities/app_colors.dart';
-import 'package:pemint_admin_app/view_model/dashboard_controller.dart';
+import 'package:pemint_admin_app/view_model/contact_controller.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class EditGroup extends StatefulWidget {
@@ -15,7 +15,7 @@ class EditGroup extends StatefulWidget {
 }
 
 class _EditGroupState extends State<EditGroup> {
-  final DashboardController viewModel = Get.put(DashboardController());
+  final ContactsController viewModel = Get.put(ContactsController());
 
   @override
   Widget build(BuildContext context) {
@@ -337,7 +337,7 @@ class _EditGroupState extends State<EditGroup> {
           ),
         ),
         GetBuilder(
-            init: DashboardController(),
+            init: ContactsController(),
             builder: (controller) {
               if (controller.isLoading.value == true) {
                 return Container(

@@ -18,7 +18,8 @@ class _Enter_OTPState extends State<Enter_OTP> {
     return SafeArea(
         child: Stack(
       children: [
-        Scaffold(resizeToAvoidBottomInset: false,
+        Scaffold(
+          resizeToAvoidBottomInset: false,
           bottomNavigationBar: Padding(
             padding: EdgeInsets.only(bottom: 50, left: 30, right: 30),
             child: GestureDetector(
@@ -65,7 +66,7 @@ class _Enter_OTPState extends State<Enter_OTP> {
                   height: 5,
                 ),
                 Text(
-                  '+91 ${viewModel.numberController}',
+                  '+91 ${viewModel.numberController.text}',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 24,
@@ -88,36 +89,39 @@ class _Enter_OTPState extends State<Enter_OTP> {
                 SizedBox(
                   height: 10,
                 ),
-                Container(
-                  width: Get.width,
-                  height: 51,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Center(
-                      child: TextFormField(
-                    controller: viewModel.otpController,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Color(0xFF292D32),
-                      fontSize: 20,
-                      fontFamily: 'Cairo',
-                      fontWeight: FontWeight.w600,
+                Form(
+                  key: viewModel.otpFormKey,
+                  child: Container(
+                    width: Get.width,
+                    height: 51,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(15),
                     ),
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                        hintText: '******',
-                        alignLabelWithHint: true,
-                        hintStyle: TextStyle(
-                          color: Color(0xFF7E6491),
-                          fontSize: 20,
-                          fontFamily: 'Cairo',
-                          fontWeight: FontWeight.w600,
-                          height: 0,
-                        ),
-                        border: InputBorder.none),
-                  )),
+                    child: Center(
+                        child: TextFormField(
+                      controller: viewModel.otpController,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Color(0xFF292D32),
+                        fontSize: 20,
+                        fontFamily: 'Cairo',
+                        fontWeight: FontWeight.w600,
+                      ),
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                          hintText: '******',
+                          alignLabelWithHint: true,
+                          hintStyle: TextStyle(
+                            color: Color(0xFF7E6491),
+                            fontSize: 20,
+                            fontFamily: 'Cairo',
+                            fontWeight: FontWeight.w600,
+                            height: 0,
+                          ),
+                          border: InputBorder.none),
+                    )),
+                  ),
                 ),
               ],
             ),

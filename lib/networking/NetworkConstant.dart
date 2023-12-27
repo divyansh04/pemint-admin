@@ -1,6 +1,6 @@
 class NetworkConstant {
   static const String BASE_URL =
-      'https://hfavxx8d4k.execute-api.us-east-1.amazonaws.com/stage';
+      'https://ma0e6bkftk.execute-api.us-east-1.amazonaws.com/dev';
   // static const String LOCAL_BASE_URL = 'http://192.168.1.53:8080';
   static const String END_POINT_CHECK_VERSION = '/get-version';
   static const String END_POINT_SIGNUP = '/admin/user/user-create';
@@ -12,4 +12,5 @@ class NetworkConstant {
   static const String END_POINT_CREATE_DEMAND = '/small-business/create-demand';
   static const String END_POINT_GET_ALL_DEMAND = '/small-business/demand-list';
   static const String END_POINT_TRANSACTION_DETAIL = '/transaction-detail';
+  static const String END_POINT_GET_DASHBOARD_DATA = '/small-business/dashboard-report';
 }

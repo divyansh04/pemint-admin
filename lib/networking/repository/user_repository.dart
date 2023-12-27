@@ -18,9 +18,16 @@ class UserRepository {
     return response;
   }
 
-    Future<BaseResponses> getTransactionDetailById({required String transactionId}) async {
+  Future<BaseResponses> getTransactionDetailById(
+      {required String transactionId}) async {
     dynamic response = await _apiService.getAfterAuthWihAccessToken(
         "${NetworkConstant.END_POINT_TRANSACTION_DETAIL}?transactionId=$transactionId");
+    return response;
+  }
+
+  Future<BaseResponses> getDashboardData({required Map parameter}) async {
+    dynamic response = await _apiService.postAfterAuthWithIdToken(
+        parameter, NetworkConstant.END_POINT_GET_DASHBOARD_DATA);
     return response;
   }
 }

@@ -7,7 +7,7 @@ import 'package:pemint_admin_app/view/homescreen/homescreen_groups.dart';
 import 'package:pemint_admin_app/view/homescreen/homescreen_history.dart';
 import 'package:pemint_admin_app/view/homescreen/homescreen_profile.dart';
 import 'package:pemint_admin_app/view/login/business_type.dart';
-import 'package:pemint_admin_app/view_model/dashboard_controller.dart';
+import 'package:pemint_admin_app/view_model/contact_controller.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class HomeScreenContact extends StatefulWidget {
@@ -18,7 +18,7 @@ class HomeScreenContact extends StatefulWidget {
 }
 
 class _HomeScreenContactState extends State<HomeScreenContact> {
-  final DashboardController viewModel = Get.put(DashboardController());
+  final ContactsController viewModel = Get.put(ContactsController());
   Future<void> _checkPermissionStatus() async {
     final status = await Permission.contacts.status;
 
@@ -497,7 +497,7 @@ class _HomeScreenContactState extends State<HomeScreenContact> {
           ),
         ),
         GetBuilder(
-            init: DashboardController(),
+            init: ContactsController(),
             builder: (controller) {
               if (controller.isLoading.value == true) {
                 return Container(
@@ -524,7 +524,7 @@ class AddToGroupDialog extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  final DashboardController viewModel = Get.put(DashboardController());
+  final ContactsController viewModel = Get.put(ContactsController());
 
   @override
   Widget build(BuildContext context) {
@@ -599,7 +599,7 @@ class DemandDialog extends StatelessWidget {
 
   final Contact contact;
 
-  final DashboardController viewModel = Get.put(DashboardController());
+  final ContactsController viewModel = Get.put(ContactsController());
 
   @override
   Widget build(BuildContext context) {
@@ -931,7 +931,7 @@ class DemandDialog extends StatelessWidget {
           ),
         ),
         GetBuilder(
-            init: DashboardController(),
+            init: ContactsController(),
             builder: (controller) {
               if (controller.isLoading.value == true) {
                 return Container(

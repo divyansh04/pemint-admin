@@ -5,9 +5,24 @@ import 'package:pemint_admin_app/view/homescreen/homescreen_contact.dart';
 import 'package:pemint_admin_app/view/homescreen/homescreen_history.dart';
 import 'package:pemint_admin_app/view/homescreen/homescreen_profile.dart';
 import 'package:pemint_admin_app/view/login/business_type.dart';
+import 'package:pemint_admin_app/view_model/dashboard_controller.dart';
+import 'package:syncfusion_flutter_gauges/gauges.dart';
 
-class HomeScreenDashboard extends StatelessWidget {
+class HomeScreenDashboard extends StatefulWidget {
   const HomeScreenDashboard({Key? key}) : super(key: key);
+
+  @override
+  State<HomeScreenDashboard> createState() => _HomeScreenDashboardState();
+}
+
+class _HomeScreenDashboardState extends State<HomeScreenDashboard> {
+  final DashboardController controller = Get.put(DashboardController());
+
+  @override
+  void initState() {
+    controller.getDashboardData();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +48,7 @@ class HomeScreenDashboard extends StatelessWidget {
                     width: 70,
                   ),
                 ),
-                Row(
+                const Row(
                   children: [
                     Text.rich(
                       TextSpan(
@@ -72,7 +87,7 @@ class HomeScreenDashboard extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Row(
@@ -83,7 +98,7 @@ class HomeScreenDashboard extends StatelessWidget {
                 Container(
                   height: Get.height / 1.23,
                   width: 100,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     borderRadius:
                         BorderRadius.only(topRight: Radius.circular(12)),
                     color: Color.fromARGB(255, 33, 170, 243),
@@ -92,16 +107,16 @@ class HomeScreenDashboard extends StatelessWidget {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          Get.to(HomeScreenHistory());
+                          Get.to(const HomeScreenHistory());
                         },
                         child: Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               color: AppColor.primaryColor,
                               borderRadius: BorderRadius.only(
                                   topRight: Radius.circular(12))),
                           width: 100,
                           height: 70,
-                          child: Center(
+                          child: const Center(
                             child: Text(
                               'Dashboard',
                               style: TextStyle(
@@ -124,10 +139,10 @@ class HomeScreenDashboard extends StatelessWidget {
                           Get.to(HomeScreenContact());
                         },
                         child: Container(
-                          margin: EdgeInsets.only(left: 10, top: 20),
+                          margin: const EdgeInsets.only(left: 10, top: 20),
                           height: 70,
                           width: 100,
-                          child: Text(
+                          child: const Text(
                             'Contact',
                             style: TextStyle(
                               color: Color(0xFF292D32),
@@ -140,14 +155,14 @@ class HomeScreenDashboard extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Get.to(HomeScreenHistory());
+                          Get.to(const HomeScreenHistory());
                         },
                         child: Container(
-                          margin: EdgeInsets.only(left: 10),
-                          decoration: BoxDecoration(),
+                          margin: const EdgeInsets.only(left: 10),
+                          decoration: const BoxDecoration(),
                           width: 100,
                           height: 70,
-                          child: Text(
+                          child: const Text(
                             'History',
                             style: TextStyle(
                               color: Color(0xFF292D32),
@@ -160,13 +175,13 @@ class HomeScreenDashboard extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Get.to(HomeScreenProfile());
+                          Get.to(const HomeScreenProfile());
                         },
                         child: Container(
-                          margin: EdgeInsets.only(left: 10),
+                          margin: const EdgeInsets.only(left: 10),
                           width: 100,
                           height: 70,
-                          child: Text(
+                          child: const Text(
                             'Profile',
                             style: TextStyle(
                               color: Color(0xFF292D32),
@@ -178,13 +193,13 @@ class HomeScreenDashboard extends StatelessWidget {
                         ),
                       ),
                       Container(
-                          margin: EdgeInsets.only(
+                          margin: const EdgeInsets.only(
                             left: 10,
                           ),
-                          decoration: BoxDecoration(),
+                          decoration: const BoxDecoration(),
                           width: 100,
                           height: 70,
-                          child: Text(
+                          child: const Text(
                             'Add\nEmployee',
                             style: TextStyle(
                               color: Color(0x7F292D32),
@@ -194,11 +209,11 @@ class HomeScreenDashboard extends StatelessWidget {
                             ),
                           )),
                       Container(
-                          margin: EdgeInsets.only(left: 10),
-                          decoration: BoxDecoration(),
+                          margin: const EdgeInsets.only(left: 10),
+                          decoration: const BoxDecoration(),
                           width: 100,
                           height: 70,
-                          child: Text(
+                          child: const Text(
                             'QR Code\nScan and Pay',
                             style: TextStyle(
                               color: Color(0x7F292D32),
@@ -208,11 +223,11 @@ class HomeScreenDashboard extends StatelessWidget {
                             ),
                           )),
                       Container(
-                        margin: EdgeInsets.only(left: 10),
-                        decoration: BoxDecoration(),
+                        margin: const EdgeInsets.only(left: 10),
+                        decoration: const BoxDecoration(),
                         width: 100,
                         height: 70,
-                        child: Text(
+                        child: const Text(
                           'Bill\nPayment',
                           style: TextStyle(
                             color: Color(0x7F292D32),
@@ -225,323 +240,353 @@ class HomeScreenDashboard extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(width: 20),
+                const SizedBox(width: 20),
                 Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         SizedBox(
-                          height: 20,
+                          width: 20,
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.center,
+                        Text(
+                          'Today',
+                          style: TextStyle(
+                            color: Color(0xFF9888A4),
+                            fontSize: 12,
+                            fontFamily: 'Cairo',
+                            fontWeight: FontWeight.w400,
+                            height: 0,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 8,
+                        ),
+                        Text(
+                          'This week',
+                          style: TextStyle(
+                            color: Color(0xFF292D32),
+                            fontSize: 12,
+                            fontFamily: 'Cairo',
+                            fontWeight: FontWeight.w700,
+                            height: 0,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 8,
+                        ),
+                        Text(
+                          'This month',
+                          style: TextStyle(
+                            color: Color(0xFF9888A4),
+                            fontSize: 12,
+                            fontFamily: 'Cairo',
+                            fontWeight: FontWeight.w400,
+                            height: 0,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 8,
+                        ),
+                        Icon(
+                          Icons.calendar_month_rounded,
+                          color: AppColor.contentColorBlue,
+                        )
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                      // height: 210,
+                      width: Get.width / 1.6,
+                      decoration: BoxDecoration(
+                          color: const Color(0xFFF6F5FA),
+                          borderRadius: BorderRadius.circular(18)),
+                      padding: const EdgeInsets.all(20),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      Container(
+                                        height: 10,
+                                        width: 10,
+                                        color: AppColor.primaryColor,
+                                      ),
+                                      const SizedBox(
+                                        width: 5,
+                                      ),
+                                      const Text(
+                                        'Demand Amount',
+                                        style: TextStyle(
+                                          color: Color(0xFF535960),
+                                          fontSize: 10,
+                                          fontFamily: 'Cairo',
+                                          fontWeight: FontWeight.w400,
+                                          height: 0,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                  const Text(
+                                    '₹3,50,000 ',
+                                    style: TextStyle(
+                                      color: Color(0xFF52378F),
+                                      fontSize: 16,
+                                      fontFamily: 'Cairo',
+                                      fontWeight: FontWeight.w600,
+                                      height: 0,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Container(
+                                height: 110,
+                                width: 110,
+                                child: Stack(
+                                  children: [
+                                    SfRadialGauge(axes: <RadialAxis>[
+                                      RadialAxis(
+                                        showLabels: false,
+                                        showTicks: false,
+                                        startAngle: 180,
+                                        endAngle: 0,
+                                        radiusFactor: 0.7,
+                                        canScaleToFit: true,
+                                        axisLineStyle: const AxisLineStyle(
+                                          thickness: 0.1,
+                                          color:
+                                              Color.fromARGB(30, 0, 169, 181),
+                                          thicknessUnit: GaugeSizeUnit.factor,
+                                          cornerStyle: CornerStyle.startCurve,
+                                        ),
+                                        pointers: <GaugePointer>[
+                                          const RangePointer(
+                                              value: 75,
+                                              width: 0.1,
+                                              sizeUnit: GaugeSizeUnit.factor,
+                                              cornerStyle:
+                                                  CornerStyle.bothCurve)
+                                        ],
+                                      )
+                                    ]),
+                                    Positioned.fill(
+                                      top: 30,
+                                      child: const Center(
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Text(
+                                              'Outstanding\nAmount',
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                color: Color(0xFF535960),
+                                                fontSize: 6,
+                                                fontFamily: 'Cairo',
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                            Text(
+                                              '70000',
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                color: Color(0xFF535960),
+                                                fontSize: 6,
+                                                fontFamily: 'Cairo',
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              // Container(
+                              //     color: Colors.red, height: 80, width: 80)
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 35,
+                          ),
+                          Row(
+                            children: [
+                              Container(
+                                height: 10,
+                                width: 10,
+                                color: AppColor.contentColorBlue,
+                              ),
+                              const SizedBox(
+                                width: 5,
+                              ),
+                              const Text(
+                                'Demand Amount',
+                                style: TextStyle(
+                                  color: Color(0xFF535960),
+                                  fontSize: 10,
+                                  fontFamily: 'Cairo',
+                                  fontWeight: FontWeight.w400,
+                                  height: 0,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          const Text(
+                            '₹2,80,000',
+                            style: TextStyle(
+                              color: Color(0xFF00BBF2),
+                              fontSize: 16,
+                              fontFamily: 'Cairo',
+                              fontWeight: FontWeight.w600,
+                              height: 0,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                      height: 180,
+                      width: Get.width / 1.6,
+                      decoration: BoxDecoration(
+                          color: const Color(0xFFF6F5FA),
+                          borderRadius: BorderRadius.circular(18)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(
-                              width: 20,
+                            Row(
+                              children: [
+                                Container(
+                                  height: 10,
+                                  width: 10,
+                                  color: AppColor.primaryColor,
+                                ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                const Text(
+                                  'Demand Count',
+                                  style: TextStyle(
+                                    color: Color(0xFF535960),
+                                    fontSize: 10,
+                                    fontFamily: 'Cairo',
+                                    fontWeight: FontWeight.w400,
+                                    height: 0,
+                                  ),
+                                ),
+                              ],
                             ),
-                            Text(
-                              'Today',
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text(
+                                      '400',
+                                      style: TextStyle(
+                                        color: Color(0xFF52378F),
+                                        fontSize: 16,
+                                        fontFamily: 'Cairo',
+                                        fontWeight: FontWeight.w600,
+                                        height: 0,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    Container(
+                                      height: 5,
+                                      width: 40,
+                                      decoration: BoxDecoration(
+                                          color: AppColor.whiteColor,
+                                          borderRadius:
+                                              BorderRadius.circular(20)),
+                                    )
+                                  ],
+                                ),
+                                const Text(
+                                  'Outstanding\nAmount',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Color(0xFF535960),
+                                    fontSize: 6,
+                                    fontFamily: 'Cairo',
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            Row(
+                              children: [
+                                Container(
+                                  height: 10,
+                                  width: 10,
+                                  color: AppColor.contentColorBlue,
+                                ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                const Text(
+                                  'Collection Count',
+                                  style: TextStyle(
+                                    color: Color(0xFF535960),
+                                    fontSize: 10,
+                                    fontFamily: 'Cairo',
+                                    fontWeight: FontWeight.w400,
+                                    height: 0,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            const Text(
+                              '230',
                               style: TextStyle(
-                                color: Color(0xFF9888A4),
-                                fontSize: 12,
+                                color: Color(0xFF00BBF2),
+                                fontSize: 16,
                                 fontFamily: 'Cairo',
-                                fontWeight: FontWeight.w400,
+                                fontWeight: FontWeight.w600,
                                 height: 0,
                               ),
                             ),
-                            SizedBox(
-                              width: 8,
-                            ),
-                            Text(
-                              'This week',
-                              style: TextStyle(
-                                color: Color(0xFF292D32),
-                                fontSize: 12,
-                                fontFamily: 'Cairo',
-                                fontWeight: FontWeight.w700,
-                                height: 0,
-                              ),
-                            ),
-                            SizedBox(
-                              width: 8,
-                            ),
-                            Text(
-                              'This month',
-                              style: TextStyle(
-                                color: Color(0xFF9888A4),
-                                fontSize: 12,
-                                fontFamily: 'Cairo',
-                                fontWeight: FontWeight.w400,
-                                height: 0,
-                              ),
-                            ),
-                            SizedBox(
-                              width: 8,
-                            ),
-                            Icon(
-                              Icons.calendar_month_rounded,
-                              color: AppColor.contentColorBlue,
-                            )
                           ],
                         ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Container(
-                          height: 180,
-                          width: Get.width / 1.6,
-                          decoration: BoxDecoration(
-                              color: Color(0xFFF6F5FA),
-                              borderRadius: BorderRadius.circular(18)),
-                          child: Padding(
-                            padding: EdgeInsets.all(20),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  children: [
-                                    Container(
-                                      height: 10,
-                                      width: 10,
-                                      color: AppColor.primaryColor,
-                                    ),
-                                    SizedBox(
-                                      width: 5,
-                                    ),
-                                    Text(
-                                      'Demand Amount',
-                                      style: TextStyle(
-                                        color: Color(0xFF535960),
-                                        fontSize: 10,
-                                        fontFamily: 'Cairo',
-                                        fontWeight: FontWeight.w400,
-                                        height: 0,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          '₹3,50,000 ',
-                                          style: TextStyle(
-                                            color: Color(0xFF52378F),
-                                            fontSize: 16,
-                                            fontFamily: 'Cairo',
-                                            fontWeight: FontWeight.w600,
-                                            height: 0,
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Container(
-                                          height: 5,
-                                          width: 40,
-                                          decoration: BoxDecoration(
-                                              color: AppColor.whiteColor,
-                                              borderRadius:
-                                                  BorderRadius.circular(20)),
-                                        )
-                                      ],
-                                    ),
-                                    Text(
-                                      'Outstanding\nAmount',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        color: Color(0xFF535960),
-                                        fontSize: 6,
-                                        fontFamily: 'Cairo',
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Row(
-                                  children: [
-                                    Container(
-                                      height: 10,
-                                      width: 10,
-                                      color: AppColor.contentColorBlue,
-                                    ),
-                                    SizedBox(
-                                      width: 5,
-                                    ),
-                                    Text(
-                                      'Demand Amount',
-                                      style: TextStyle(
-                                        color: Color(0xFF535960),
-                                        fontSize: 10,
-                                        fontFamily: 'Cairo',
-                                        fontWeight: FontWeight.w400,
-                                        height: 0,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Text(
-                                  '₹2,80,000',
-                                  style: TextStyle(
-                                    color: Color(0xFF00BBF2),
-                                    fontSize: 16,
-                                    fontFamily: 'Cairo',
-                                    fontWeight: FontWeight.w600,
-                                    height: 0,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Container(
-                          height: 180,
-                          width: Get.width / 1.6,
-                          decoration: BoxDecoration(
-                              color: Color(0xFFF6F5FA),
-                              borderRadius: BorderRadius.circular(18)),
-                          child: Padding(
-                            padding: EdgeInsets.all(20),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  children: [
-                                    Container(
-                                      height: 10,
-                                      width: 10,
-                                      color: AppColor.primaryColor,
-                                    ),
-                                    SizedBox(
-                                      width: 5,
-                                    ),
-                                    Text(
-                                      'Demand Count',
-                                      style: TextStyle(
-                                        color: Color(0xFF535960),
-                                        fontSize: 10,
-                                        fontFamily: 'Cairo',
-                                        fontWeight: FontWeight.w400,
-                                        height: 0,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          '400',
-                                          style: TextStyle(
-                                            color: Color(0xFF52378F),
-                                            fontSize: 16,
-                                            fontFamily: 'Cairo',
-                                            fontWeight: FontWeight.w600,
-                                            height: 0,
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Container(
-                                          height: 5,
-                                          width: 40,
-                                          decoration: BoxDecoration(
-                                              color: AppColor.whiteColor,
-                                              borderRadius:
-                                                  BorderRadius.circular(20)),
-                                        )
-                                      ],
-                                    ),
-                                    Text(
-                                      'Outstanding\nAmount',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        color: Color(0xFF535960),
-                                        fontSize: 6,
-                                        fontFamily: 'Cairo',
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Row(
-                                  children: [
-                                    Container(
-                                      height: 10,
-                                      width: 10,
-                                      color: AppColor.contentColorBlue,
-                                    ),
-                                    SizedBox(
-                                      width: 5,
-                                    ),
-                                    Text(
-                                      'Collection Count',
-                                      style: TextStyle(
-                                        color: Color(0xFF535960),
-                                        fontSize: 10,
-                                        fontFamily: 'Cairo',
-                                        fontWeight: FontWeight.w400,
-                                        height: 0,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Text(
-                                  '230',
-                                  style: TextStyle(
-                                    color: Color(0xFF00BBF2),
-                                    fontSize: 16,
-                                    fontFamily: 'Cairo',
-                                    fontWeight: FontWeight.w600,
-                                    height: 0,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
                   ],
                 ),
@@ -582,11 +627,11 @@ class DemandDialog extends StatelessWidget {
                           onTap: () {
                             Get.back();
                           },
-                          child: Icon(Icons.close)),
+                          child: const Icon(Icons.close)),
                     )
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Center(
@@ -596,8 +641,8 @@ class DemandDialog extends StatelessWidget {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
                         border: Border.all(color: AppColor.contentColorBlue)),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 10, right: 10),
+                    child: const Padding(
+                      padding: EdgeInsets.only(left: 10, right: 10),
                       child: Center(
                         child: TextField(
                           textAlign: TextAlign.right,
@@ -632,7 +677,7 @@ class DemandDialog extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Padding(
@@ -648,8 +693,8 @@ class DemandDialog extends StatelessWidget {
                             borderRadius: BorderRadius.circular(5),
                             border:
                                 Border.all(color: AppColor.contentColorBlue)),
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 5, right: 5),
+                        child: const Padding(
+                          padding: EdgeInsets.only(left: 5, right: 5),
                           child: TextField(
                             textAlign: TextAlign.start,
                             textAlignVertical: TextAlignVertical.center,
@@ -672,7 +717,7 @@ class DemandDialog extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Text(
+                      const Text(
                         'Add details +',
                         textAlign: TextAlign.right,
                         style: TextStyle(
@@ -686,7 +731,7 @@ class DemandDialog extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
                 Row(
@@ -699,7 +744,7 @@ class DemandDialog extends StatelessWidget {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           color: AppColor.primaryColor),
-                      child: Row(
+                      child: const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(

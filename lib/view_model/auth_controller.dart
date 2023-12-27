@@ -70,7 +70,11 @@ class MobRegController extends GetxController {
       if (res.statusCode == 200) {
         print(res);
         numberController.text = phone;
-        SignupData loginData = SignupData.fromJson(res.data);
+        SignupData signUpData = SignupData.fromJson(res.data);
+        Get.to(const BusinessType());
+      }
+
+      if (res.statusCode == 422) {
         sendOTP();
         Get.to(const Enter_OTP());
       }
@@ -150,7 +154,7 @@ class MobRegController extends GetxController {
       update();
       try {
         var res = await _authRepository.verifyOTP(parameter: parameter);
-        if (res.statusCode == 200 && res.data == true) {
+        if (res.statusCode == 200) {
           Get.to(const BusinessType());
         }
       } catch (e) {

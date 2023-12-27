@@ -9,14 +9,14 @@ import 'package:pemint_admin_app/view/homescreen/homescreen_dashboard.dart';
 import 'package:pemint_admin_app/view/homescreen/homescreen_history.dart';
 import 'package:pemint_admin_app/view/homescreen/homescreen_profile.dart';
 import 'package:pemint_admin_app/view/login/business_type.dart';
-import 'package:pemint_admin_app/view_model/dashboard_controller.dart';
+import 'package:pemint_admin_app/view_model/contact_controller.dart';
 
 import 'edit_group.dart';
 
 class Groups extends StatelessWidget {
   Groups({Key? key}) : super(key: key);
 
-  final DashboardController viewModel = Get.put(DashboardController());
+  final ContactsController viewModel = Get.put(ContactsController());
 
   @override
   Widget build(BuildContext context) {
@@ -458,7 +458,7 @@ class Groups extends StatelessWidget {
           ),
         ),
         GetBuilder(
-            init: DashboardController(),
+            init: ContactsController(),
             builder: (controller) {
               if (controller.isLoading.value == true) {
                 return Container(
@@ -951,7 +951,10 @@ class SlideableList extends StatelessWidget {
                                 decoration: BoxDecoration(
                                     color: AppColor.primaryColor,
                                     borderRadius: BorderRadius.circular(12)),
-                                child: GestureDetector(onTap: (){Get.back();},
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Get.back();
+                                  },
                                   child: Center(
                                     child: Text(
                                       'No',

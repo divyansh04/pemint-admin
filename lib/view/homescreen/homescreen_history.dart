@@ -8,7 +8,7 @@ import 'package:pemint_admin_app/view/homescreen/homescreen_contact.dart';
 import 'package:pemint_admin_app/view/homescreen/homescreen_dashboard.dart';
 import 'package:pemint_admin_app/view/homescreen/homescreen_profile.dart';
 import 'package:pemint_admin_app/view/login/business_type.dart';
-import 'package:pemint_admin_app/view_model/dashboard_controller.dart';
+import 'package:pemint_admin_app/view_model/contact_controller.dart';
 
 class HomeScreenHistory extends StatefulWidget {
   const HomeScreenHistory({Key? key}) : super(key: key);

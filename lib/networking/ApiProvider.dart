@@ -99,6 +99,28 @@ class ApiProvider {
     return responseJson;
   }
 
+  Future<dynamic> postAfterAuthWithIdToken(Map parameter, String url) async {
+    var responseJson;
+    String? token = await SharedPref().getIdToken();
+    // debugger();
+    print(token);
+    try {
+      final response = await http.post(Uri.parse(baseUrl + url),
+          headers: {
+            'Content-type': 'application/json',
+            'authorization': 'Bearer ' + token!,
+          },
+          body: json.encode(parameter));
+      // debugger();
+      // print(response);
+      responseJson = _response(response);
+    } catch (e) {
+      print(e);
+      throw FetchDataException('No Internet connection');
+    }
+    return responseJson;
+  }
+
   Future<dynamic> postAfterAuthWithAuthToken(Map parameter, String url) async {
     var responseJson;
     String? token = await SharedPref().getAccessToken();
@@ -387,7 +409,6 @@ class ApiProvider {
       case 400:
         throw BadRequestException(response.body.toString());
       case 401:
-
       case 403:
         throw UnauthorisedException(response.body.toString());
       case 500:
