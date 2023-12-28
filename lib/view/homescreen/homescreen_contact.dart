@@ -151,7 +151,7 @@ class _HomeScreenContactState extends State<HomeScreenContact> {
                       height: 70,
                       width: 70,
                     ),
-                    const Row(
+                     Row(
                       children: [
                         Text.rich(
                           TextSpan(
@@ -210,7 +210,7 @@ class _HomeScreenContactState extends State<HomeScreenContact> {
                         children: [
                           GestureDetector(
                             onTap: () {
-                              Get.to(const HomeScreenDashboard());
+                              Get.to( HomeScreenDashboard());
                             },
                             child: Container(
                               margin: const EdgeInsets.only(left: 10, top: 20),
@@ -277,7 +277,7 @@ class _HomeScreenContactState extends State<HomeScreenContact> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              Get.to(const HomeScreenProfile());
+                              Get.to( HomeScreenProfile());
                             },
                             child: Container(
                               margin: const EdgeInsets.only(left: 10),
@@ -345,7 +345,7 @@ class _HomeScreenContactState extends State<HomeScreenContact> {
                     const SizedBox(width: 20),
                     Column(
                       children: [
-                        const Column(
+                         Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -897,7 +897,7 @@ class DemandDialog extends StatelessWidget {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(5),
                                 color: AppColor.primaryColor),
-                            child: const Row(
+                            child:  Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(

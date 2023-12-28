@@ -7,7 +7,7 @@ import 'package:pemint_admin_app/view/homescreen/homescreen_history.dart';
 import 'package:pemint_admin_app/view/login/business_type.dart';
 
 class HomeScreenProfile extends StatelessWidget {
-  const HomeScreenProfile({Key? key}) : super(key: key);
+   HomeScreenProfile({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

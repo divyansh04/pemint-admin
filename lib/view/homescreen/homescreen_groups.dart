@@ -99,7 +99,7 @@ class Groups extends StatelessWidget {
                         children: [
                           GestureDetector(
                             onTap: () {
-                              Get.to(const HomeScreenDashboard());
+                              Get.to( HomeScreenDashboard());
                             },
                             child: Container(
                               margin: const EdgeInsets.only(left: 10, top: 20),
@@ -166,7 +166,7 @@ class Groups extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () {
-                              Get.to(const HomeScreenProfile());
+                              Get.to( HomeScreenProfile());
                             },
                             child: Container(
                               margin: const EdgeInsets.only(left: 10),

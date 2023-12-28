@@ -15,7 +15,7 @@ class BankDetails extends StatelessWidget {
         padding: const EdgeInsets.only(bottom: 50, left: 30, right: 30),
         child: GestureDetector(
           onTap: () {
-            Get.to(const HomeScreenDashboard());
+            Get.to( HomeScreenDashboard());
             // Get.to(Enter_OTP());
           },
           child: Container(

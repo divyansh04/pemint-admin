@@ -149,7 +149,7 @@ class _HomeScreenHistoryState extends State<HomeScreenHistory> {
                         children: [
                           GestureDetector(
                             onTap: () {
-                              Get.to(const HomeScreenDashboard());
+                              Get.to( HomeScreenDashboard());
                             },
                             child: Container(
                               margin: const EdgeInsets.only(
@@ -216,7 +216,7 @@ class _HomeScreenHistoryState extends State<HomeScreenHistory> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              Get.to(const HomeScreenProfile());
+                              Get.to( HomeScreenProfile());
                             },
                             child: Container(
                               margin: const EdgeInsets.only(left: 10, top: 30),

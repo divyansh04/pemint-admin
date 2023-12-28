@@ -9,7 +9,7 @@ import 'package:pemint_admin_app/view_model/dashboard_controller.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class HomeScreenDashboard extends StatefulWidget {
-  const HomeScreenDashboard({Key? key}) : super(key: key);
+   HomeScreenDashboard({Key? key}) : super(key: key);
 
   @override
   State<HomeScreenDashboard> createState() => _HomeScreenDashboardState();
@@ -48,7 +48,7 @@ class _HomeScreenDashboardState extends State<HomeScreenDashboard> {
                     width: 70,
                   ),
                 ),
-                const Row(
+                 Row(
                   children: [
                     Text.rich(
                       TextSpan(
@@ -175,7 +175,7 @@ class _HomeScreenDashboardState extends State<HomeScreenDashboard> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Get.to(const HomeScreenProfile());
+                          Get.to( HomeScreenProfile());
                         },
                         child: Container(
                           margin: const EdgeInsets.only(left: 10),
@@ -248,7 +248,7 @@ class _HomeScreenDashboardState extends State<HomeScreenDashboard> {
                     const SizedBox(
                       height: 20,
                     ),
-                    const Row(
+                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
@@ -388,7 +388,7 @@ class _HomeScreenDashboardState extends State<HomeScreenDashboard> {
                                     ]),
                                     Positioned.fill(
                                       top: 30,
-                                      child: const Center(
+                                      child:  Center(
                                         child: Column(
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
@@ -744,7 +744,7 @@ class DemandDialog extends StatelessWidget {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           color: AppColor.primaryColor),
-                      child: const Row(
+                      child:  Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
