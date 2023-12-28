@@ -102,17 +102,13 @@ class ApiProvider {
   Future<dynamic> postAfterAuthWithIdToken(Map parameter, String url) async {
     var responseJson;
     String? token = await SharedPref().getIdToken();
-    // debugger();
-    print(token);
     try {
       final response = await http.post(Uri.parse(baseUrl + url),
           headers: {
             'Content-type': 'application/json',
-            'authorization': 'Bearer ' + token!,
+            'authorization': token!,
           },
           body: json.encode(parameter));
-      // debugger();
-      // print(response);
       responseJson = _response(response);
     } catch (e) {
       print(e);

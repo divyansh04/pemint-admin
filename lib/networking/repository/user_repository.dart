@@ -30,4 +30,10 @@ class UserRepository {
         parameter, NetworkConstant.END_POINT_GET_DASHBOARD_DATA);
     return response;
   }
+
+  Future<BaseResponses> getProfileDetails({required String partnerId}) async {
+    dynamic response = await _apiService.getAfterAuthWihIdToken(
+        "${NetworkConstant.END_POINT_GET_PROFILE_DETAILS}?partnerId=$partnerId");
+    return response;
+  }
 }

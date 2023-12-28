@@ -151,7 +151,7 @@ class _HomeScreenContactState extends State<HomeScreenContact> {
                       height: 70,
                       width: 70,
                     ),
-                     Row(
+                    Row(
                       children: [
                         Text.rich(
                           TextSpan(
@@ -210,7 +210,7 @@ class _HomeScreenContactState extends State<HomeScreenContact> {
                         children: [
                           GestureDetector(
                             onTap: () {
-                              Get.to( HomeScreenDashboard());
+                              Get.to(HomeScreenDashboard());
                             },
                             child: Container(
                               margin: const EdgeInsets.only(left: 10, top: 20),
@@ -277,7 +277,7 @@ class _HomeScreenContactState extends State<HomeScreenContact> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              Get.to( HomeScreenProfile());
+                              Get.to(HomeScreenProfile());
                             },
                             child: Container(
                               margin: const EdgeInsets.only(left: 10),
@@ -345,7 +345,7 @@ class _HomeScreenContactState extends State<HomeScreenContact> {
                     const SizedBox(width: 20),
                     Column(
                       children: [
-                         Column(
+                        Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -384,10 +384,15 @@ class _HomeScreenContactState extends State<HomeScreenContact> {
                                   controller: _searchController,
                                   onChanged: (query) {
                                     setState(() {
-                                      _contactsList =
-                                          _filterContacts(_contactsList, query);
-                                      contactsBody =
-                                          _buildContactsList(_contactsList);
+                                      if (query.isNotEmpty) {
+                                        _contactsList = _filterContacts(
+                                            _orig_contactsList, query);
+                                        contactsBody =
+                                            _buildContactsList(_contactsList);
+                                      } else {
+                                        contactsBody = _buildContactsList(
+                                            _orig_contactsList);
+                                      }
                                     });
                                   },
                                   style: const TextStyle(
@@ -897,7 +902,7 @@ class DemandDialog extends StatelessWidget {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(5),
                                 color: AppColor.primaryColor),
-                            child:  Row(
+                            child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(

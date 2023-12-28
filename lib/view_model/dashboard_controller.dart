@@ -12,7 +12,7 @@ import 'package:permission_handler/permission_handler.dart';
 class DashboardController extends GetxController {
   final isLoading = false.obs;
   final _userRepository = UserRepository();
-
+  final data = Rx<DashboardData?>(null);
   void getDashboardData() async {
     isLoading.value = true;
     update();
@@ -24,7 +24,7 @@ class DashboardController extends GetxController {
     try {
       var res = await _userRepository.getDashboardData(parameter: parameter);
       if (res.statusCode == 200) {
-        DashboardData data = DashboardData.fromJson(res.data);
+        data.value = DashboardData.fromJson(res.data);
         print(res);
       }
     } catch (e) {
