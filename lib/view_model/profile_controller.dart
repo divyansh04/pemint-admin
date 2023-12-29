@@ -13,7 +13,7 @@ class ProfileController extends GetxController {
   void getProfileDetails() async {
     try {
       var res = await _userRepository.getProfileDetails(
-          partnerId: '8b88327f-c362-4bae-858e-88760fb0748c');
+          partnerId: '7jxo');
       if (res.statusCode == 200) {
         data.value = ProfileDetailsData.fromJson(res.data);
         print(res);

@@ -30,314 +30,266 @@ class Groups extends StatelessWidget {
               right: 10,
               top: 20,
             ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Image.asset(
-                      'assets/pemintlogo2.png',
-                      height: 70,
-                      width: 70,
-                    ),
-                    Row(
-                      children: const [
-                        Text.rich(
-                          TextSpan(
-                            children: [
-                              TextSpan(
-                                text: 'Welcome! \n',
-                                style: TextStyle(
-                                  color: Color(0xFF292D32),
-                                  fontSize: 14,
-                                  fontFamily: 'Cairo',
-                                  fontWeight: FontWeight.w300,
-                                ),
-                              ),
-                              TextSpan(
-                                text: 'Shivam Grocery Shop',
-                                style: TextStyle(
-                                  color: Color(0xFF292D32),
-                                  fontSize: 14,
-                                  fontFamily: 'Cairo',
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ],
-                          ),
-                          textAlign: TextAlign.right,
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Icon(
-                          Icons.menu,
-                          color: Colors.black,
-                          size: 35,
-                        )
-                      ],
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Container(
-                      height: Get.height / 1.23,
-                      width: 90,
-                      decoration: const BoxDecoration(
-                        borderRadius:
-                            BorderRadius.only(topRight: Radius.circular(12)),
-                        color: Color.fromARGB(255, 33, 170, 243),
+            child: SingleChildScrollView(physics: NeverScrollableScrollPhysics(),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Image.asset(
+                        'assets/pemintlogo2.png',
+                        height: 70,
+                        width: 70,
                       ),
-                      child: Column(
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              Get.to( HomeScreenDashboard());
-                            },
-                            child: Container(
-                              margin: const EdgeInsets.only(left: 10, top: 20),
-                              width: 100,
-                              height: 50,
-                              child: const Text(
-                                'Dashboard',
-                                style: TextStyle(
-                                  color: Color(0xFF292D32),
-                                  fontSize: 16,
-                                  fontFamily: 'Cairo',
-                                  fontWeight: FontWeight.w600,
+                      Row(
+                        children: const [
+                          Text.rich(
+                            TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: 'Welcome! \n',
+                                  style: TextStyle(
+                                    color: Color(0xFF292D32),
+                                    fontSize: 14,
+                                    fontFamily: 'Cairo',
+                                    fontWeight: FontWeight.w300,
+                                  ),
                                 ),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            height: 2,
-                            width: 100,
-                            color: AppColor.whiteColor,
-                          ),
-                          Container(
-                            decoration: const BoxDecoration(
-                              color: AppColor.primaryColor,
-                            ),
-                            height: 70,
-                            width: 100,
-                            child: const Center(
-                              child: Text(
-                                'Contact',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  fontFamily: 'Cairo',
-                                  fontWeight: FontWeight.w700,
+                                TextSpan(
+                                  text: 'Shivam Grocery Shop',
+                                  style: TextStyle(
+                                    color: Color(0xFF292D32),
+                                    fontSize: 14,
+                                    fontFamily: 'Cairo',
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                 ),
-                              ),
+                              ],
                             ),
+                            textAlign: TextAlign.right,
                           ),
-                          Container(
-                            height: 2,
-                            width: 100,
-                            color: AppColor.whiteColor,
+                          SizedBox(
+                            width: 10,
                           ),
-                          GestureDetector(
-                            onTap: () {
-                              Get.to(const HomeScreenHistory());
-                            },
-                            child: Container(
-                              margin: const EdgeInsets.only(left: 10, top: 30),
-                              decoration: const BoxDecoration(),
-                              width: 100,
-                              height: 70,
-                              child: const Text(
-                                'History',
-                                style: TextStyle(
-                                  color: Color(0xFF292D32),
-                                  fontSize: 16,
-                                  fontFamily: 'Cairo',
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Get.to( HomeScreenProfile());
-                            },
-                            child: Container(
-                              margin: const EdgeInsets.only(left: 10),
-                              width: 100,
-                              height: 70,
-                              child: const Text(
-                                'Profile',
-                                style: TextStyle(
-                                  color: Color(0xFF292D32),
-                                  fontSize: 16,
-                                  fontFamily: 'Cairo',
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Container(
-                              margin: const EdgeInsets.only(
-                                left: 10,
-                              ),
-                              decoration: const BoxDecoration(),
-                              width: 100,
-                              height: 70,
-                              child: const Text(
-                                'Add\nEmployee',
-                                style: TextStyle(
-                                  color: Color(0x7F292D32),
-                                  fontSize: 16,
-                                  fontFamily: 'Cairo',
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              )),
-                          Container(
-                              margin: const EdgeInsets.only(left: 10),
-                              decoration: const BoxDecoration(),
-                              width: 100,
-                              height: 70,
-                              child: const Text(
-                                'QR Code\nScan and Pay',
-                                style: TextStyle(
-                                  color: Color(0x7F292D32),
-                                  fontSize: 16,
-                                  fontFamily: 'Cairo',
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              )),
-                          Container(
-                            margin: const EdgeInsets.only(left: 10),
-                            decoration: const BoxDecoration(),
-                            width: 100,
-                            height: 70,
-                            child: const Text(
-                              'Bill\nPayment',
-                              style: TextStyle(
-                                color: Color(0x7F292D32),
-                                fontSize: 16,
-                                fontFamily: 'Cairo',
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
+                          Icon(
+                            Icons.menu,
+                            color: Colors.black,
+                            size: 35,
+                          )
                         ],
                       ),
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    Column(
-                      children: [
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
-                            SizedBox(
-                              height: 20,
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        height: Get.height ,
+                        width: 90,
+                        decoration: const BoxDecoration(
+                          borderRadius:
+                              BorderRadius.only(topRight: Radius.circular(12)),
+                          color: Color.fromARGB(255, 33, 170, 243),
+                        ),
+                        child: Column(
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                Get.to( HomeScreenDashboard());
+                              },
+                              child: Container(
+                                margin: const EdgeInsets.only(left: 10, top: 20),
+                                width: 100,
+                                height: 50,
+                                child: const Text(
+                                  'Dashboard',
+                                  style: TextStyle(
+                                    color: Color(0xFF292D32),
+                                    fontSize: 16,
+                                    fontFamily: 'Cairo',
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
                             ),
-                            Text(
-                              'Receive Money                                      ',
-                              style: TextStyle(
-                                color: Color(0xFF292D32),
-                                fontSize: 16,
-                                fontFamily: 'Cairo',
-                                fontWeight: FontWeight.w700,
-                                height: 0,
+                            Container(
+                              height: 2,
+                              width: 100,
+                              color: AppColor.whiteColor,
+                            ),
+                            Container(
+                              decoration: const BoxDecoration(
+                                color: AppColor.primaryColor,
+                              ),
+                              height: 70,
+                              width: 100,
+                              child: const Center(
+                                child: Text(
+                                  'Contact',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontFamily: 'Cairo',
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              height: 2,
+                              width: 100,
+                              color: AppColor.whiteColor,
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                Get.to(const HomeScreenHistory());
+                              },
+                              child: Container(
+                                margin: const EdgeInsets.only(left: 10, top: 30),
+                                decoration: const BoxDecoration(),
+                                width: 100,
+                                height: 70,
+                                child: const Text(
+                                  'History',
+                                  style: TextStyle(
+                                    color: Color(0xFF292D32),
+                                    fontSize: 16,
+                                    fontFamily: 'Cairo',
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                Get.to( HomeScreenProfile());
+                              },
+                              child: Container(
+                                margin: const EdgeInsets.only(left: 10),
+                                width: 100,
+                                height: 70,
+                                child: const Text(
+                                  'Profile',
+                                  style: TextStyle(
+                                    color: Color(0xFF292D32),
+                                    fontSize: 16,
+                                    fontFamily: 'Cairo',
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                                margin: const EdgeInsets.only(
+                                  left: 10,
+                                ),
+                                decoration: const BoxDecoration(),
+                                width: 100,
+                                height: 70,
+                                child: const Text(
+                                  'Add\nEmployee',
+                                  style: TextStyle(
+                                    color: Color(0x7F292D32),
+                                    fontSize: 16,
+                                    fontFamily: 'Cairo',
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                )),
+                            Container(
+                                margin: const EdgeInsets.only(left: 10),
+                                decoration: const BoxDecoration(),
+                                width: 100,
+                                height: 70,
+                                child: const Text(
+                                  'QR Code\nScan and Pay',
+                                  style: TextStyle(
+                                    color: Color(0x7F292D32),
+                                    fontSize: 16,
+                                    fontFamily: 'Cairo',
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                )),
+                            Container(
+                              margin: const EdgeInsets.only(left: 10),
+                              decoration: const BoxDecoration(),
+                              width: 100,
+                              height: 70,
+                              child: const Text(
+                                'Bill\nPayment',
+                                style: TextStyle(
+                                  color: Color(0x7F292D32),
+                                  fontSize: 16,
+                                  fontFamily: 'Cairo',
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
                             ),
                           ],
                         ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            Container(
-                              height: 40,
-                              width: Get.width / 1.5,
-                              decoration: BoxDecoration(
-                                  color: AppColor.veryLightPurple,
-                                  borderRadius: BorderRadius.circular(20),
-                                  border:
-                                      Border.all(color: AppColor.primaryColor)),
-                              child: const Center(
-                                child: TextField(
-                                  style: TextStyle(
-                                      color: Color(0xFF292D32),
-                                      fontSize: 14,
-                                      fontFamily: 'Cairo',
-                                      fontWeight: FontWeight.w600,
-                                      height: 1.5),
-                                  textAlign: TextAlign.start,
-                                  textAlignVertical: TextAlignVertical.center,
-                                  decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    prefixIcon: Icon(
-                                      Icons.search,
-                                      color: AppColor.purpleAccent,
-                                    ),
-                                    hintText: 'Enter a mobile number or name',
-                                    hintStyle: TextStyle(
-                                      color: Color(0xFF9888A4),
-                                      fontSize: 14,
-                                      fontFamily: 'Cairo',
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
+                      ),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      Column(
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: const [
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Text(
+                                'Receive Money                                      ',
+                                style: TextStyle(
+                                  color: Color(0xFF292D32),
+                                  fontSize: 16,
+                                  fontFamily: 'Cairo',
+                                  fontWeight: FontWeight.w700,
+                                  height: 0,
                                 ),
                               ),
-                            ),
-                            const SizedBox(
-                              height: 40,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                GestureDetector(
-                                  onTap: () {
-                                    Get.to(HomeScreenContact());
-                                  },
-                                  child: Container(
-                                    height: 40,
-                                    width: 100,
-                                    color: AppColor.veryLightGreyColor,
-                                    child: const Center(
-                                      child: Text(
-                                        'Contacts',
-                                        style: TextStyle(
-                                          color: Color(0xFF9888A4),
-                                          fontSize: 14,
-                                          fontFamily: 'Cairo',
-                                          fontWeight: FontWeight.w400,
-                                          height: 0,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  width: 20,
-                                ),
-                                Container(
-                                  height: 40,
-                                  width: 100,
-                                  color: AppColor.veryLightPurple,
-                                  child: const Center(
-                                    child: Text(
-                                      'Groups',
-                                      style: TextStyle(
+                            ],
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Container(
+                                height: 40,
+                                width: Get.width / 1.5,
+                                decoration: BoxDecoration(
+                                    color: AppColor.veryLightPurple,
+                                    borderRadius: BorderRadius.circular(20),
+                                    border:
+                                        Border.all(color: AppColor.primaryColor)),
+                                child: const Center(
+                                  child: TextField(
+                                    style: TextStyle(
                                         color: Color(0xFF292D32),
+                                        fontSize: 14,
+                                        fontFamily: 'Cairo',
+                                        fontWeight: FontWeight.w600,
+                                        height: 1.5),
+                                    textAlign: TextAlign.start,
+                                    textAlignVertical: TextAlignVertical.center,
+                                    decoration: InputDecoration(
+                                      border: InputBorder.none,
+                                      prefixIcon: Icon(
+                                        Icons.search,
+                                        color: AppColor.purpleAccent,
+                                      ),
+                                      hintText: 'Enter a mobile number or name',
+                                      hintStyle: TextStyle(
+                                        color: Color(0xFF9888A4),
                                         fontSize: 14,
                                         fontFamily: 'Cairo',
                                         fontWeight: FontWeight.w600,
@@ -345,115 +297,165 @@ class Groups extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                CircleAvatar(
-                                  radius: 18,
-                                  backgroundColor: AppColor.greyColor,
-                                  child: Icon(
-                                    Icons.groups,
-                                    color: AppColor.contentColorBlue,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 8,
-                                ),
-                                GestureDetector(
+                              ),
+                              const SizedBox(
+                                height: 40,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  GestureDetector(
                                     onTap: () {
-                                      Get.dialog(CreateGroup());
+                                      Get.to(HomeScreenContact());
                                     },
-                                    child: const Text(
-                                      'Create New Group',
-                                      style: TextStyle(
-                                        color: Color(0xFF00BBF2),
-                                        fontSize: 14,
-                                        fontFamily: 'Cairo',
-                                        fontWeight: FontWeight.w700,
+                                    child: Container(
+                                      height: 40,
+                                      width: 100,
+                                      color: AppColor.veryLightGreyColor,
+                                      child: const Center(
+                                        child: Text(
+                                          'Contacts',
+                                          style: TextStyle(
+                                            color: Color(0xFF9888A4),
+                                            fontSize: 14,
+                                            fontFamily: 'Cairo',
+                                            fontWeight: FontWeight.w400,
+                                            height: 0,
+                                          ),
+                                        ),
                                       ),
-                                    ))
-                              ],
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Container(
-                              height: 1,
-                              width: Get.width / 1.5,
-                              color: AppColor.lightGreyColor,
-                            ),
-                            // SizedBox(
-                            //   height: 10,
-                            // ),
-                            // Row(
-                            //   mainAxisAlignment: MainAxisAlignment.start,
-                            //   crossAxisAlignment: CrossAxisAlignment.center,
-                            //   children: [
-                            //     CircleAvatar(
-                            //       radius: 18,
-                            //       backgroundColor: AppColor.greyColor,
-                            //       child: Icon(
-                            //         Icons.groups,
-                            //         color: AppColor.contentColorBlue,
-                            //       ),
-                            //     ),
-                            //     SizedBox(
-                            //       width: 8,
-                            //     ),
-                            //     GestureDetector(
-                            //       onTap: () {
-                            //         Get.dialog(
-                            //           ViewGroup(),
-                            //         );
-                            //       },
-                            //       child: Column(
-                            //         mainAxisAlignment: MainAxisAlignment.start,
-                            //         crossAxisAlignment:
-                            //             CrossAxisAlignment.start,
-                            //         children: [
-                            //           Text(
-                            //             'Z1 Society',
-                            //             style: TextStyle(
-                            //               color: Color(0xFF292D32),
-                            //               fontSize: 14,
-                            //               fontFamily: 'Cairo',
-                            //               fontWeight: FontWeight.w400,
-                            //             ),
-                            //           ),
-                            //           Text(
-                            //             '7 members',
-                            //             style: TextStyle(
-                            //               color: Color(0xFF9888A4),
-                            //               fontSize: 12,
-                            //               fontFamily: 'Cairo',
-                            //               fontWeight: FontWeight.w400,
-                            //             ),
-                            //           )
-                            //         ],
-                            //       ),
-                            //     ),
-                            //   ],
-                            // ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Container(
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 20,
+                                  ),
+                                  Container(
+                                    height: 40,
+                                    width: 100,
+                                    color: AppColor.veryLightPurple,
+                                    child: const Center(
+                                      child: Text(
+                                        'Groups',
+                                        style: TextStyle(
+                                          color: Color(0xFF292D32),
+                                          fontSize: 14,
+                                          fontFamily: 'Cairo',
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  CircleAvatar(
+                                    radius: 18,
+                                    backgroundColor: AppColor.greyColor,
+                                    child: Icon(
+                                      Icons.groups,
+                                      color: AppColor.contentColorBlue,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 8,
+                                  ),
+                                  GestureDetector(
+                                      onTap: () {
+                                        Get.dialog(CreateGroup());
+                                      },
+                                      child: const Text(
+                                        'Create New Group',
+                                        style: TextStyle(
+                                          color: Color(0xFF00BBF2),
+                                          fontSize: 14,
+                                          fontFamily: 'Cairo',
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                      ))
+                                ],
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Container(
+                                height: 1,
                                 width: Get.width / 1.5,
-                                height: Get.height / 2.2,
-                                child: SlideableList())
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ],
+                                color: AppColor.lightGreyColor,
+                              ),
+                              // SizedBox(
+                              //   height: 10,
+                              // ),
+                              // Row(
+                              //   mainAxisAlignment: MainAxisAlignment.start,
+                              //   crossAxisAlignment: CrossAxisAlignment.center,
+                              //   children: [
+                              //     CircleAvatar(
+                              //       radius: 18,
+                              //       backgroundColor: AppColor.greyColor,
+                              //       child: Icon(
+                              //         Icons.groups,
+                              //         color: AppColor.contentColorBlue,
+                              //       ),
+                              //     ),
+                              //     SizedBox(
+                              //       width: 8,
+                              //     ),
+                              //     GestureDetector(
+                              //       onTap: () {
+                              //         Get.dialog(
+                              //           ViewGroup(),
+                              //         );
+                              //       },
+                              //       child: Column(
+                              //         mainAxisAlignment: MainAxisAlignment.start,
+                              //         crossAxisAlignment:
+                              //             CrossAxisAlignment.start,
+                              //         children: [
+                              //           Text(
+                              //             'Z1 Society',
+                              //             style: TextStyle(
+                              //               color: Color(0xFF292D32),
+                              //               fontSize: 14,
+                              //               fontFamily: 'Cairo',
+                              //               fontWeight: FontWeight.w400,
+                              //             ),
+                              //           ),
+                              //           Text(
+                              //             '7 members',
+                              //             style: TextStyle(
+                              //               color: Color(0xFF9888A4),
+                              //               fontSize: 12,
+                              //               fontFamily: 'Cairo',
+                              //               fontWeight: FontWeight.w400,
+                              //             ),
+                              //           )
+                              //         ],
+                              //       ),
+                              //     ),
+                              //   ],
+                              // ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Container(
+                                  width: Get.width / 1.5,
+                                  height: Get.height / 2.2,
+                                  child: SlideableList())
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),

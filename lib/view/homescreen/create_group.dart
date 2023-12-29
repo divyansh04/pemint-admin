@@ -125,7 +125,7 @@ class _CreateGroupState extends State<CreateGroup> {
                               controller.performSearch(query);
                             },
                             style: const TextStyle(
-                                color: Color.fromARGB(255, 174, 178, 184),
+                                color: Colors.black,
                                 fontSize: 14,
                                 fontFamily: 'Cairo',
                                 fontWeight: FontWeight.w600,
@@ -223,7 +223,7 @@ class ContactTile extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
@@ -243,7 +243,7 @@ class ContactTile extends StatelessWidget {
                     height: 5,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 0),
+                    padding: const EdgeInsets.only(left: 10),
                     child: Text(
                       contact.phones?.first.value ?? "-",
                       textAlign: TextAlign.center,

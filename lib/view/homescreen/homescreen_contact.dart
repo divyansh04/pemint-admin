@@ -53,7 +53,7 @@ class _HomeScreenContactState extends State<HomeScreenContact> {
   Future<void> _buildPermissionScreen(PermissionStatus status) async {
     if (status == PermissionStatus.denied ||
         status == PermissionStatus.permanentlyDenied) {
-      contactsBody = Column(
+      contactsBody = Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const Text('Permission denied.\nPlease enable contacts permission.'),
           const SizedBox(height: 20),
@@ -86,7 +86,7 @@ class _HomeScreenContactState extends State<HomeScreenContact> {
   Widget _buildContactsList(List<Contact> contacts) {
     return SizedBox(
       height: 300,
-      width: 200,
+      width: Get.width / 1.6,
       child: ListView.builder(
         itemCount: contacts.length,
         itemBuilder: (context, index) {
@@ -140,314 +140,291 @@ class _HomeScreenContactState extends State<HomeScreenContact> {
               right: 10,
               top: 20,
             ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Image.asset(
-                      'assets/pemintlogo2.png',
-                      height: 70,
-                      width: 70,
-                    ),
-                    Row(
-                      children: [
-                        Text.rich(
-                          TextSpan(
-                            children: [
-                              TextSpan(
-                                text: 'Welcome! \n',
-                                style: TextStyle(
-                                  color: Color(0xFF292D32),
-                                  fontSize: 14,
-                                  fontFamily: 'Cairo',
-                                  fontWeight: FontWeight.w300,
-                                ),
-                              ),
-                              TextSpan(
-                                text: 'Shivam Grocery Shop',
-                                style: TextStyle(
-                                  color: Color(0xFF292D32),
-                                  fontSize: 14,
-                                  fontFamily: 'Cairo',
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ],
-                          ),
-                          textAlign: TextAlign.right,
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Icon(
-                          Icons.menu,
-                          color: Colors.black,
-                          size: 35,
-                        )
-                      ],
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    //drawer
-                    Container(
-                      height: Get.height / 1.23,
-                      width: 100,
-                      decoration: const BoxDecoration(
-                        borderRadius:
-                            BorderRadius.only(topRight: Radius.circular(12)),
-                        color: Color.fromARGB(255, 33, 170, 243),
+            child: SingleChildScrollView(physics: NeverScrollableScrollPhysics(),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Image.asset(
+                        'assets/pemintlogo2.png',
+                        height: 70,
+                        width: 70,
                       ),
-                      child: Column(
+                      Row(
                         children: [
-                          GestureDetector(
-                            onTap: () {
-                              Get.to(HomeScreenDashboard());
-                            },
-                            child: Container(
-                              margin: const EdgeInsets.only(left: 10, top: 20),
-                              width: 100,
-                              height: 50,
-                              child: const Text(
-                                'Dashboard',
-                                style: TextStyle(
-                                  color: Color(0xFF292D32),
-                                  fontSize: 16,
-                                  fontFamily: 'Cairo',
-                                  fontWeight: FontWeight.w600,
+                          Text.rich(
+                            TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: 'Welcome! \n',
+                                  style: TextStyle(
+                                    color: Color(0xFF292D32),
+                                    fontSize: 14,
+                                    fontFamily: 'Cairo',
+                                    fontWeight: FontWeight.w300,
+                                  ),
                                 ),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            height: 2,
-                            width: 100,
-                            color: AppColor.whiteColor,
-                          ),
-                          Container(
-                            decoration: const BoxDecoration(
-                              color: AppColor.primaryColor,
-                            ),
-                            height: 70,
-                            width: 100,
-                            child: const Center(
-                              child: Text(
-                                'Contact',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  fontFamily: 'Cairo',
-                                  fontWeight: FontWeight.w700,
+                                TextSpan(
+                                  text: 'Shivam Grocery Shop',
+                                  style: TextStyle(
+                                    color: Color(0xFF292D32),
+                                    fontSize: 14,
+                                    fontFamily: 'Cairo',
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                 ),
-                              ),
+                              ],
                             ),
+                            textAlign: TextAlign.right,
                           ),
-                          Container(
-                            height: 2,
-                            width: 100,
-                            color: AppColor.whiteColor,
+                          SizedBox(
+                            width: 10,
                           ),
-                          GestureDetector(
-                            onTap: () {
-                              Get.to(const HomeScreenHistory());
-                            },
-                            child: Container(
-                              margin: const EdgeInsets.only(left: 10, top: 30),
-                              decoration: const BoxDecoration(),
-                              width: 100,
-                              height: 70,
-                              child: const Text(
-                                'History',
-                                style: TextStyle(
-                                  color: Color(0xFF292D32),
-                                  fontSize: 16,
-                                  fontFamily: 'Cairo',
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Get.to(HomeScreenProfile());
-                            },
-                            child: Container(
-                              margin: const EdgeInsets.only(left: 10),
-                              width: 100,
-                              height: 70,
-                              child: const Text(
-                                'Profile',
-                                style: TextStyle(
-                                  color: Color(0xFF292D32),
-                                  fontSize: 16,
-                                  fontFamily: 'Cairo',
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Container(
-                              margin: const EdgeInsets.only(
-                                left: 10,
-                              ),
-                              decoration: const BoxDecoration(),
-                              width: 100,
-                              height: 70,
-                              child: const Text(
-                                'Add\nEmployee',
-                                style: TextStyle(
-                                  color: Color(0x7F292D32),
-                                  fontSize: 16,
-                                  fontFamily: 'Cairo',
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              )),
-                          Container(
-                              margin: const EdgeInsets.only(left: 10),
-                              decoration: const BoxDecoration(),
-                              width: 100,
-                              height: 70,
-                              child: const Text(
-                                'QR Code\nScan and Pay',
-                                style: TextStyle(
-                                  color: Color(0x7F292D32),
-                                  fontSize: 16,
-                                  fontFamily: 'Cairo',
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              )),
-                          Container(
-                            margin: const EdgeInsets.only(left: 10),
-                            decoration: const BoxDecoration(),
-                            width: 100,
-                            height: 70,
-                            child: const Text(
-                              'Bill\nPayment',
-                              style: TextStyle(
-                                color: Color(0x7F292D32),
-                                fontSize: 16,
-                                fontFamily: 'Cairo',
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
+                          Icon(
+                            Icons.menu,
+                            color: Colors.black,
+                            size: 35,
+                          )
                         ],
                       ),
-                    ),
-                    const SizedBox(width: 20),
-                    Column(
-                      children: [
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Text(
-                              'Receive Money                                      ',
-                              style: TextStyle(
-                                color: Color(0xFF292D32),
-                                fontSize: 16,
-                                fontFamily: 'Cairo',
-                                fontWeight: FontWeight.w700,
-                                height: 0,
-                              ),
-                            ),
-                          ],
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      //drawer
+                      Container(
+                        height: Get.height ,
+                        width: 100,
+                        decoration: const BoxDecoration(
+                          borderRadius:
+                              BorderRadius.only(topRight: Radius.circular(12)),
+                          color: Color.fromARGB(255, 33, 170, 243),
                         ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        child: Column(
                           children: [
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            Container(
-                              height: 40,
-                              width: Get.width / 1.5,
-                              decoration: BoxDecoration(
-                                  color: AppColor.veryLightPurple,
-                                  borderRadius: BorderRadius.circular(20),
-                                  border:
-                                      Border.all(color: AppColor.primaryColor)),
-                              child: Center(
-                                child: TextField(
-                                  controller: _searchController,
-                                  onChanged: (query) {
-                                    setState(() {
-                                      if (query.isNotEmpty) {
-                                        _contactsList = _filterContacts(
-                                            _orig_contactsList, query);
-                                        contactsBody =
-                                            _buildContactsList(_contactsList);
-                                      } else {
-                                        contactsBody = _buildContactsList(
-                                            _orig_contactsList);
-                                      }
-                                    });
-                                  },
-                                  style: const TextStyle(
-                                      color: Color(0xFF292D32),
-                                      fontSize: 14,
-                                      fontFamily: 'Cairo',
-                                      fontWeight: FontWeight.w600,
-                                      height: 1.5),
-                                  textAlign: TextAlign.start,
-                                  textAlignVertical: TextAlignVertical.center,
-                                  decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    prefixIcon: const Icon(
-                                      Icons.search,
-                                      color: AppColor.purpleAccent,
-                                    ),
-                                    suffixIcon: GestureDetector(
-                                      child: const Icon(
-                                        Icons.cancel,
-                                        color: AppColor.purpleAccent,
-                                      ),
-                                      onTap: () {
-                                        contactsBody = _buildContactsList(
-                                            _orig_contactsList);
-                                        _searchController.clear();
-                                        setState(() {});
-                                      },
-                                    ),
-                                    hintText: 'Enter a mobile number or name',
-                                    hintStyle: const TextStyle(
-                                      color: Color(0xFF9888A4),
-                                      fontSize: 14,
-                                      fontFamily: 'Cairo',
-                                      fontWeight: FontWeight.w600,
-                                    ),
+                            GestureDetector(
+                              onTap: () {
+                                Get.to(HomeScreenDashboard());
+                              },
+                              child: Container(
+                                margin: const EdgeInsets.only(left: 10, top: 20),
+                                width: 100,
+                                height: 50,
+                                child: const Text(
+                                  'Dashboard',
+                                  style: TextStyle(
+                                    color: Color(0xFF292D32),
+                                    fontSize: 16,
+                                    fontFamily: 'Cairo',
+                                    fontWeight: FontWeight.w600,
                                   ),
                                 ),
                               ),
                             ),
-                            const SizedBox(
-                              height: 40,
+                            Container(
+                              height: 2,
+                              width: 100,
+                              color: AppColor.whiteColor,
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Container(
-                                  height: 40,
-                                  width: 100,
-                                  color: AppColor.veryLightPurple,
-                                  child: const Center(
-                                    child: Text(
-                                      'Contacts',
-                                      style: TextStyle(
+                            Container(
+                              decoration: const BoxDecoration(
+                                color: AppColor.primaryColor,
+                              ),
+                              height: 70,
+                              width: 100,
+                              child: const Center(
+                                child: Text(
+                                  'Contact',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontFamily: 'Cairo',
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              height: 2,
+                              width: 100,
+                              color: AppColor.whiteColor,
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                Get.to(const HomeScreenHistory());
+                              },
+                              child: Container(
+                                margin: const EdgeInsets.only(left: 10, top: 30),
+                                decoration: const BoxDecoration(),
+                                width: 100,
+                                height: 70,
+                                child: const Text(
+                                  'History',
+                                  style: TextStyle(
+                                    color: Color(0xFF292D32),
+                                    fontSize: 16,
+                                    fontFamily: 'Cairo',
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                Get.to(HomeScreenProfile());
+                              },
+                              child: Container(
+                                margin: const EdgeInsets.only(left: 10),
+                                width: 100,
+                                height: 70,
+                                child: const Text(
+                                  'Profile',
+                                  style: TextStyle(
+                                    color: Color(0xFF292D32),
+                                    fontSize: 16,
+                                    fontFamily: 'Cairo',
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                                margin: const EdgeInsets.only(
+                                  left: 10,
+                                ),
+                                decoration: const BoxDecoration(),
+                                width: 100,
+                                height: 70,
+                                child: const Text(
+                                  'Add\nEmployee',
+                                  style: TextStyle(
+                                    color: Color(0x7F292D32),
+                                    fontSize: 16,
+                                    fontFamily: 'Cairo',
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                )),
+                            Container(
+                                margin: const EdgeInsets.only(left: 10),
+                                decoration: const BoxDecoration(),
+                                width: 100,
+                                height: 70,
+                                child: const Text(
+                                  'QR Code\nScan and Pay',
+                                  style: TextStyle(
+                                    color: Color(0x7F292D32),
+                                    fontSize: 16,
+                                    fontFamily: 'Cairo',
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                )),
+                            Container(
+                              margin: const EdgeInsets.only(left: 10),
+                              decoration: const BoxDecoration(),
+                              width: 100,
+                              height: 70,
+                              child: const Text(
+                                'Bill\nPayment',
+                                style: TextStyle(
+                                  color: Color(0x7F292D32),
+                                  fontSize: 16,
+                                  fontFamily: 'Cairo',
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(width: 20),
+                      Column(
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Text(
+                                'Receive Money                                      ',
+                                style: TextStyle(
+                                  color: Color(0xFF292D32),
+                                  fontSize: 16,
+                                  fontFamily: 'Cairo',
+                                  fontWeight: FontWeight.w700,
+                                  height: 0,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Container(
+                                height: 40,
+                                width: Get.width / 1.5,
+                                decoration: BoxDecoration(
+                                    color: AppColor.veryLightPurple,
+                                    borderRadius: BorderRadius.circular(20),
+                                    border:
+                                        Border.all(color: AppColor.primaryColor)),
+                                child: Center(
+                                  child: TextField(
+                                    controller: _searchController,
+                                    onChanged: (query) {
+                                      setState(() {
+                                        if (query.isNotEmpty) {
+                                          _contactsList = _filterContacts(
+                                              _orig_contactsList, query);
+                                          contactsBody =
+                                              _buildContactsList(_contactsList);
+                                        } else {
+                                          contactsBody = _buildContactsList(
+                                              _orig_contactsList);
+                                        }
+                                      });
+                                    },
+                                    style: const TextStyle(
                                         color: Color(0xFF292D32),
+                                        fontSize: 14,
+                                        fontFamily: 'Cairo',
+                                        fontWeight: FontWeight.w600,
+                                        height: 1.5),
+                                    textAlign: TextAlign.start,
+                                    textAlignVertical: TextAlignVertical.center,
+                                    decoration: InputDecoration(
+                                      border: InputBorder.none,
+                                      prefixIcon: const Icon(
+                                        Icons.search,
+                                        color: AppColor.purpleAccent,
+                                      ),
+                                      suffixIcon: GestureDetector(
+                                        child: const Icon(
+                                          Icons.cancel,
+                                          color: AppColor.purpleAccent,
+                                        ),
+                                        onTap: () {
+                                          contactsBody = _buildContactsList(
+                                              _orig_contactsList);
+                                          _searchController.clear();
+                                          setState(() {});
+                                        },
+                                      ),
+                                      hintText: 'Enter a mobile number or name',
+                                      hintStyle: const TextStyle(
+                                        color: Color(0xFF9888A4),
                                         fontSize: 14,
                                         fontFamily: 'Cairo',
                                         fontWeight: FontWeight.w600,
@@ -455,49 +432,72 @@ class _HomeScreenContactState extends State<HomeScreenContact> {
                                     ),
                                   ),
                                 ),
-                                const SizedBox(
-                                  width: 20,
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    Get.to(Groups());
-                                  },
-                                  child: Container(
+                              ),
+                              const SizedBox(
+                                height: 40,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [SizedBox(width: Get.width/20,),
+                                  Container(
                                     height: 40,
                                     width: 100,
-                                    color: AppColor.veryLightGreyColor,
+                                    color: AppColor.veryLightPurple,
                                     child: const Center(
                                       child: Text(
-                                        'Groups',
+                                        'Contacts',
                                         style: TextStyle(
-                                          color: Color(0xFF9888A4),
+                                          color: Color(0xFF292D32),
                                           fontSize: 14,
                                           fontFamily: 'Cairo',
-                                          fontWeight: FontWeight.w400,
-                                          height: 0,
+                                          fontWeight: FontWeight.w600,
                                         ),
                                       ),
                                     ),
                                   ),
-                                )
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            GestureDetector(
-                                onTap: () {
-                                  print('abc');
-                                  Get.dialog(AddToGroupDialog());
-                                },
-                                child: contactsBody),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ],
+                                  SizedBox(width: Get.width/12,),
+                                  GestureDetector(
+                                    onTap: () {
+                                      Get.to(Groups());
+                                    },
+                                    child: Container(
+                                      height: 40,
+                                      width: 100,
+
+                                      child: const Center(
+                                        child: Text(
+                                          'Groups',
+                                          style: TextStyle(
+                                            color: Color(0xFF9888A4),
+                                            fontSize: 14,
+                                            fontFamily: 'Cairo',
+                                            fontWeight: FontWeight.w400,
+                                            height: 0,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              GestureDetector(
+                                  onTap: () {
+                                    print('abc');
+                                    Get.dialog(AddToGroupDialog());
+                                  },
+                                  child: contactsBody),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -616,7 +616,7 @@ class DemandDialog extends StatelessWidget {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
             backgroundColor: AppColor.veryLightGreyColor,
             child: Container(
-              height: 400,
+              height: 300,
               width: Get.width / 1.2,
               child: Padding(
                 padding: const EdgeInsets.only(left: 20, right: 5),
@@ -677,6 +677,7 @@ class DemandDialog extends StatelessWidget {
                                     fontSize: 12,
                                     fontFamily: 'Cairo',
                                     fontWeight: FontWeight.w400,
+                                    height: 1.8,
                                   ),
                                 ),
                                 hintText: '₹00',
@@ -726,7 +727,7 @@ class DemandDialog extends StatelessWidget {
                                     color: Color(0xFF9888A4),
                                     fontSize: 12,
                                     fontFamily: 'Cairo',
-                                    fontWeight: FontWeight.w400,
+                                    fontWeight: FontWeight.w400,height: 1.5,
                                   ),
                                   hintText: 'Transaction note',
                                 ),
@@ -737,7 +738,7 @@ class DemandDialog extends StatelessWidget {
                             'Add details +',
                             textAlign: TextAlign.right,
                             style: TextStyle(
-                              color: Color(0xFF00BBF2),
+                              color: AppColor.greyColor,
                               fontSize: 12,
                               fontFamily: 'Cairo',
                               fontWeight: FontWeight.w500,
@@ -750,143 +751,143 @@ class DemandDialog extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 30, right: 30),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: 40,
-                            width: 150,
-                            decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: AppColor.greyColor, width: 2),
-                                borderRadius: BorderRadius.circular(5)),
-                            child: const Center(
-                              child: Text(
-                                'Invoice number',
-                                style: TextStyle(
-                                  color: Color(0xFFBEBEBE),
-                                  fontSize: 12,
-                                  fontFamily: 'Cairo',
-                                  fontWeight: FontWeight.w400,
-                                  height: 0,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          const Icon(
-                            Icons.file_present_rounded,
-                            color: AppColor.greyColor,
-                          )
-                        ],
-                      ),
-                    ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(left: 30, right: 30),
+                    //   child: Row(
+                    //     mainAxisAlignment: MainAxisAlignment.start,
+                    //     children: [
+                    //       Container(
+                    //         height: 40,
+                    //         width: 150,
+                    //         decoration: BoxDecoration(
+                    //             border: Border.all(
+                    //                 color: AppColor.greyColor, width: 2),
+                    //             borderRadius: BorderRadius.circular(5)),
+                    //         child: const Center(
+                    //           child: Text(
+                    //             'Invoice number',
+                    //             style: TextStyle(
+                    //               color: Color(0xFFBEBEBE),
+                    //               fontSize: 12,
+                    //               fontFamily: 'Cairo',
+                    //               fontWeight: FontWeight.w400,
+                    //               height: 0,
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       ),
+                    //       const SizedBox(
+                    //         width: 10,
+                    //       ),
+                    //       const Icon(
+                    //         Icons.file_present_rounded,
+                    //         color: AppColor.greyColor,
+                    //       )
+                    //     ],
+                    //   ),
+                    // ),
+                    // const SizedBox(
+                    //   height: 20,
+                    // ),
+                    // const Padding(
+                    //   padding: EdgeInsets.only(left: 30, right: 30),
+                    //   child: Text(
+                    //     'Invoice date:',
+                    //     style: TextStyle(
+                    //       color: Color(0xFFBEBEBE),
+                    //       fontSize: 10,
+                    //       fontFamily: 'Cairo',
+                    //       fontWeight: FontWeight.w400,
+                    //       height: 0,
+                    //     ),
+                    //   ),
+                    // ),
+                    // const SizedBox(
+                    //   height: 5,
+                    // ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(left: 30, right: 30),
+                    //   child: Row(
+                    //     mainAxisAlignment: MainAxisAlignment.start,
+                    //     children: [
+                    //       Container(
+                    //         height: 25,
+                    //         width: 40,
+                    //         decoration: BoxDecoration(
+                    //             border: Border.all(
+                    //                 color: AppColor.greyColor, width: 2),
+                    //             borderRadius: BorderRadius.circular(5)),
+                    //         child: const Center(
+                    //           child: Text(
+                    //             'dd',
+                    //             style: TextStyle(
+                    //               color: Color(0xFFBEBEBE),
+                    //               fontSize: 12,
+                    //               fontFamily: 'Cairo',
+                    //               fontWeight: FontWeight.w400,
+                    //               height: 0,
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       ),
+                    //       const SizedBox(
+                    //         width: 5,
+                    //       ),
+                    //       Container(
+                    //         height: 25,
+                    //         width: 40,
+                    //         decoration: BoxDecoration(
+                    //             border: Border.all(
+                    //                 color: AppColor.greyColor, width: 2),
+                    //             borderRadius: BorderRadius.circular(5)),
+                    //         child: const Center(
+                    //           child: Text(
+                    //             'mm',
+                    //             style: TextStyle(
+                    //               color: Color(0xFFBEBEBE),
+                    //               fontSize: 12,
+                    //               fontFamily: 'Cairo',
+                    //               fontWeight: FontWeight.w400,
+                    //               height: 0,
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       ),
+                    //       const SizedBox(
+                    //         width: 5,
+                    //       ),
+                    //       Container(
+                    //         height: 25,
+                    //         width: 70,
+                    //         decoration: BoxDecoration(
+                    //             border: Border.all(
+                    //                 color: AppColor.greyColor, width: 2),
+                    //             borderRadius: BorderRadius.circular(5)),
+                    //         child: const Center(
+                    //           child: Text(
+                    //             'year',
+                    //             style: TextStyle(
+                    //               color: Color(0xFFBEBEBE),
+                    //               fontSize: 12,
+                    //               fontFamily: 'Cairo',
+                    //               fontWeight: FontWeight.w400,
+                    //               height: 0,
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       ),
+                    //       const SizedBox(
+                    //         width: 10,
+                    //       ),
+                    //       const Icon(
+                    //         Icons.calendar_month,
+                    //         color: AppColor.greyColor,
+                    //       )
+                    //     ],
+                    //   ),
+                    // ),
                     const SizedBox(
-                      height: 20,
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 30, right: 30),
-                      child: Text(
-                        'Invoice date:',
-                        style: TextStyle(
-                          color: Color(0xFFBEBEBE),
-                          fontSize: 10,
-                          fontFamily: 'Cairo',
-                          fontWeight: FontWeight.w400,
-                          height: 0,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 30, right: 30),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: 25,
-                            width: 40,
-                            decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: AppColor.greyColor, width: 2),
-                                borderRadius: BorderRadius.circular(5)),
-                            child: const Center(
-                              child: Text(
-                                'dd',
-                                style: TextStyle(
-                                  color: Color(0xFFBEBEBE),
-                                  fontSize: 12,
-                                  fontFamily: 'Cairo',
-                                  fontWeight: FontWeight.w400,
-                                  height: 0,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          Container(
-                            height: 25,
-                            width: 40,
-                            decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: AppColor.greyColor, width: 2),
-                                borderRadius: BorderRadius.circular(5)),
-                            child: const Center(
-                              child: Text(
-                                'mm',
-                                style: TextStyle(
-                                  color: Color(0xFFBEBEBE),
-                                  fontSize: 12,
-                                  fontFamily: 'Cairo',
-                                  fontWeight: FontWeight.w400,
-                                  height: 0,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          Container(
-                            height: 25,
-                            width: 70,
-                            decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: AppColor.greyColor, width: 2),
-                                borderRadius: BorderRadius.circular(5)),
-                            child: const Center(
-                              child: Text(
-                                'year',
-                                style: TextStyle(
-                                  color: Color(0xFFBEBEBE),
-                                  fontSize: 12,
-                                  fontFamily: 'Cairo',
-                                  fontWeight: FontWeight.w400,
-                                  height: 0,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          const Icon(
-                            Icons.calendar_month,
-                            color: AppColor.greyColor,
-                          )
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 40,
+                      height: 30,
                     ),
                     GestureDetector(
                       onTap: () {
