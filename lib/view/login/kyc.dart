@@ -3,22 +3,31 @@ import 'package:get/get.dart';
 import 'package:pemint_admin_app/utilities/app_colors.dart';
 import 'package:pemint_admin_app/view/login/bank_details.dart';
 import 'package:pemint_admin_app/view/login/otp.dart';
+import 'package:pemint_admin_app/view_model/kyc_controller.dart';
 
-class KYC extends StatelessWidget {
+class KYC extends StatefulWidget {
   const KYC({Key? key}) : super(key: key);
+
+  @override
+  State<KYC> createState() => _KYCState();
+}
+
+class _KYCState extends State<KYC> {
+  final KYCController controller = Get.put(KYCController());
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Scaffold(resizeToAvoidBottomInset: false,
+        child: Scaffold(
+      resizeToAvoidBottomInset: false,
       bottomNavigationBar: Padding(
-        padding: EdgeInsets.only(bottom: 50, left: 30, right: 30),
+        padding: const EdgeInsets.only(bottom: 50, left: 30, right: 30),
         child: GestureDetector(
           onTap: () {
-            Get.to(BankDetails());
+            controller.uploadDocuments();
           },
           child: Container(
-            child: Center(
+            child: const Center(
               child: Text(
                 'Next',
                 style: TextStyle(
@@ -44,7 +53,7 @@ class KYC extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Upload KYC',
               style: TextStyle(
                 color: Colors.white,
@@ -54,7 +63,7 @@ class KYC extends StatelessWidget {
                 height: 0,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Row(
@@ -88,10 +97,10 @@ class KYC extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
-            Text(
+            const Text(
               'Address Proof',
               style: TextStyle(
                 color: Color(0xFFF6F5FA),
@@ -100,10 +109,10 @@ class KYC extends StatelessWidget {
                 fontWeight: FontWeight.w600,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            Text(
+            const Text(
               'Front',
               style: TextStyle(
                 color: Color(0xFFF6F5FA),
@@ -113,7 +122,7 @@ class KYC extends StatelessWidget {
                 height: 0,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
@@ -130,8 +139,8 @@ class KYC extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Aadhar.png",
-                        style: TextStyle(
+                        controller.aadharCardFrontFile?.path ?? '-',
+                        style: const TextStyle(
                           color: Color(0xFF292D32),
                           fontSize: 20,
                           fontFamily: 'Cairo',
@@ -139,7 +148,9 @@ class KYC extends StatelessWidget {
                         ),
                       ),
                       GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            controller.selectAadharCardFrontFile();
+                          },
                           child: Container(
                             height: 30,
                             width: 80,
@@ -147,7 +158,7 @@ class KYC extends StatelessWidget {
                               color: AppColor.contentColorBlue,
                               borderRadius: BorderRadius.circular(8),
                             ),
-                            child: Center(
+                            child: const Center(
                               child: Text(
                                 'Upload',
                                 style: TextStyle(
@@ -155,7 +166,6 @@ class KYC extends StatelessWidget {
                                   fontSize: 16,
                                   fontFamily: 'Cairo',
                                   fontWeight: FontWeight.w700,
-
                                 ),
                               ),
                             ),
@@ -163,10 +173,10 @@ class KYC extends StatelessWidget {
                     ],
                   )),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            Text(
+            const Text(
               'Back',
               style: TextStyle(
                 color: Color(0xFFF6F5FA),
@@ -176,7 +186,7 @@ class KYC extends StatelessWidget {
                 height: 0,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
@@ -193,8 +203,8 @@ class KYC extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Aadhar.png",
-                        style: TextStyle(
+                        controller.aadharCardBackFile?.path ?? '-',
+                        style: const TextStyle(
                           color: Color(0xFF292D32),
                           fontSize: 20,
                           fontFamily: 'Cairo',
@@ -202,7 +212,9 @@ class KYC extends StatelessWidget {
                         ),
                       ),
                       GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            controller.selectAadharCardBackFile();
+                          },
                           child: Container(
                             height: 30,
                             width: 80,
@@ -210,7 +222,7 @@ class KYC extends StatelessWidget {
                               color: AppColor.contentColorBlue,
                               borderRadius: BorderRadius.circular(8),
                             ),
-                            child: Center(
+                            child: const Center(
                               child: Text(
                                 'Upload',
                                 style: TextStyle(
@@ -218,7 +230,6 @@ class KYC extends StatelessWidget {
                                   fontSize: 16,
                                   fontFamily: 'Cairo',
                                   fontWeight: FontWeight.w700,
-
                                 ),
                               ),
                             ),
@@ -226,20 +237,19 @@ class KYC extends StatelessWidget {
                     ],
                   )),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
-            Text(
+            const Text(
               'Pan Card',
               style: TextStyle(
                 color: Color(0xFFF6F5FA),
                 fontSize: 20,
                 fontFamily: 'Cairo',
                 fontWeight: FontWeight.w600,
-
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
@@ -256,8 +266,8 @@ class KYC extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Aadhar.png",
-                        style: TextStyle(
+                        controller.panCardFile?.path ?? '-',
+                        style: const TextStyle(
                           color: Color(0xFF292D32),
                           fontSize: 20,
                           fontFamily: 'Cairo',
@@ -265,7 +275,9 @@ class KYC extends StatelessWidget {
                         ),
                       ),
                       GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            controller.selectPanCardFile();
+                          },
                           child: Container(
                             height: 30,
                             width: 80,
@@ -273,7 +285,7 @@ class KYC extends StatelessWidget {
                               color: AppColor.contentColorBlue,
                               borderRadius: BorderRadius.circular(8),
                             ),
-                            child: Center(
+                            child: const Center(
                               child: Text(
                                 'Upload',
                                 style: TextStyle(
@@ -281,7 +293,6 @@ class KYC extends StatelessWidget {
                                   fontSize: 16,
                                   fontFamily: 'Cairo',
                                   fontWeight: FontWeight.w700,
-
                                 ),
                               ),
                             ),
@@ -289,20 +300,19 @@ class KYC extends StatelessWidget {
                     ],
                   )),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            Text(
+            const Text(
               'CIN Number',
               style: TextStyle(
                 color: Color(0xFFF6F5FA),
                 fontSize: 20,
                 fontFamily: 'Cairo',
                 fontWeight: FontWeight.w600,
-
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
@@ -319,8 +329,8 @@ class KYC extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "*****",
-                        style: TextStyle(
+                        controller.cinNumber?.path ?? '-',
+                        style: const TextStyle(
                           color: Color(0xFF292D32),
                           fontSize: 20,
                           fontFamily: 'Cairo',
@@ -328,7 +338,9 @@ class KYC extends StatelessWidget {
                         ),
                       ),
                       GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            controller.selectCINfile();
+                          },
                           child: Container(
                             height: 30,
                             width: 80,
@@ -336,7 +348,7 @@ class KYC extends StatelessWidget {
                               color: AppColor.contentColorBlue,
                               borderRadius: BorderRadius.circular(8),
                             ),
-                            child: Center(
+                            child: const Center(
                               child: Text(
                                 'Upload',
                                 style: TextStyle(
@@ -344,7 +356,6 @@ class KYC extends StatelessWidget {
                                   fontSize: 16,
                                   fontFamily: 'Cairo',
                                   fontWeight: FontWeight.w700,
-
                                 ),
                               ),
                             ),
@@ -352,20 +363,19 @@ class KYC extends StatelessWidget {
                     ],
                   )),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            Text(
+            const Text(
               'Other Documents',
               style: TextStyle(
                 color: Color(0xFFF6F5FA),
                 fontSize: 20,
                 fontFamily: 'Cairo',
                 fontWeight: FontWeight.w600,
-
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
@@ -381,7 +391,7 @@ class KYC extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      const Text(
                         "Shop Reg,Trade Licence\nPartnership Deed,GST Reg",
                         style: TextStyle(
                           color: Color(0xFF292D32),
@@ -391,7 +401,9 @@ class KYC extends StatelessWidget {
                         ),
                       ),
                       GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            controller.selectOtherDocumentsFile();
+                          },
                           child: Container(
                             height: 30,
                             width: 80,
@@ -399,7 +411,7 @@ class KYC extends StatelessWidget {
                               color: AppColor.contentColorBlue,
                               borderRadius: BorderRadius.circular(8),
                             ),
-                            child: Center(
+                            child: const Center(
                               child: Text(
                                 'Upload',
                                 style: TextStyle(
@@ -407,7 +419,6 @@ class KYC extends StatelessWidget {
                                   fontSize: 16,
                                   fontFamily: 'Cairo',
                                   fontWeight: FontWeight.w700,
-
                                 ),
                               ),
                             ),

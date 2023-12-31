@@ -30,15 +30,21 @@ class AuthRepository {
     return response;
   }
 
-    Future<BaseResponses> forgotPassword({required Map parameter}) async {
+  Future<BaseResponses> forgotPassword({required Map parameter}) async {
     dynamic response = await _apiService.postBeforeAuth(
         parameter, NetworkConstant.END_POINT_FORGOTPASSWORD);
     return response;
   }
 
-    Future<BaseResponses> resetPassword({required Map parameter}) async {
+  Future<BaseResponses> resetPassword({required Map parameter}) async {
     dynamic response = await _apiService.postBeforeAuth(
         parameter, NetworkConstant.END_POINT_RESETPASSWORD);
+    return response;
+  }
+
+  Future<BaseResponses> uploadDocuments({required Map parameter}) async {
+    dynamic response = await _apiService.postAfterAuthMultipartForFilesUpload(
+        parameter, NetworkConstant.END_POINT_UPLOAD_DOCUMENTS);
     return response;
   }
 }

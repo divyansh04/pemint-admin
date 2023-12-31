@@ -287,6 +287,39 @@ class ApiProvider {
     return responseJson;
   }
 
+  Future<dynamic> postAfterAuthMultipartForFilesUpload(
+    Map parameter,
+    String url,
+  ) async {
+    SharedPref box = SharedPref();
+    String? token = await box.getIdToken();
+    var responseJson;
+    Map<String, String> headers = {
+      "authorization": token!,
+      "Accept": "application/json"
+    };
+
+    try {
+      var request = http.MultipartRequest('POST', Uri.parse(baseUrl + url));
+      request.headers.addAll(headers);
+
+      parameter.forEach((key, value) {
+        request.files.add(http.MultipartFile(
+            key, value.readAsBytes().asStream(), value.lengthSync(),
+            filename: '$key.jpg'));
+      });
+      var response = await request.send();
+
+      if (response.statusCode == 200) {
+        print('Documents uploaded successfully!');
+      }
+    } catch (e) {
+      print(e);
+      throw FetchDataException('No Internet connection');
+    }
+    return responseJson;
+  }
+
   Future<dynamic> postAfterAuthMultipartForUploadBusinessPhoto(
       Map parameter, String url, File files) async {
     SharedPref box = SharedPref();
