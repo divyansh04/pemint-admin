@@ -142,7 +142,7 @@ class _EnterNameNumberState extends State<EnterNameNumber> {
                   height: 20,
                 ),
                 const Text(
-                  'Mobile Number*',
+                  'Mobile Number',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 20,

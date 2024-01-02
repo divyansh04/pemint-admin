@@ -68,7 +68,7 @@ class MobRegController extends GetxController {
     try {
       var res = await _authRepository.signUpApi(parameter: parameter);
       if (res.statusCode == 200) {
-        print(res);
+        print(res,);print(res.statusCode);
         numberController.text = phone;
         SignupData signUpData = SignupData.fromJson(res.data);
         Get.to(const BusinessType());

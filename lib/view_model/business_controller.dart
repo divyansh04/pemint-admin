@@ -45,11 +45,11 @@ class BusinessController extends GetxController {
     update();
 
     Map parameter = {
-      "BusinessName": businessName,
-      "BusinessType": businessType,
-      "PartnerType": partnerType,
-      "DirectorName": directorName,
-      "HeadOfficeAddress": businessAddress,
+      "BusinessName": businessName.toString(),
+      "BusinessType": businessType.toString(),
+      "PartnerType": partnerType.toString(),
+      "DirectorName": directorName.toString(),
+      "HeadOfficeAddress": businessAddress.toString(),
       "PartnerState": "California",
       "City": "San Francisco",
       "Pincode": "94101",
