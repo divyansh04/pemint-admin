@@ -12,6 +12,7 @@ class NetworkConstant {
   static const String END_POINT_CREATE_DEMAND = '/small-business/create-demand';
   static const String END_POINT_GET_ALL_DEMAND = '/small-business/demand-list';
   static const String END_POINT_TRANSACTION_DETAIL = '/transaction-detail';
+  static const String END_POINT_ADD_PARTNER = '/admin/partner/add-partner';
   static const String END_POINT_GET_DASHBOARD_DATA =
       '/small-business/dashboard-report';
   static const String END_POINT_GET_PROFILE_DETAILS = '/admin/partner/detail';

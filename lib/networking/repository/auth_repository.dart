@@ -12,6 +12,12 @@ class AuthRepository {
     return response;
   }
 
+    Future<BaseResponses> addPartner({required Map parameter}) async {
+    dynamic response = await _apiService.postBeforeAuth(
+        parameter, NetworkConstant.END_POINT_ADD_PARTNER);
+    return response;
+  }
+
   Future<BaseResponses> loginApi({required Map parameter}) async {
     dynamic response = await _apiService.postBeforeAuth(
         parameter, NetworkConstant.END_POINT_LOGIN);

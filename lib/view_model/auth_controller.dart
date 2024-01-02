@@ -67,14 +67,7 @@ class MobRegController extends GetxController {
 
     try {
       var res = await _authRepository.signUpApi(parameter: parameter);
-      if (res.statusCode == 200) {
-        print(res,);print(res.statusCode);
-        numberController.text = phone;
-        SignupData signUpData = SignupData.fromJson(res.data);
-        Get.to(const BusinessType());
-      }
-
-      if (res.statusCode == 422) {
+      if (res.statusCode == 200 || res.statusCode == 422) {
         sendOTP();
         Get.to(const Enter_OTP());
       }
@@ -107,6 +100,12 @@ class MobRegController extends GetxController {
         await SharedPref()
             .setRefreshToken(loginData.authenticationResult.refreshToken);
         await SharedPref().saveLogin(true);
+              // if (res.statusCode == 200) {
+      //   print(res,);print(res.statusCode);
+      //   numberController.text = phone;
+      //   SignupData signUpData = SignupData.fromJson(res.data);
+      //   Get.to(const BusinessType());
+      // }
         Get.to(HomeScreenContact());
       }
     } catch (e) {
@@ -155,7 +154,7 @@ class MobRegController extends GetxController {
       try {
         var res = await _authRepository.verifyOTP(parameter: parameter);
         if (res.statusCode == 200) {
-          Get.to(const BusinessType());
+          //TODO DIALOG BOX
         }
       } catch (e) {
         print(e.toString());

@@ -45,11 +45,11 @@ class BusinessController extends GetxController {
     update();
 
     Map parameter = {
-      "BusinessName": businessName.toString(),
-      "BusinessType": businessType.toString(),
-      "PartnerType": partnerType.toString(),
-      "DirectorName": directorName.toString(),
-      "HeadOfficeAddress": businessAddress.toString(),
+      "BusinessName": businessName.text,
+      "BusinessType": businessType.value,
+      "PartnerType": partnerType.value,
+      "DirectorName": directorName.text,
+      "HeadOfficeAddress": businessAddress.text,
       "PartnerState": "California",
       "City": "San Francisco",
       "Pincode": "94101",
@@ -64,9 +64,9 @@ class BusinessController extends GetxController {
       "PANNumber": "PAN1234",
       "PartnerLogo": "https://example.com/updated_cancelled_cheque"
     };
-
+    print(parameter.toString());
     try {
-      var res = await _authRepository.signUpApi(parameter: parameter);
+      var res = await _authRepository.addPartner(parameter: parameter);
       if (res.statusCode == 200) {
         print(res);
 
