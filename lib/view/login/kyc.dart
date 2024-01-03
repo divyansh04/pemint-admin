@@ -53,14 +53,31 @@ class _KYCState extends State<KYC> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Upload KYC',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 32,
-                fontFamily: 'Cairo',
-                fontWeight: FontWeight.w400,
-                height: 0,
+            Text.rich(
+              TextSpan(
+                children: [
+                  TextSpan(
+                    text: 'Welcome!' ,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 22,
+                      fontFamily: 'Cairo',
+                      fontWeight: FontWeight.w700,
+
+                    ),
+                  ),
+
+                  TextSpan(
+                    text: 'Please fill your Business detail’s to add you as a partner.',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontFamily: 'Cairo',
+                      fontWeight: FontWeight.w400,
+
+                    ),
+                  ),
+                ],
               ),
             ),
             const SizedBox(

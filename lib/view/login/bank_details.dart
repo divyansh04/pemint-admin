@@ -45,16 +45,18 @@ class BankDetails extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Upload KYC',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 32,
-                fontFamily: 'Cairo',
-                fontWeight: FontWeight.w400,
-                height: 0,
+
+              Text(
+                'Please fill your Bank Account details.',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontFamily: 'Cairo',
+                  fontWeight: FontWeight.w400,
+
+                ),
               ),
-            ),
+
             const SizedBox(
               height: 10,
             ),

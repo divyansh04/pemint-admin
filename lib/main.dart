@@ -2,7 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pemint_admin_app/view/homescreen/documents_underprocess.dart';
+import 'package:pemint_admin_app/view/login/PvtLtd_Partnership.dart';
+import 'package:pemint_admin_app/view/login/bank_details.dart';
 import 'package:pemint_admin_app/view/login/initial_screen.dart';
+import 'package:pemint_admin_app/view/login/kyc.dart';
+import 'package:pemint_admin_app/view/login/sole_prop.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import 'networking/SharedPref.dart';
@@ -78,6 +83,6 @@ class _MyAppState extends State<MyApp> {
         ),
         home:
         // isLogin ? HomeScreenContact() :
-        const InitialScreen());
+         Documents_UnderProcess());
   }
 }

@@ -55,17 +55,28 @@ class _EnterNameNumberState extends State<EnterNameNumber> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                  'Basic Info',
+                  'Welcome to PeMint Business!',
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 32,
+                    fontSize: 22,
+                    fontFamily: 'Cairo',
+                    fontWeight: FontWeight.w700,
+
+                  ),
+                ),
+
+                Text(
+                  'Please enter your details to Register.',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
                     fontFamily: 'Cairo',
                     fontWeight: FontWeight.w400,
                     height: 0,
                   ),
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: 15,
                 ),
                 Row(
                   children: [
@@ -76,26 +87,7 @@ class _EnterNameNumberState extends State<EnterNameNumber> {
                           color: AppColor.whiteColor,
                           borderRadius: BorderRadius.circular(20)),
                     ),
-                    SizedBox(
-                      width: Get.width * .03,
-                    ),
-                    Container(
-                      height: 5,
-                      width: Get.width / 4.5,
-                      decoration: BoxDecoration(
-                          border: Border.all(color: AppColor.whiteColor),
-                          borderRadius: BorderRadius.circular(20)),
-                    ),
-                    SizedBox(
-                      width: Get.width * .03,
-                    ),
-                    Container(
-                      height: 5,
-                      width: Get.width / 4.5,
-                      decoration: BoxDecoration(
-                          border: Border.all(color: AppColor.whiteColor),
-                          borderRadius: BorderRadius.circular(20)),
-                    ),
+
                   ],
                 ),
                 const SizedBox(
