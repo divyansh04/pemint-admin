@@ -1,13 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:mobile_number/mobile_number.dart';
 import 'package:pemint_admin_app/helper/ToastHelper.dart';
 import 'package:pemint_admin_app/model/api_response/login_response.dart';
-import 'package:pemint_admin_app/model/api_response/signup_response.dart';
+import 'package:pemint_admin_app/model/api_response/user_me_response.dart';
 import 'package:pemint_admin_app/networking/SharedPref.dart';
 import 'package:pemint_admin_app/networking/repository/auth_repository.dart';
 import 'package:pemint_admin_app/view/homescreen/homescreen_contact.dart';
@@ -15,7 +12,6 @@ import 'package:pemint_admin_app/view/login/business_type.dart';
 import 'package:pemint_admin_app/view/login/login.dart';
 import 'package:pemint_admin_app/view/login/otp.dart';
 import 'package:pemint_admin_app/view/login/reset_pass_otp.dart';
-import 'package:pemint_admin_app/view/login/reset_password.dart';
 
 class MobRegController extends GetxController {
   final currentPageIndex = 0.obs;
@@ -100,13 +96,7 @@ class MobRegController extends GetxController {
         await SharedPref()
             .setRefreshToken(loginData.authenticationResult.refreshToken);
         await SharedPref().saveLogin(true);
-              // if (res.statusCode == 200) {
-      //   print(res,);print(res.statusCode);
-      //   numberController.text = phone;
-      //   SignupData signUpData = SignupData.fromJson(res.data);
-      //   Get.to(const BusinessType());
-      // }
-        Get.to(HomeScreenContact());
+        await getUserMeResponse();
       }
     } catch (e) {
       print(e.toString());
@@ -154,7 +144,7 @@ class MobRegController extends GetxController {
       try {
         var res = await _authRepository.verifyOTP(parameter: parameter);
         if (res.statusCode == 200) {
-          //TODO DIALOG BOX
+          //TODO WAITING SCREEN
         }
       } catch (e) {
         print(e.toString());
@@ -162,6 +152,34 @@ class MobRegController extends GetxController {
             .showErrorToast(message: "Something Went Wrong. Try again.");
       }
     }
+    isLoading.value = false;
+    update();
+  }
+
+  Future<void> getUserMeResponse() async {
+    isLoading.value = true;
+    update();
+    try {
+      var res = await _authRepository.getUserMeData();
+      if (res.statusCode == 200) {
+        final userMeData = UserMeData.fromJson(res.data);
+        await SharedPref().saveUserId(userMeData.user.userId);
+        await SharedPref().savePartnerId(userMeData.partner.partnerId);
+        if (userMeData.partner.partnerId.isNotEmpty) {
+          if (userMeData.partner.partnerStatus == "ACTIVE") {
+            Get.to(HomeScreenContact());
+          } else {
+            //TODO WAITING SCREEN
+          }
+        } else {
+          Get.off(BusinessType());
+        }
+      }
+    } catch (e) {
+      print(e.toString());
+      ToastHelper().showErrorToast(message: "Something Went Wrong. Try again.");
+    }
+
     isLoading.value = false;
     update();
   }

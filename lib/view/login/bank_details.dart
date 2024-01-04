@@ -3,10 +3,18 @@ import 'package:get/get.dart';
 import 'package:pemint_admin_app/utilities/app_colors.dart';
 import 'package:pemint_admin_app/view/homescreen/homescreen_dashboard.dart';
 import 'package:pemint_admin_app/view/login/otp.dart';
+import 'package:pemint_admin_app/view_model/bank_details_controller.dart';
 
-class BankDetails extends StatelessWidget {
+class BankDetails extends StatefulWidget {
   const BankDetails({Key? key}) : super(key: key);
 
+  @override
+  State<BankDetails> createState() => _BankDetailsState();
+}
+
+class _BankDetailsState extends State<BankDetails> {
+  
+  final BankDetailsController viewModel = Get.put(BankDetailsController());
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -17,7 +25,6 @@ class BankDetails extends StatelessWidget {
         child: GestureDetector(
           onTap: () {
             Get.to(HomeScreenDashboard());
-            // Get.to(Enter_OTP());
           },
           child: Container(
             height: 51,

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPref {
@@ -94,6 +92,26 @@ class SharedPref {
   Future<String?> getAppLock() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getString('appLock');
+  }
+
+  Future<void> savePartnerId(String partnerId) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('partnerId', partnerId);
+  }
+
+  Future<void> saveUserId(String userId) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('userId', userId);
+  }
+
+  Future<String?> getUserId() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    return sharedPreferences.getString('userId');
+  }
+
+  Future<String?> getPartnerId() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    return sharedPreferences.getString('partnerId');
   }
 
   Future<bool?> isLogin() async {
