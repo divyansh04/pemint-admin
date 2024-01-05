@@ -13,6 +13,7 @@ class NetworkConstant {
   static const String END_POINT_GET_ALL_DEMAND = '/small-business/demand-list';
   static const String END_POINT_TRANSACTION_DETAIL = '/transaction-detail';
   static const String END_POINT_ADD_PARTNER = '/admin/partner/add-partner';
+  static const String END_POINT_UPDATE_PARTNER = '/admin/partner/update-partner';
   static const String END_POINT_USER_ME = '/user-me/';
   static const String END_POINT_GET_DASHBOARD_DATA =
       '/small-business/dashboard-report';

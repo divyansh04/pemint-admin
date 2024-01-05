@@ -288,35 +288,51 @@ class ApiProvider {
   }
 
   Future<dynamic> postAfterAuthMultipartForFilesUpload(
-    Map parameter,
+    Map<String, File> parameters,
     String url,
   ) async {
     SharedPref box = SharedPref();
     String? token = await box.getIdToken();
+    String partnerId = await box.getPartnerId() ?? "-";
     var responseJson;
+
     Map<String, String> headers = {
       "authorization": token!,
-      "Accept": "application/json"
+      "Accept": "application/json",
     };
 
     try {
       var request = http.MultipartRequest('POST', Uri.parse(baseUrl + url));
       request.headers.addAll(headers);
-
-      parameter.forEach((key, value) {
+      request.fields['partnerId'] = partnerId;
+      parameters.forEach((key, value) {
         request.files.add(http.MultipartFile(
-            key, value.readAsBytes().asStream(), value.lengthSync(),
-            filename: '$key.jpg'));
+          key,
+          value.readAsBytes().asStream(),
+          value.lengthSync(),
+          filename: '$key.jpg',
+        ));
       });
+
       var response = await request.send();
 
       if (response.statusCode == 200) {
         print('Documents uploaded successfully!');
+      } else {
+        print('Error Code: ${response.statusCode}');
       }
     } catch (e) {
-      print(e);
-      throw FetchDataException('No Internet connection');
+      print('Error: $e');
+      if (e is http.ClientException) {
+        print('Client Exception: ${e.message}');
+      } else if (e is SocketException) {
+        print('Socket Exception: ${e.message}');
+      } else {
+        print('Unknown Exception: ${e.toString()}');
+      }
+      throw FetchDataException('Internal Server Error');
     }
+
     return responseJson;
   }
 

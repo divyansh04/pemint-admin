@@ -1,5 +1,8 @@
 import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
 
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -13,6 +16,7 @@ import 'package:pemint_admin_app/networking/SharedPref.dart';
 import 'package:pemint_admin_app/networking/repository/auth_repository.dart';
 import 'package:pemint_admin_app/view/homescreen/homescreen_contact.dart';
 import 'package:pemint_admin_app/view/login/PvtLtd_Partnership.dart';
+import 'package:pemint_admin_app/view/login/bank_details.dart';
 import 'package:pemint_admin_app/view/login/business_type.dart';
 import 'package:pemint_admin_app/view/login/kyc.dart';
 import 'package:pemint_admin_app/view/login/login.dart';
@@ -30,6 +34,10 @@ class BusinessController extends GetxController {
   final TextEditingController directorName = TextEditingController();
   final TextEditingController businessAddress = TextEditingController();
   final TextEditingController joindeOn = TextEditingController();
+  final TextEditingController accountNumber = TextEditingController();
+  final TextEditingController reAccountNumber = TextEditingController();
+  final TextEditingController ifscCode = TextEditingController();
+  final TextEditingController accountHolderName = TextEditingController();
 
   final _authRepository = AuthRepository();
 
@@ -45,7 +53,7 @@ class BusinessController extends GetxController {
   void addPartner() async {
     isLoading.value = true;
     update();
-    final userId = SharedPref().getUserId();
+    final userId = await SharedPref().getUserId();
 
     Map parameter = {
       "BusinessName": businessName.text,
@@ -73,21 +81,62 @@ class BusinessController extends GetxController {
       if (res.statusCode == 200) {
         final addPartnerResponse = AddPartnerData.fromJson(res.data);
         await SharedPref().savePartnerId(addPartnerResponse.partnerId);
+        Get.off(BankDetails());
+      }
+    } catch (e) {
+      print(e.toString());
+      ToastHelper().showErrorToast(message: "Something Went Wrong. Try again.");
+    }
+
+    isLoading.value = false;
+    update();
+  }
+
+  void updatePartner() async {
+    isLoading.value = true;
+    update();
+
+    Map parameter = {
+      "BusinessName": businessName.text,
+      "BusinessType": businessType.value,
+      "PartnerType": partnerType.value,
+      "DirectorName": directorName.text,
+      "HeadOfficeAddress": businessAddress.text,
+      "PartnerState": "California",
+      "City": "San Francisco",
+      "Pincode": "94101",
+      "OfficialMailId": "info@abc.com",
+      "BusinessNameBankAccount": accountHolderName.text,
+      "AccountType": "Savings",
+      "BankAccountNumber": accountNumber.text,
+      "BankIFSCCode": ifscCode,
+      "CancelledChequeUpload": cancelledChequeUrl,
+      "CompanyIncorporationUIN": "UIN1234",
+      "GSTNumber": "GST1234",
+      "PANNumber": "PAN1234",
+      "PartnerLogo": "https://example.com/updated_cancelled_cheque",
+    };
+    print(parameter.toString());
+    try {
+      var res = await _authRepository.addPartner(parameter: parameter);
+      if (res.statusCode == 200) {
+        final addPartnerResponse = AddPartnerData.fromJson(res.data);
+        await SharedPref().savePartnerId(addPartnerResponse.partnerId);
         switch (businessType.value) {
           case 'Individual':
-            Get.to(const KYC());
+            Get.off(const KYC());
             break;
           case 'Sole Proprietorship':
-            Get.to(const Sole_Prop());
+            Get.off(const Sole_Prop());
             break;
           case 'Partnership':
-            Get.to(const Partnership_PVT());
+            Get.off(const Partnership_PVT());
             break;
           case 'Private Limited':
-            Get.to(const Partnership_PVT());
+            Get.off(const Partnership_PVT());
             break;
           default:
-            Get.to(const KYC());
+            Get.off(const KYC());
             break;
         }
       }
@@ -98,6 +147,41 @@ class BusinessController extends GetxController {
 
     isLoading.value = false;
     update();
+  }
+
+  File? cancelledCheque;
+  String cancelledChequeUrl = '';
+
+  void selectCancelledCheque() async {
+    isLoading.value = true;
+    cancelledCheque = await pickFile();
+   await uploadDocuments();
+    isLoading.value = false;
+    update();
+  }
+
+  Future<void> uploadDocuments() async {
+    // isLoading.value = true;
+    if (cancelledCheque != null) {
+      final res = await _authRepository.uploadDocuments(parameter: {
+        'CancelledCheque': cancelledCheque!
+      });
+      if (res.statusCode == 200) {
+        Map<String, dynamic> jsonMap = json.decode(res.data);
+        cancelledChequeUrl = jsonMap['FileStatus'][0]['DownloadUrl'];
+      }
+    }
+    isLoading.value = false;
+  }
+
+  Future<File?> pickFile() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles();
+
+    if (result != null) {
+      return File(result.files.single.path!);
+    } else {
+      return null;
+    }
   }
 
   @override

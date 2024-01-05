@@ -8,6 +8,7 @@ import 'package:pemint_admin_app/model/api_response/user_me_response.dart';
 import 'package:pemint_admin_app/networking/SharedPref.dart';
 import 'package:pemint_admin_app/networking/repository/auth_repository.dart';
 import 'package:pemint_admin_app/view/homescreen/homescreen_contact.dart';
+import 'package:pemint_admin_app/view/login/bank_details.dart';
 import 'package:pemint_admin_app/view/login/business_type.dart';
 import 'package:pemint_admin_app/view/login/login.dart';
 import 'package:pemint_admin_app/view/login/otp.dart';
@@ -95,7 +96,7 @@ class MobRegController extends GetxController {
         await SharedPref().setIdToken(loginData.authenticationResult.idToken);
         await SharedPref()
             .setRefreshToken(loginData.authenticationResult.refreshToken);
-        await SharedPref().saveLogin(true);
+        // await SharedPref().saveLogin(true);
         await getUserMeResponse();
       }
     } catch (e) {

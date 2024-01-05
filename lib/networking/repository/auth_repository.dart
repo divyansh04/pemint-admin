@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:pemint_admin_app/model/api_response/BaseResponse.dart';
 import 'package:pemint_admin_app/networking/ApiProvider.dart';
 import 'package:pemint_admin_app/networking/NetworkConstant.dart';
@@ -14,6 +16,12 @@ class AuthRepository {
   Future<BaseResponses> addPartner({required Map parameter}) async {
     dynamic response = await _apiService.postAfterAuthWithIdToken(
         parameter, NetworkConstant.END_POINT_ADD_PARTNER);
+    return response;
+  }
+
+    Future<BaseResponses> updatePartner({required Map parameter}) async {
+    dynamic response = await _apiService.postAfterAuthWithIdToken(
+        parameter, NetworkConstant.END_POINT_UPDATE_PARTNER);
     return response;
   }
 
@@ -47,7 +55,7 @@ class AuthRepository {
     return response;
   }
 
-  Future<BaseResponses> uploadDocuments({required Map parameter}) async {
+  Future<BaseResponses> uploadDocuments({required Map<String, File> parameter}) async {
     dynamic response = await _apiService.postAfterAuthMultipartForFilesUpload(
         parameter, NetworkConstant.END_POINT_UPLOAD_DOCUMENTS);
     return response;
