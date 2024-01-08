@@ -10,6 +10,7 @@ import 'package:get/get.dart';
 import 'package:mobile_number/mobile_number.dart';
 import 'package:pemint_admin_app/helper/ToastHelper.dart';
 import 'package:pemint_admin_app/model/api_response/add_partner_response.dart';
+import 'package:pemint_admin_app/model/api_response/document_upload_response.dart';
 import 'package:pemint_admin_app/model/api_response/login_response.dart';
 import 'package:pemint_admin_app/model/api_response/signup_response.dart';
 import 'package:pemint_admin_app/networking/SharedPref.dart';
@@ -155,20 +156,20 @@ class BusinessController extends GetxController {
   void selectCancelledCheque() async {
     isLoading.value = true;
     cancelledCheque = await pickFile();
-   await uploadDocuments();
+    await uploadDocuments();
     isLoading.value = false;
     update();
   }
 
   Future<void> uploadDocuments() async {
-    // isLoading.value = true;
+    isLoading.value = true;
     if (cancelledCheque != null) {
-      final res = await _authRepository.uploadDocuments(parameter: {
-        'CancelledCheque': cancelledCheque!
-      });
+      final res = await _authRepository
+          .uploadDocuments(parameter: {'CancelledCheque': cancelledCheque!});
+
       if (res.statusCode == 200) {
-        Map<String, dynamic> jsonMap = json.decode(res.data);
-        cancelledChequeUrl = jsonMap['FileStatus'][0]['DownloadUrl'];
+        final docUpload = DocumentUploadData.fromJson(res.data);
+        cancelledChequeUrl = docUpload.fileStatus[0].downloadUrl;
       }
     }
     isLoading.value = false;

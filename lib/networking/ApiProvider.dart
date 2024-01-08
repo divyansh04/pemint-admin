@@ -2,7 +2,8 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 import 'package:http/http.dart' as http;
-import 'package:http/http.dart';
+import 'package:http_parser/http_parser.dart' show MediaType;
+
 import 'package:async/async.dart';
 import 'package:path/path.dart';
 import 'package:pemint_admin_app/model/api_response/BaseResponse.dart';
@@ -200,38 +201,47 @@ class ApiProvider {
   }
 
   Future<dynamic> postAfterAuthWithMultipart(
-      Map parameter, String url, List<File> files) async {
+      String url, Map<String, File> filesMap) async {
     SharedPref box = SharedPref();
-    String? token = await box.getAccessToken();
+    String? token = await box.getIdToken();
+    String partnerId = await box.getPartnerId() ?? "-";
 
     var responseJson;
     Map<String, String> headers = {
-      "authorization": "Bearer " + token!,
+      "authorization": token!,
       "Accept": "application/json"
     };
 
     try {
       final response = http.MultipartRequest("POST", Uri.parse(baseUrl + url));
       response.headers.addAll(headers);
-      for (var i = 0; i < parameter.length; i++) {
-        response.fields[parameter.keys.elementAt(i)] =
-            parameter.values.elementAt(i);
-      }
 
-      await Future.forEach(
-        files,
-        (File file) async => {
-          response.files.add(
-            http.MultipartFile(
-              'file',
-              (http.ByteStream(file.openRead())).cast(),
-              await file.length(),
-              filename: basename(file.path),
-            ),
-          )
-        },
-      );
+      response.fields['PartnerId'] = partnerId;
 
+      // await Future.forEach(
+      //   files,
+      //   (File file) async => {
+      //     response.files.add(
+      //       http.MultipartFile(
+      //        'file',
+      //         (http.ByteStream(file.openRead())).cast(),
+      //         await file.length(),
+      //         filename: basename(file.path),
+      //       ),
+      //     )
+      //   },
+      // );
+
+      filesMap.forEach((String fileName, File file) async {
+        response.files.add(
+          http.MultipartFile(
+            fileName,
+            (http.ByteStream(file.openRead())).cast(),
+            await file.length(),
+            filename: basename(file.path),
+          ),
+        );
+      });
       await response.send().then((value) async {
         await http.Response.fromStream(value).then((response) {
           responseJson = _response(response);
@@ -307,12 +317,21 @@ class ApiProvider {
       request.fields['partnerId'] = partnerId;
       parameters.forEach((key, value) {
         request.files.add(http.MultipartFile(
-          key,
-          value.readAsBytes().asStream(),
-          value.lengthSync(),
-          filename: '$key.jpg',
-        ));
+            key,
+            //  (http.ByteStream(value.openRead())).cast(),
+            // await value.length(),
+            value.readAsBytes().asStream(),
+            value.lengthSync(),
+            contentType: MediaType('image', 'jpeg')));
       });
+      // parameters.forEach((key, value) {
+      //   request.files.add(http.MultipartFile(
+      //     key,
+      //     value.readAsBytes().asStream(),
+      //     value.lengthSync(),
+      //     filename: key,
+      //   ));
+      // });
 
       var response = await request.send();
 

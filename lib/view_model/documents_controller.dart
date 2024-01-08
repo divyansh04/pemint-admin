@@ -9,6 +9,7 @@ import 'package:pemint_admin_app/networking/SharedPref.dart';
 import 'package:pemint_admin_app/networking/repository/auth_repository.dart';
 import 'package:pemint_admin_app/view/homescreen/homescreen_contact.dart';
 import 'package:pemint_admin_app/view/login/bank_details.dart';
+import 'package:pemint_admin_app/view/login/initial_screen.dart';
 
 class DocumentsController extends GetxController {
   final _authRepository = AuthRepository();
@@ -56,7 +57,7 @@ class DocumentsController extends GetxController {
     }
     _authRepository.uploadDocuments(parameter: parameter);
 
-    Get.to(const BankDetails());
+    Get.to(const InitialScreen());
   }
 
   Future<void> getUserMeResponse() async {

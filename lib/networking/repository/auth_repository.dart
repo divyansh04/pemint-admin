@@ -19,7 +19,7 @@ class AuthRepository {
     return response;
   }
 
-    Future<BaseResponses> updatePartner({required Map parameter}) async {
+  Future<BaseResponses> updatePartner({required Map parameter}) async {
     dynamic response = await _apiService.postAfterAuthWithIdToken(
         parameter, NetworkConstant.END_POINT_UPDATE_PARTNER);
     return response;
@@ -55,9 +55,10 @@ class AuthRepository {
     return response;
   }
 
-  Future<BaseResponses> uploadDocuments({required Map<String, File> parameter}) async {
-    dynamic response = await _apiService.postAfterAuthMultipartForFilesUpload(
-        parameter, NetworkConstant.END_POINT_UPLOAD_DOCUMENTS);
+  Future<BaseResponses> uploadDocuments(
+      {required Map<String, File> parameter}) async {
+    dynamic response = await _apiService.postAfterAuthWithMultipart(
+        NetworkConstant.END_POINT_UPLOAD_DOCUMENTS, parameter);
     return response;
   }
 
