@@ -32,8 +32,8 @@ class _HomeScreenHistoryState extends State<HomeScreenHistory> {
     isLoading = true;
     setState(() {});
     try {
-      final allDemandsRes =
-          await _userRepository.getAllDemands(partnerId:SharedPref.partnerId);
+      final allDemandsRes = await _userRepository.getAllDemands(
+          partnerId: await SharedPref().getPartnerId() ?? "-");
       if (allDemandsRes.statusCode == 200) {
         demandsData = allDemandsRes.data
             .map<DemandsAgainstPartnerData>(
@@ -77,7 +77,8 @@ class _HomeScreenHistoryState extends State<HomeScreenHistory> {
               right: 10,
               top: 20,
             ),
-            child: SingleChildScrollView(physics: NeverScrollableScrollPhysics(),
+            child: SingleChildScrollView(
+              physics: NeverScrollableScrollPhysics(),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -140,7 +141,7 @@ class _HomeScreenHistoryState extends State<HomeScreenHistory> {
                     children: [
                       //drawer
                       Container(
-                        height: Get.height ,
+                        height: Get.height,
                         width: 100,
                         decoration: const BoxDecoration(
                           borderRadius:
@@ -151,7 +152,7 @@ class _HomeScreenHistoryState extends State<HomeScreenHistory> {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                Get.to( HomeScreenDashboard());
+                                Get.to(HomeScreenDashboard());
                               },
                               child: Container(
                                 margin: const EdgeInsets.only(
@@ -218,10 +219,11 @@ class _HomeScreenHistoryState extends State<HomeScreenHistory> {
                             ),
                             GestureDetector(
                               onTap: () {
-                                Get.to( HomeScreenProfile());
+                                Get.to(HomeScreenProfile());
                               },
                               child: Container(
-                                margin: const EdgeInsets.only(left: 10, top: 30),
+                                margin:
+                                    const EdgeInsets.only(left: 10, top: 30),
                                 width: 100,
                                 height: 70,
                                 child: const Text(
@@ -296,7 +298,8 @@ class _HomeScreenHistoryState extends State<HomeScreenHistory> {
                             decoration: BoxDecoration(
                                 color: AppColor.veryLightPurple,
                                 borderRadius: BorderRadius.circular(20),
-                                border: Border.all(color: AppColor.primaryColor)),
+                                border:
+                                    Border.all(color: AppColor.primaryColor)),
                             child: const Center(
                               child: TextField(
                                 style: TextStyle(
@@ -352,9 +355,11 @@ class _HomeScreenHistoryState extends State<HomeScreenHistory> {
                                       print('abc');
                                     },
                                     child: Padding(
-                                      padding: const EdgeInsets.only(bottom: 20),
+                                      padding:
+                                          const EdgeInsets.only(bottom: 20),
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
                                         mainAxisSize: MainAxisSize.min,
@@ -370,14 +375,15 @@ class _HomeScreenHistoryState extends State<HomeScreenHistory> {
                                                       : Icons.priority_high,
                                                   color: AppColor.whiteColor,
                                                 ),
-                                              ), const SizedBox(
+                                              ),
+                                              const SizedBox(
                                                 width: 15,
                                               ),
                                               Column(
                                                 mainAxisAlignment:
-                                                MainAxisAlignment.start,
+                                                    MainAxisAlignment.start,
                                                 crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                                    CrossAxisAlignment.start,
                                                 children: [
                                                   Text(
                                                     demand.customerName,
@@ -386,20 +392,22 @@ class _HomeScreenHistoryState extends State<HomeScreenHistory> {
                                                       color: Color(0xFF292D32),
                                                       fontSize: 14,
                                                       fontFamily: 'Cairo',
-                                                      fontWeight: FontWeight.w400,
+                                                      fontWeight:
+                                                          FontWeight.w400,
                                                     ),
                                                   ),
                                                   const SizedBox(
                                                     height: 5,
                                                   ),
-                                                   Text(
+                                                  Text(
                                                     '$transactionDetailData',
                                                     textAlign: TextAlign.start,
                                                     style: TextStyle(
                                                       color: Color(0xFF9888A4),
                                                       fontSize: 12,
                                                       fontFamily: 'Cairo',
-                                                      fontWeight: FontWeight.w400,
+                                                      fontWeight:
+                                                          FontWeight.w400,
                                                     ),
                                                   )
                                                 ],
@@ -414,8 +422,8 @@ class _HomeScreenHistoryState extends State<HomeScreenHistory> {
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
-                                               Text(
-                                               '₹ '+ demand.amount.toString(),
+                                              Text(
+                                                '₹ ' + demand.amount.toString(),
                                                 style: TextStyle(
                                                   color: Color(0xFF292D32),
                                                   fontSize: 12,
@@ -493,7 +501,7 @@ class TransactionLinkDialog extends StatelessWidget {
           child: Container(
             decoration: const BoxDecoration(),
             height: 120,
-            width:320,
+            width: 320,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -584,7 +592,6 @@ class TransactionDetailDialog extends StatelessWidget {
                       fontSize: 14,
                       fontFamily: 'Cairo',
                       fontWeight: FontWeight.w400,
-
                     ),
                   ),
                   const Text(
@@ -594,17 +601,15 @@ class TransactionDetailDialog extends StatelessWidget {
                       fontSize: 14,
                       fontFamily: 'Cairo',
                       fontWeight: FontWeight.w700,
-
                     ),
                   ),
-                   Text(
-                     transactionDetailData.transDate,
+                  Text(
+                    transactionDetailData.transDate,
                     style: TextStyle(
                       color: Color(0xFF292D32),
                       fontSize: 14,
                       fontFamily: 'Cairo',
                       fontWeight: FontWeight.w400,
-
                     ),
                   ),
                   const Text(
@@ -614,17 +619,15 @@ class TransactionDetailDialog extends StatelessWidget {
                       fontSize: 14,
                       fontFamily: 'Cairo',
                       fontWeight: FontWeight.w700,
-
                     ),
                   ),
-                   Text(
+                  Text(
                     transactionDetailData.paymentMode,
                     style: TextStyle(
                       color: Color(0xFF292D32),
                       fontSize: 14,
                       fontFamily: 'Cairo',
                       fontWeight: FontWeight.w400,
-
                     ),
                   )
                 ],

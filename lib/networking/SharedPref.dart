@@ -97,7 +97,7 @@ class SharedPref {
 
   Future<void> savePartnerId(String partnerId) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString(partnerId, partnerId);
+    await prefs.setString('Partnerid', partnerId);
   }
 
   Future<void> saveUserId(String userId) async {

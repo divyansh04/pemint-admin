@@ -30,16 +30,17 @@ class ContactsController extends GetxController {
     update();
 
     Map parameter = {
-    "partnerId": SharedPref.partnerId,
-      "CustomerMobileNo": '9416400508',
+      "partnerId": await SharedPref().getPartnerId(),
+      "CustomerMobileNo": contact.phones?.first.value ?? "-",
       "CustomerName": contact.displayName,
-      "Amount": amountController.text.toString(),
+      "Amount":
+          amountController.text.isEmpty ? 0 : int.parse(amountController.text),
       "DueDate": DateFormat('yyyy-MM-dd').format(DateTime.now()),
       "InvoiceNo": "1",
       "InvoiceDate": DateFormat('yyyy-MM-dd').format(DateTime.now()),
       "CustomerEmailId": "infogopik@gmail.com",
-      "GroupName": "",
-      "Note": noteController.text
+      "GroupName": " ",
+      "Note": noteController.text.isEmpty ? " " : noteController.text.isEmpty
 
       // "PartnerId": "123111",
       // "CustomerMobileNo": contact.phones?.first ?? '',
