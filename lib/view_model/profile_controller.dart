@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:pemint_admin_app/helper/ToastHelper.dart';
 import 'package:pemint_admin_app/model/api_response/dashboard_data_response.dart';
 import 'package:pemint_admin_app/model/api_response/profile_details_response.dart';
+import 'package:pemint_admin_app/networking/SharedPref.dart';
 import 'package:pemint_admin_app/networking/repository/user_repository.dart';
 
 class ProfileController extends GetxController {
@@ -13,7 +14,7 @@ class ProfileController extends GetxController {
   void getProfileDetails() async {
     try {
       var res = await _userRepository.getProfileDetails(
-          partnerId: '7jxo');
+          partnerId: SharedPref.partnerId);
       if (res.statusCode == 200) {
         data.value = ProfileDetailsData.fromJson(res.data);
         print(res);

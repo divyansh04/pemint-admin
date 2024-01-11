@@ -9,6 +9,8 @@ import 'package:pemint_admin_app/networking/repository/user_repository.dart';
 import 'package:pemint_admin_app/view/homescreen/create_group.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+import '../networking/SharedPref.dart';
+
 class DashboardController extends GetxController {
   final isLoading = false.obs;
   final _userRepository = UserRepository();
@@ -17,7 +19,7 @@ class DashboardController extends GetxController {
     isLoading.value = true;
     update();
     Map parameter = {
-      "partnerId": "7jxo",
+    "partnerId": SharedPref.partnerId,
       "fromDate": "2023-12-01",
       "toDate": "2023-12-18",
     };

@@ -7,12 +7,14 @@ import 'package:pemint_admin_app/model/api_response/login_response.dart';
 import 'package:pemint_admin_app/model/api_response/user_me_response.dart';
 import 'package:pemint_admin_app/networking/SharedPref.dart';
 import 'package:pemint_admin_app/networking/repository/auth_repository.dart';
+import 'package:pemint_admin_app/view/homescreen/documents_underprocess.dart';
 import 'package:pemint_admin_app/view/homescreen/homescreen_contact.dart';
 import 'package:pemint_admin_app/view/login/bank_details.dart';
 import 'package:pemint_admin_app/view/login/business_type.dart';
 import 'package:pemint_admin_app/view/login/login.dart';
 import 'package:pemint_admin_app/view/login/otp.dart';
 import 'package:pemint_admin_app/view/login/reset_pass_otp.dart';
+import 'package:pemint_admin_app/view/login/successfully_reg.dart';
 
 class MobRegController extends GetxController {
   final currentPageIndex = 0.obs;
@@ -145,7 +147,7 @@ class MobRegController extends GetxController {
       try {
         var res = await _authRepository.verifyOTP(parameter: parameter);
         if (res.statusCode == 200) {
-          //TODO WAITING SCREEN
+         Get.to(SuccessfullyReg());
         }
       } catch (e) {
         print(e.toString());
@@ -170,7 +172,7 @@ class MobRegController extends GetxController {
           if (userMeData.partner.partnerStatus == "ACTIVE") {
             Get.to(HomeScreenContact());
           } else {
-            //TODO WAITING SCREEN
+            Get.to(Documents_UnderProcess());
           }
         } else {
           Get.off(BusinessType());

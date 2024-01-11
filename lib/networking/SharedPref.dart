@@ -1,6 +1,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPref {
+  static const String partnerId ='partnerId';
   static const String language = 'language';
   static const String sessionId = 'sessionId';
   static const String refreshToken = 'refreshToken';
@@ -96,7 +97,7 @@ class SharedPref {
 
   Future<void> savePartnerId(String partnerId) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString('partnerId', partnerId);
+    await prefs.setString(partnerId, partnerId);
   }
 
   Future<void> saveUserId(String userId) async {
@@ -111,7 +112,7 @@ class SharedPref {
 
   Future<String?> getPartnerId() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    return sharedPreferences.getString('partnerId');
+    return sharedPreferences.getString('Partnerid');
   }
 
   Future<bool?> isLogin() async {

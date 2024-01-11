@@ -8,6 +8,8 @@ import 'package:pemint_admin_app/networking/repository/user_repository.dart';
 import 'package:pemint_admin_app/view/homescreen/create_group.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../networking/SharedPref.dart';
+
 class ContactsController extends GetxController {
   final isLoading = false.obs;
   final _userRepository = UserRepository();
@@ -28,10 +30,10 @@ class ContactsController extends GetxController {
     update();
 
     Map parameter = {
-      "PartnerId": "123111",
+    "partnerId": SharedPref.partnerId,
       "CustomerMobileNo": '9416400508',
       "CustomerName": contact.displayName,
-      "Amount": 1,
+      "Amount": amountController.text.toString(),
       "DueDate": DateFormat('yyyy-MM-dd').format(DateTime.now()),
       "InvoiceNo": "1",
       "InvoiceDate": DateFormat('yyyy-MM-dd').format(DateTime.now()),

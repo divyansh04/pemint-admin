@@ -7,6 +7,7 @@ import 'package:pemint_admin_app/helper/ToastHelper.dart';
 import 'package:pemint_admin_app/model/api_response/user_me_response.dart';
 import 'package:pemint_admin_app/networking/SharedPref.dart';
 import 'package:pemint_admin_app/networking/repository/auth_repository.dart';
+import 'package:pemint_admin_app/view/homescreen/documents_underprocess.dart';
 import 'package:pemint_admin_app/view/homescreen/homescreen_contact.dart';
 import 'package:pemint_admin_app/view/login/bank_details.dart';
 import 'package:pemint_admin_app/view/login/initial_screen.dart';
@@ -73,7 +74,7 @@ class DocumentsController extends GetxController {
           if (userMeData.partner.partnerStatus == "ACTIVE") {
             Get.to(HomeScreenContact());
           } else {
-            //TODO WAITING SCREEN
+          Get.to(Documents_UnderProcess());
           }
         } else {
           ToastHelper()

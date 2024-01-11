@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pemint_admin_app/model/api_response/demands_against_partner_response.dart';
 import 'package:pemint_admin_app/model/api_response/transaction_detail_by_id_response.dart';
+import 'package:pemint_admin_app/networking/SharedPref.dart';
 import 'package:pemint_admin_app/networking/repository/user_repository.dart';
 import 'package:pemint_admin_app/utilities/app_colors.dart';
 import 'package:pemint_admin_app/view/homescreen/homescreen_contact.dart';
@@ -32,7 +33,7 @@ class _HomeScreenHistoryState extends State<HomeScreenHistory> {
     setState(() {});
     try {
       final allDemandsRes =
-          await _userRepository.getAllDemands(partnerId:"7jxo");
+          await _userRepository.getAllDemands(partnerId:SharedPref.partnerId);
       if (allDemandsRes.statusCode == 200) {
         demandsData = allDemandsRes.data
             .map<DemandsAgainstPartnerData>(

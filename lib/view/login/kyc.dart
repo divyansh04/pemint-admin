@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'dart:io';
 import 'package:pemint_admin_app/utilities/app_colors.dart';
 import 'package:pemint_admin_app/view/login/bank_details.dart';
 import 'package:pemint_admin_app/view/login/otp.dart';
@@ -419,7 +420,7 @@ class _KYCState extends State<KYC> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              const Text(
+                              Text(
                                 "Shop Reg,Trade Licence\nPartnership Deed,GST Reg",
                                 style: TextStyle(
                                   color: Color(0xFF292D32),
@@ -430,7 +431,9 @@ class _KYCState extends State<KYC> {
                               ),
                               GestureDetector(
                                   onTap: () {
-                                    // TODO Select other documents
+                                    controller.selectfile(
+                                        fileName: controller.otherDocumentsFile,
+                                        fileKey: 'GSTCertificate');
                                   },
                                   child: Container(
                                     height: 30,
@@ -439,7 +442,7 @@ class _KYCState extends State<KYC> {
                                       color: AppColor.contentColorBlue,
                                       borderRadius: BorderRadius.circular(8),
                                     ),
-                                    child: const Center(
+                                    child: Center(
                                       child: Text(
                                         'Upload',
                                         style: TextStyle(

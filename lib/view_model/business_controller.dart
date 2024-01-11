@@ -39,6 +39,11 @@ class BusinessController extends GetxController {
   final TextEditingController reAccountNumber = TextEditingController();
   final TextEditingController ifscCode = TextEditingController();
   final TextEditingController accountHolderName = TextEditingController();
+  final TextEditingController partnerState = TextEditingController();
+  final TextEditingController partnerCity = TextEditingController();
+  final TextEditingController partnerPincode = TextEditingController();
+
+
 
   final _authRepository = AuthRepository();
 
@@ -49,6 +54,12 @@ class BusinessController extends GetxController {
     'Sole Proprietorship',
     'Partnership',
     'Private Limited',
+  ];
+  List<String> partnerTypes = [
+    'MFI',
+    'School',
+    'Housing Society',
+    'Small Business',
   ];
 
   void addPartner() async {
@@ -62,18 +73,17 @@ class BusinessController extends GetxController {
       "PartnerType": partnerType.value,
       "DirectorName": directorName.text,
       "HeadOfficeAddress": businessAddress.text,
-      "PartnerState": "California",
-      "City": "San Francisco",
-      "Pincode": "94101",
-      "OfficialMailId": "info@abc.com",
-      "BusinessNameBankAccount": "ABC Company Pvt Ltd",
-      "AccountType": "Savings",
-      "BankAccountNumber": "1234567890",
-      "BankIFSCCode": "ABCD1234",
-      "CompanyIncorporationUIN": "UIN1234",
-      "GSTNumber": "GST1234",
-      "PANNumber": "PAN1234",
-      "PartnerLogo": "https://example.com/updated_cancelled_cheque",
+      "PartnerState": partnerState.text,
+      "City": partnerCity.text,
+      "Pincode": partnerPincode.text,
+      // "BusinessNameBankAccount": "ABC Company Pvt Ltd",
+      // "AccountType": "Savings",
+      // "BankAccountNumber": "1234567890",
+      // "BankIFSCCode": "ABCD1234",
+      // "CompanyIncorporationUIN": "UIN1234",
+      // "GSTNumber": "GST1234",
+      // "PANNumber": "PAN1234",
+      // "PartnerLogo": "https://example.com/updated_cancelled_cheque",
       "UserId": userId
     };
     print(parameter.toString());
@@ -103,19 +113,19 @@ class BusinessController extends GetxController {
       "PartnerType": partnerType.value,
       "DirectorName": directorName.text,
       "HeadOfficeAddress": businessAddress.text,
-      "PartnerState": "California",
-      "City": "San Francisco",
-      "Pincode": "94101",
-      "OfficialMailId": "info@abc.com",
+      "PartnerState": partnerState.text,
+      "City": partnerCity.text,
+      "Pincode":partnerPincode.text,
+      // "OfficialMailId": "info@abc.com",
       "BusinessNameBankAccount": accountHolderName.text,
-      "AccountType": "Savings",
+      // "AccountType": "Savings",
       "BankAccountNumber": accountNumber.text,
-      "BankIFSCCode": ifscCode,
+      "BankIFSCCode": ifscCode.text,
       "CancelledChequeUpload": cancelledChequeUrl,
-      "CompanyIncorporationUIN": "UIN1234",
-      "GSTNumber": "GST1234",
-      "PANNumber": "PAN1234",
-      "PartnerLogo": "https://example.com/updated_cancelled_cheque",
+      // "CompanyIncorporationUIN": "UIN1234",
+      // "GSTNumber": "GST1234",
+      // "PANNumber": "PAN1234",
+      // "PartnerLogo": "https://example.com/updated_cancelled_cheque",
     };
     print(parameter.toString());
     try {

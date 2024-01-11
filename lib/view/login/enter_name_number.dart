@@ -50,222 +50,263 @@ class _EnterNameNumberState extends State<EnterNameNumber> {
           backgroundColor: AppColor.primaryColor,
           body: Padding(
             padding: const EdgeInsets.only(left: 40, right: 40, top: 50),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  'Welcome to PeMint Business!',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 22,
-                    fontFamily: 'Cairo',
-                    fontWeight: FontWeight.w700,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Welcome to PeMint Business!',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 22,
+                      fontFamily: 'Cairo',
+                      fontWeight: FontWeight.w700,
 
-                  ),
-                ),
-
-                Text(
-                  'Please enter your details to Register.',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontFamily: 'Cairo',
-                    fontWeight: FontWeight.w400,
-                    height: 0,
-                  ),
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                Row(
-                  children: [
-                    Container(
-                      height: 5,
-                      width: Get.width / 4.5,
-                      decoration: BoxDecoration(
-                          color: AppColor.whiteColor,
-                          borderRadius: BorderRadius.circular(20)),
                     ),
+                  ),
 
-                  ],
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                const Text(
-                  'Your Name',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontFamily: 'Cairo',
-                    fontWeight: FontWeight.w600,
-                    height: 0,
+                  Text(
+                    'Please enter your details to Register.',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontFamily: 'Cairo',
+                      fontWeight: FontWeight.w400,
+                      height: 0,
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  width: Get.width,
-                  height: 51,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(15),
+                  const SizedBox(
+                    height: 15,
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: Center(
-                        child: TextFormField(
-                      controller: viewModel.nameController,
-                      style: const TextStyle(
-                        color: Color(0xFF292D32),
-                        fontSize: 20,
-                        fontFamily: 'Cairo',
-                        fontWeight: FontWeight.w600,
+                  Row(
+                    children: [
+                      Container(
+                        height: 5,
+                        width: Get.width / 4.5,
+                        decoration: BoxDecoration(
+                            color: AppColor.whiteColor,
+                            borderRadius: BorderRadius.circular(20)),
                       ),
-                      keyboardType: TextInputType.name,
-                      decoration:
-                          const InputDecoration(border: InputBorder.none),
-                    )),
+
+                    ],
                   ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                const Text(
-                  'Mobile Number',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontFamily: 'Cairo',
-                    fontWeight: FontWeight.w600,
-                    height: 0,
+                  const SizedBox(
+                    height: 30,
                   ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  width: Get.width,
-                  height: 51,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(15),
+                  const Text(
+                    'Your Name',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontFamily: 'Cairo',
+                      fontWeight: FontWeight.w600,
+                      height: 0,
+                    ),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: Center(
-                        child: TextFormField(
-                      controller: viewModel.numberController,
-                      style: const TextStyle(
-                        color: Color(0xFF292D32),
-                        fontSize: 20,
-                        fontFamily: 'Cairo',
-                        fontWeight: FontWeight.w600,
-                      ),
-                      keyboardType: TextInputType.number,
-                      decoration:
-                          const InputDecoration(border: InputBorder.none),
-                    )),
+                  const SizedBox(
+                    height: 10,
                   ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                const Text(
-                  'Password',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontFamily: 'Cairo',
-                    fontWeight: FontWeight.w600,
-                    height: 0,
+                  Container(
+                    width: Get.width,
+                    height: 51,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Center(
+                          child: TextFormField(
+                        controller: viewModel.nameController,
+                        style: const TextStyle(
+                          color: Color(0xFF292D32),
+                          fontSize: 20,
+                          fontFamily: 'Cairo',
+                          fontWeight: FontWeight.w600,
+                        ),
+                        keyboardType: TextInputType.name,
+                        decoration:
+                            const InputDecoration(border: InputBorder.none),
+                      )),
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  width: Get.width,
-                  height: 51,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(15),
+                  const SizedBox(
+                    height: 20,
+                  ), const Text(
+                    'Email',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontFamily: 'Cairo',
+                      fontWeight: FontWeight.w600,
+                      height: 0,
+                    ),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 20, right: 10),
-                    child: Center(
-                        child: TextFormField(
-                      controller: viewModel.passwordController,
-                      obscureText: true,
-                      style: const TextStyle(
-                        color: Color(0xFF292D32),
-                        fontSize: 20,
-                        fontFamily: 'Cairo',
-                        fontWeight: FontWeight.w600,
-                      ),
-                      keyboardType: TextInputType.name,
-                      decoration: const InputDecoration(
-                          suffixIcon: Icon(
-                            Icons.lock_outline_rounded,
-                            color: AppColor.primaryColor,
-                            size: 25,
-                          ),
-                          border: InputBorder.none),
-                    )),
+                  const SizedBox(
+                    height: 10,
                   ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                const Text(
-                  'Re enter Password',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontFamily: 'Cairo',
-                    fontWeight: FontWeight.w600,
-                    height: 0,
+                  Container(
+                    width: Get.width,
+                    height: 51,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Center(
+                          child: TextFormField(
+                            controller: viewModel.emailController,
+                            style: const TextStyle(
+                              color: Color(0xFF292D32),
+                              fontSize: 20,
+                              fontFamily: 'Cairo',
+                              fontWeight: FontWeight.w600,
+                            ),
+                            keyboardType: TextInputType.emailAddress,
+                            decoration:
+                            const InputDecoration(border: InputBorder.none,),
+                          )),
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  width: Get.width,
-                  height: 51,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(15),
+                  const SizedBox(
+                    height: 20,
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 20, right: 10),
-                    child: Center(
-                        child: TextFormField(
-                      controller: viewModel.password2Controller,
-                      obscureText: true,
-                      style: const TextStyle(
-                        color: Color(0xFF292D32),
-                        fontSize: 20,
-                        fontFamily: 'Cairo',
-                        fontWeight: FontWeight.w600,
-                      ),
-                      keyboardType: TextInputType.name,
-                      decoration: const InputDecoration(
-                          suffixIcon: Icon(
-                            Icons.lock_outline_rounded,
-                            color: AppColor.primaryColor,
-                            size: 25,
-                          ),
-                          border: InputBorder.none),
-                    )),
+                  const Text(
+                    'Mobile Number',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontFamily: 'Cairo',
+                      fontWeight: FontWeight.w600,
+                      height: 0,
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-              ],
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    width: Get.width,
+                    height: 51,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Center(
+                          child: TextFormField(
+                        controller: viewModel.numberController,
+                        style: const TextStyle(
+                          color: Color(0xFF292D32),
+                          fontSize: 20,
+                          fontFamily: 'Cairo',
+                          fontWeight: FontWeight.w600,
+                        ),
+                        keyboardType: TextInputType.number,
+                        decoration:
+                            const InputDecoration(border: InputBorder.none),
+                      )),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const Text(
+                    'Password',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontFamily: 'Cairo',
+                      fontWeight: FontWeight.w600,
+                      height: 0,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    width: Get.width,
+                    height: 51,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 20, right: 10),
+                      child: Center(
+                          child: TextFormField(
+                        controller: viewModel.passwordController,
+                        obscureText: true,
+                        style: const TextStyle(
+                          color: Color(0xFF292D32),
+                          fontSize: 20,
+                          fontFamily: 'Cairo',
+                          fontWeight: FontWeight.w600,
+                        ),
+                        keyboardType: TextInputType.name,
+                        decoration: const InputDecoration(
+                            suffixIcon: Icon(
+                              Icons.lock_outline_rounded,
+                              color: AppColor.primaryColor,
+                              size: 25,
+                            ),
+                            border: InputBorder.none),
+                      )),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const Text(
+                    'Re enter Password',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontFamily: 'Cairo',
+                      fontWeight: FontWeight.w600,
+                      height: 0,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    width: Get.width,
+                    height: 51,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 20, right: 10),
+                      child: Center(
+                          child: TextFormField(
+                        controller: viewModel.password2Controller,
+                        obscureText: true,
+                        style: const TextStyle(
+                          color: Color(0xFF292D32),
+                          fontSize: 20,
+                          fontFamily: 'Cairo',
+                          fontWeight: FontWeight.w600,
+                        ),
+                        keyboardType: TextInputType.name,
+                        decoration: const InputDecoration(
+                            suffixIcon: Icon(
+                              Icons.lock_outline_rounded,
+                              color: AppColor.primaryColor,
+                              size: 25,
+                            ),
+                            border: InputBorder.none),
+                      )),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                ],
+              ),
             ),
           ),
         ),

@@ -335,7 +335,7 @@ class _BusinessTypeState extends State<BusinessType> {
                                                   MainAxisAlignment.start,
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
-                                              children: viewModel.businessTypes
+                                              children: viewModel.partnerTypes
                                                   .map(
                                                     (e) => Padding(
                                                       padding:
@@ -474,31 +474,152 @@ class _BusinessTypeState extends State<BusinessType> {
                   const SizedBox(
                     height: 10,
                   ),
-                  Flexible(
-                    child: Container(
-                      width: Get.width,
-                      height: 151,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 20),
-                        child: Center(
-                            child: TextFormField(
-                          controller: viewModel.businessAddress,
-                          maxLines: 4,
-                          style: const TextStyle(
-                            color: Color(0xFF292D32),
-                            fontSize: 20,
-                            fontFamily: 'Cairo',
-                            fontWeight: FontWeight.w600,
-                          ),
-                          keyboardType: TextInputType.name,
-                          decoration:
-                              const InputDecoration(border: InputBorder.none),
-                        )),
-                      ),
+                  Container(
+                    width: Get.width,
+                    height: 51,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Center(
+                          child: TextFormField(
+                        controller: viewModel.businessAddress,
+
+                        style: const TextStyle(
+                          color: Color(0xFF292D32),
+                          fontSize: 20,
+                          fontFamily: 'Cairo',
+                          fontWeight: FontWeight.w600,
+                        ),
+                        keyboardType: TextInputType.name,
+                        decoration:
+                            const InputDecoration(border: InputBorder.none),
+                      )),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const Text(
+                    'State',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontFamily: 'Cairo',
+                      fontWeight: FontWeight.w600,
+                      height: 0,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    width: Get.width,
+                    height: 51,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Center(
+                          child: TextFormField(
+                            controller: viewModel.partnerState,
+
+                            style: const TextStyle(
+                              color: Color(0xFF292D32),
+                              fontSize: 20,
+                              fontFamily: 'Cairo',
+                              fontWeight: FontWeight.w600,
+                            ),
+                            keyboardType: TextInputType.name,
+                            decoration:
+                            const InputDecoration(border: InputBorder.none),
+                          )),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const Text(
+                    'City',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontFamily: 'Cairo',
+                      fontWeight: FontWeight.w600,
+                      height: 0,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    width: Get.width,
+                    height: 51,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Center(
+                          child: TextFormField(
+                            controller: viewModel.partnerCity,
+
+                            style: const TextStyle(
+                              color: Color(0xFF292D32),
+                              fontSize: 20,
+                              fontFamily: 'Cairo',
+                              fontWeight: FontWeight.w600,
+                            ),
+                            keyboardType: TextInputType.name,
+                            decoration:
+                            const InputDecoration(border: InputBorder.none),
+                          )),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const Text(
+                    'PinCode',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontFamily: 'Cairo',
+                      fontWeight: FontWeight.w600,
+                      height: 0,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    width: Get.width,
+                    height: 51,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Center(
+                          child: TextFormField(
+                            controller: viewModel.partnerPincode,
+
+                            style: const TextStyle(
+                              color: Color(0xFF292D32),
+                              fontSize: 20,
+                              fontFamily: 'Cairo',
+                              fontWeight: FontWeight.w600,
+                            ),
+                            keyboardType: TextInputType.number,
+                            decoration:
+                            const InputDecoration(border: InputBorder.none),
+                          )),
                     ),
                   ),
                   const SizedBox(

@@ -26,7 +26,7 @@ class _Documents_UnderProcessState extends State<Documents_UnderProcess> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
+
       return Stack(
         children: [
           SafeArea(
@@ -261,6 +261,6 @@ class _Documents_UnderProcessState extends State<Documents_UnderProcess> {
           )),
         ],
       );
-    });
+
   }
 }
