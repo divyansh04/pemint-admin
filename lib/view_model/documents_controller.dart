@@ -48,15 +48,15 @@ class DocumentsController extends GetxController {
     } else {
       parameter[key] = value;
     }
-  }
+  print(parameter.toString());}
 
   Map<String, File> parameter = {};
   void uploadDocuments() async {
-    if (panCardFile == null || aadharCardFrontFile == null) {
-      print('Please select Pan Card and Aadhar Card Front files.');
-      return;
-    }
-    _authRepository.uploadDocuments(parameter: parameter);
+    // if (panCardFile == null || aadharCardFrontFile == null) {
+    //   print('Please select Pan Card and Aadhar Card Front files.');
+    //   return;
+    // }
+   await _authRepository.uploadDocuments(parameter: parameter);
 
     Get.to(const InitialScreen());
   }
