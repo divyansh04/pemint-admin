@@ -79,4 +79,8 @@ class GroupController extends GetxController {
     searchedContacts.value = _filterContacts(contactsList, query);
     update();
   }
+
+  createGroup(){
+    
+  }
 }

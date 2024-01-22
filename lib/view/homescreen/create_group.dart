@@ -66,16 +66,21 @@ class _CreateGroupState extends State<CreateGroup> {
                         const SizedBox(
                           width: 8,
                         ),
-                        Container(
-                          width: 38,
-                          height: 38,
-                          decoration: BoxDecoration(
-                            color: AppColor.primaryColor,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: const Icon(
-                            Icons.check,
-                            color: AppColor.whiteColor,
+                        GestureDetector(
+                          onTap: () {
+                            controller.createGroup();
+                          },
+                          child: Container(
+                            width: 38,
+                            height: 38,
+                            decoration: BoxDecoration(
+                              color: AppColor.primaryColor,
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            child: const Icon(
+                              Icons.check,
+                              color: AppColor.whiteColor,
+                            ),
                           ),
                         ),
                       ],
@@ -201,7 +206,7 @@ class ContactTile extends StatelessWidget {
 
   final Contact contact;
 
-  final ContactsController controller = Get.put(ContactsController());
+  final controller = Get.put(GroupController());
 
   @override
   Widget build(BuildContext context) {
