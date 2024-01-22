@@ -98,7 +98,7 @@ class MobRegController extends GetxController {
         await SharedPref().setIdToken(loginData.authenticationResult.idToken);
         await SharedPref()
             .setRefreshToken(loginData.authenticationResult.refreshToken);
-        // await SharedPref().saveLogin(true);
+        await SharedPref().saveLogin(true);
         await getUserMeResponse();
       }
     } catch (e) {

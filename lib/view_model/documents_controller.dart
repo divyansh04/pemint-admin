@@ -48,7 +48,8 @@ class DocumentsController extends GetxController {
     } else {
       parameter[key] = value;
     }
-  print(parameter.toString());}
+    print(parameter.toString());
+  }
 
   Map<String, File> parameter = {};
   void uploadDocuments() async {
@@ -56,9 +57,14 @@ class DocumentsController extends GetxController {
     //   print('Please select Pan Card and Aadhar Card Front files.');
     //   return;
     // }
-   await _authRepository.uploadDocuments(parameter: parameter);
+    final response =
+        await _authRepository.uploadDocuments(parameter: parameter);
 
-    Get.to(const InitialScreen());
+    if (response.statusCode == 200) {
+      Get.to(const InitialScreen());
+    } else {
+      ToastHelper().showErrorToast(message: "Something Went Wrong. Try again.");
+    }
   }
 
   Future<void> getUserMeResponse() async {
@@ -74,7 +80,7 @@ class DocumentsController extends GetxController {
           if (userMeData.partner.partnerStatus == "ACTIVE") {
             Get.to(HomeScreenContact());
           } else {
-          Get.to(Documents_UnderProcess());
+            Get.to(Documents_UnderProcess());
           }
         } else {
           ToastHelper()
