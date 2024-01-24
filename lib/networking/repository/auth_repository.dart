@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:pemint_admin_app/model/api_response/BaseResponse.dart';
 import 'package:pemint_admin_app/networking/ApiProvider.dart';
 import 'package:pemint_admin_app/networking/NetworkConstant.dart';
+import 'package:pemint_admin_app/networking/SharedPref.dart';
 
 class AuthRepository {
   final _apiService = ApiProvider();
@@ -20,8 +21,8 @@ class AuthRepository {
   }
 
   Future<BaseResponses> updatePartner({required Map parameter}) async {
-    dynamic response = await _apiService.postAfterAuthWithIdToken(
-        parameter, NetworkConstant.END_POINT_UPDATE_PARTNER);
+    dynamic response = await _apiService.postAfterAuthWithIdToken(parameter,
+        "${NetworkConstant.END_POINT_UPDATE_PARTNER}/${await SharedPref().getPartnerId() ?? "-"}");
     return response;
   }
 

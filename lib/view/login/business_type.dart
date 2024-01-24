@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pemint_admin_app/utilities/app_colors.dart';
+import 'package:pemint_admin_app/view/login/bank_details.dart';
 import 'package:pemint_admin_app/view/login/kyc.dart';
 import 'package:pemint_admin_app/view/login/otp.dart';
 import 'package:pemint_admin_app/view_model/business_controller.dart';
@@ -24,7 +25,8 @@ class _BusinessTypeState extends State<BusinessType> {
           padding: const EdgeInsets.only(bottom: 50, left: 30, right: 30),
           child: GestureDetector(
             onTap: () {
-              viewModel.addPartner();
+              Get.off(BankDetails());
+              // viewModel.addPartner();
             },
             child: Container(
               child: const Center(
@@ -486,7 +488,6 @@ class _BusinessTypeState extends State<BusinessType> {
                       child: Center(
                           child: TextFormField(
                         controller: viewModel.businessAddress,
-
                         style: const TextStyle(
                           color: Color(0xFF292D32),
                           fontSize: 20,
@@ -526,18 +527,17 @@ class _BusinessTypeState extends State<BusinessType> {
                       padding: const EdgeInsets.only(left: 20),
                       child: Center(
                           child: TextFormField(
-                            controller: viewModel.partnerState,
-
-                            style: const TextStyle(
-                              color: Color(0xFF292D32),
-                              fontSize: 20,
-                              fontFamily: 'Cairo',
-                              fontWeight: FontWeight.w600,
-                            ),
-                            keyboardType: TextInputType.name,
-                            decoration:
+                        controller: viewModel.partnerState,
+                        style: const TextStyle(
+                          color: Color(0xFF292D32),
+                          fontSize: 20,
+                          fontFamily: 'Cairo',
+                          fontWeight: FontWeight.w600,
+                        ),
+                        keyboardType: TextInputType.name,
+                        decoration:
                             const InputDecoration(border: InputBorder.none),
-                          )),
+                      )),
                     ),
                   ),
                   const SizedBox(
@@ -567,18 +567,17 @@ class _BusinessTypeState extends State<BusinessType> {
                       padding: const EdgeInsets.only(left: 20),
                       child: Center(
                           child: TextFormField(
-                            controller: viewModel.partnerCity,
-
-                            style: const TextStyle(
-                              color: Color(0xFF292D32),
-                              fontSize: 20,
-                              fontFamily: 'Cairo',
-                              fontWeight: FontWeight.w600,
-                            ),
-                            keyboardType: TextInputType.name,
-                            decoration:
+                        controller: viewModel.partnerCity,
+                        style: const TextStyle(
+                          color: Color(0xFF292D32),
+                          fontSize: 20,
+                          fontFamily: 'Cairo',
+                          fontWeight: FontWeight.w600,
+                        ),
+                        keyboardType: TextInputType.name,
+                        decoration:
                             const InputDecoration(border: InputBorder.none),
-                          )),
+                      )),
                     ),
                   ),
                   const SizedBox(
@@ -608,18 +607,17 @@ class _BusinessTypeState extends State<BusinessType> {
                       padding: const EdgeInsets.only(left: 20),
                       child: Center(
                           child: TextFormField(
-                            controller: viewModel.partnerPincode,
-
-                            style: const TextStyle(
-                              color: Color(0xFF292D32),
-                              fontSize: 20,
-                              fontFamily: 'Cairo',
-                              fontWeight: FontWeight.w600,
-                            ),
-                            keyboardType: TextInputType.number,
-                            decoration:
+                        controller: viewModel.partnerPincode,
+                        style: const TextStyle(
+                          color: Color(0xFF292D32),
+                          fontSize: 20,
+                          fontFamily: 'Cairo',
+                          fontWeight: FontWeight.w600,
+                        ),
+                        keyboardType: TextInputType.number,
+                        decoration:
                             const InputDecoration(border: InputBorder.none),
-                          )),
+                      )),
                     ),
                   ),
                   const SizedBox(

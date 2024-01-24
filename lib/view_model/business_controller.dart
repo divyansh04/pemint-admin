@@ -43,8 +43,6 @@ class BusinessController extends GetxController {
   final TextEditingController partnerCity = TextEditingController();
   final TextEditingController partnerPincode = TextEditingController();
 
-
-
   final _authRepository = AuthRepository();
 
   RxBool isLoading = false.obs;
@@ -92,7 +90,24 @@ class BusinessController extends GetxController {
       if (res.statusCode == 200) {
         final addPartnerResponse = AddPartnerData.fromJson(res.data);
         await SharedPref().savePartnerId(addPartnerResponse.partnerId);
-        Get.off(BankDetails());
+        // Get.off(BankDetails());
+        switch (businessType.value) {
+          case 'Individual':
+            Get.off(const KYC());
+            break;
+          case 'Sole Proprietorship':
+            Get.off(const Sole_Prop());
+            break;
+          case 'Partnership':
+            Get.off(const Partnership_PVT());
+            break;
+          case 'Private Limited':
+            Get.off(const Partnership_PVT());
+            break;
+          default:
+            Get.off(const KYC());
+            break;
+        }
       }
     } catch (e) {
       print(e.toString());
@@ -115,7 +130,7 @@ class BusinessController extends GetxController {
       "HeadOfficeAddress": businessAddress.text,
       "PartnerState": partnerState.text,
       "City": partnerCity.text,
-      "Pincode":partnerPincode.text,
+      "Pincode": partnerPincode.text,
       // "OfficialMailId": "info@abc.com",
       "BusinessNameBankAccount": accountHolderName.text,
       // "AccountType": "Savings",
@@ -129,7 +144,7 @@ class BusinessController extends GetxController {
     };
     print(parameter.toString());
     try {
-      var res = await _authRepository.addPartner(parameter: parameter);
+      var res = await _authRepository.updatePartner(parameter: parameter);
       if (res.statusCode == 200) {
         final addPartnerResponse = AddPartnerData.fromJson(res.data);
         await SharedPref().savePartnerId(addPartnerResponse.partnerId);

@@ -12,7 +12,7 @@ class BankDetails extends StatefulWidget {
 }
 
 class _BankDetailsState extends State<BankDetails> {
-  final BusinessController viewModel = Get.put(BusinessController());
+  final BusinessController viewModel = Get.find();
   @override
   Widget build(BuildContext context) {
     return Obx(() {
@@ -25,7 +25,8 @@ class _BankDetailsState extends State<BankDetails> {
               padding: const EdgeInsets.only(bottom: 50, left: 30, right: 30),
               child: GestureDetector(
                 onTap: () {
-                  viewModel.updatePartner();
+                  // viewModel.updatePartner();
+                  viewModel.addPartner();
                 },
                 child: Container(
                   height: 51,
