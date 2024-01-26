@@ -21,6 +21,9 @@ class DocumentsController extends GetxController {
   File? cinNumber;
   File? gstNumber;
   File? otherDocumentsFile;
+  File? cancelledCheque;
+
+
 
   RxBool isLoading = false.obs;
 
@@ -80,6 +83,7 @@ class DocumentsController extends GetxController {
           if (userMeData.partner.partnerStatus == "ACTIVE") {
             Get.to(HomeScreenContact());
           } else {
+            print(userMeData.partner.partnerStatus);
             Get.to(Documents_UnderProcess());
           }
         } else {

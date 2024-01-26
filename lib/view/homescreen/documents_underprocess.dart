@@ -241,7 +241,7 @@ class _Documents_UnderProcessState extends State<Documents_UnderProcess> {
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: Color(0xFF292D32),
-                                  fontSize: 16,
+                                  fontSize: 14,
                                   fontFamily: 'Cairo',
                                   fontWeight: FontWeight.w600,
                                   height: 0,

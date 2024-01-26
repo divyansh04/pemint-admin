@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:pemint_admin_app/view/homescreen/documents_underprocess.dart';
 import 'package:pemint_admin_app/view/login/PvtLtd_Partnership.dart';
 import 'package:pemint_admin_app/view/login/bank_details.dart';
+import 'package:pemint_admin_app/view/login/business_type.dart';
 import 'package:pemint_admin_app/view/login/initial_screen.dart';
 import 'package:pemint_admin_app/view/login/kyc.dart';
 import 'package:pemint_admin_app/view/login/sole_prop.dart';
@@ -81,6 +82,9 @@ class _MyAppState extends State<MyApp> {
           // is not restarted.
           primarySwatch: Colors.blue,
         ),
-        home: isLogin ? HomeScreenContact() : InitialScreen());
+        home:
+        // isLogin ?
+        // HomeScreenContact() :
+      InitialScreen());
   }
 }

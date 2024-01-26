@@ -456,6 +456,74 @@ class _Sole_PropState extends State<Sole_Prop> {
                             ],
                           )),
                     ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    const Text(
+                      'Cancelled Cheque',
+                      style: TextStyle(
+                        color: Color(0xFFF6F5FA),
+                        fontSize: 20,
+                        fontFamily: 'Cairo',
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      width: Get.width,
+                      height: 51,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Padding(
+                          padding: const EdgeInsets.only(left: 20, right: 20),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "-",
+                                style: TextStyle(
+                                  color: Color(0xFF292D32),
+                                  fontSize: 16,
+                                  fontFamily: 'Cairo',
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              GestureDetector(
+                                  onTap: () {
+                                    controller.selectfile(
+                                        fileName: controller.cancelledCheque,
+                                        fileKey: 'CancelledCheque');
+                                  },
+                                  child: Container(
+                                    height: 30,
+                                    width: 80,
+                                    decoration: BoxDecoration(
+                                      color: AppColor.contentColorBlue,
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        'Upload',
+                                        style: TextStyle(
+                                          color: Color(0xFF292D32),
+                                          fontSize: 16,
+                                          fontFamily: 'Cairo',
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                      ),
+                                    ),
+                                  ))
+                            ],
+                          )),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
                   ],
                 ),
               ),
