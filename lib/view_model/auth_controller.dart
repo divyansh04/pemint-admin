@@ -169,7 +169,7 @@ class MobRegController extends GetxController {
         await SharedPref().saveUserId(userMeData.user.userId);
         await SharedPref().savePartnerId(userMeData.partner.partnerId);
         if (userMeData.partner.partnerId.isNotEmpty) {
-          if (userMeData.partner.partnerStatus == "ACTIVE") {
+          if (userMeData.partner.partnerStatus == "Active") {
             Get.to(HomeScreenContact());
           } else {
             Get.to(Documents_UnderProcess());
