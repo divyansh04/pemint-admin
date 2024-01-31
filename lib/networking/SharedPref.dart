@@ -112,7 +112,9 @@ class SharedPref {
 
   Future<String?> getPartnerId() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    print(sharedPreferences.getString('Partnerid').toString());
     return sharedPreferences.getString('Partnerid');
+
   }
 
   Future<bool?> isLogin() async {

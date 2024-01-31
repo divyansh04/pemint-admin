@@ -12,9 +12,9 @@ class UserRepository {
     return response;
   }
 
-  Future<BaseResponses> getAllDemands({required String partnerId}) async {
-    dynamic response = await _apiService.getAfterAuthWihIdToken(
-        "${NetworkConstant.END_POINT_GET_ALL_DEMAND}?partnerId=$partnerId");
+  Future<BaseResponses> getAllDemands({required Map parameter}) async {
+    dynamic response = await _apiService.postAfterAuthWithIdToken(parameter,
+        NetworkConstant.END_POINT_GET_ALL_DEMAND);
     return response;
   }
 

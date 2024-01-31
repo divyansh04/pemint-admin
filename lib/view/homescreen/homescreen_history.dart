@@ -10,6 +10,7 @@ import 'package:pemint_admin_app/view/homescreen/homescreen_dashboard.dart';
 import 'package:pemint_admin_app/view/homescreen/homescreen_profile.dart';
 import 'package:pemint_admin_app/view/login/business_type.dart';
 import 'package:pemint_admin_app/view_model/contact_controller.dart';
+import 'package:pemint_admin_app/view_model/history_controller.dart';
 
 class HomeScreenHistory extends StatefulWidget {
   const HomeScreenHistory({Key? key}) : super(key: key);
@@ -19,33 +20,36 @@ class HomeScreenHistory extends StatefulWidget {
 }
 
 class _HomeScreenHistoryState extends State<HomeScreenHistory> {
+  final HistoryController controller = Get.put(HistoryController());
   @override
   void initState() {
-    getAllDemands();
+   HistoryController();
     super.initState();
   }
 
   bool isLoading = true;
   final _userRepository = UserRepository();
   List<DemandsAgainstPartnerData> demandsData = [];
-  Future<void> getAllDemands() async {
-    isLoading = true;
-    setState(() {});
-    try {
-      final allDemandsRes = await _userRepository.getAllDemands(
-          partnerId: await SharedPref().getPartnerId() ?? "-");
-      if (allDemandsRes.statusCode == 200) {
-        demandsData = allDemandsRes.data
-            .map<DemandsAgainstPartnerData>(
-                (json) => DemandsAgainstPartnerData.fromJson(json))
-            .toList();
-      }
-    } on Exception catch (e) {
-      print(e.toString());
-    }
-    isLoading = false;
-    setState(() {});
-  }
+  // Future<void> getAllDemands() async {
+  //   isLoading = true;
+  //   setState(() {});
+  //
+  //   try {
+  //     final allDemandsRes = await _userRepository.getAllDemands(
+  //         partnerId: await SharedPref().getPartnerId() ?? "-");
+  //     if (allDemandsRes.statusCode == 200) {
+  //       demandsData = allDemandsRes.data
+  //           .map<DemandsAgainstPartnerData>(
+  //               (json) => DemandsAgainstPartnerData.fromJson(json))
+  //           .toList();
+  //     }
+  //   } on Exception catch (e) {
+  //
+  //     print(e.toString());
+  //   }
+  //   isLoading = false;
+  //   setState(() {});
+  // }
 
   TransactionDetailData? transactionDetailData;
   Future<void> getTransactionDetail(String transactionId) async {

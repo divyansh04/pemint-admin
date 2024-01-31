@@ -16,6 +16,7 @@ class ProfileController extends GetxController {
       var res = await _userRepository.getProfileDetails(
           partnerId: await SharedPref().getPartnerId() ?? "-");
       if (res.statusCode == 200) {
+        // print(SharedPref().getPartnerId().toString());
         data.value = ProfileDetailsData.fromJson(res.data);
         print(res);
       }

@@ -5,28 +5,28 @@ import 'package:intl/intl.dart';
 import 'package:pemint_admin_app/helper/ToastHelper.dart';
 import 'package:pemint_admin_app/model/api_response/create_demand_response.dart';
 import 'package:pemint_admin_app/model/api_response/dashboard_data_response.dart';
+import 'package:pemint_admin_app/model/api_response/demands_against_partner_response.dart';
 import 'package:pemint_admin_app/networking/repository/user_repository.dart';
 import 'package:pemint_admin_app/view/homescreen/create_group.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '../networking/SharedPref.dart';
 
-class DashboardController extends GetxController {
+class HistoryController extends GetxController {
   final isLoading = false.obs;
   final _userRepository = UserRepository();
   final data = Rx<DashboardData?>(null);
-  void getDashboardData() async {
+  void getAllDemandsData() async {
     isLoading.value = true;
     update();
     Map parameter = {
-    "partnerId": SharedPref.partnerId,
-      "fromDate": "2023-12-01",
-      "toDate": "2023-12-18",
+      "partnerId": SharedPref.partnerId,
+
     };
     try {
-      var res = await _userRepository.getDashboardData(parameter: parameter);
+      var res = await _userRepository.getAllDemands(parameter: parameter);
       if (res.statusCode == 200) {
-        data.value = DashboardData.fromJson(res.data);
+        data.value = DemandsAgainstPartnerData().fromJson(res.data);
         print(res);
       }
     } catch (e) {

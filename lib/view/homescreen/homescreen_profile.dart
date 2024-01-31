@@ -299,22 +299,38 @@ class _HomeScreenProfileState extends State<HomeScreenProfile> {
                                 SizedBox(
                                   height: 10,
                                 ),
-                                Text(
-                                  controller.data.value?.directorName.toString() ?? '-',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    color: Color(0xFF292D32),
-                                    fontSize: 16,
-                                    fontFamily: 'Cairo',
-                                    fontWeight: FontWeight.w600,
-                                    height: 0,
+                                GestureDetector(
+                                  onTap: () {
+                                    print(controller.data.value?.businessType
+                                        .toString());
+                                    print(controller.data.value?.directorName
+                                        .toString());
+                                    print(controller.data.value?.partnerType
+                                        .toString());
+                                    print(controller.data.value?.directorName
+                                        .toString());
+                                    print(controller.data.value?.businessName
+                                        .toString());
+                                  },
+                                  child: Text(
+                                    controller.data.value?.directorName
+                                            .toString() ??
+                                        '-',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Color(0xFF292D32),
+                                      fontSize: 16,
+                                      fontFamily: 'Cairo',
+                                      fontWeight: FontWeight.w600,
+                                      height: 0,
+                                    ),
                                   ),
                                 ),
                                 SizedBox(
                                   height: 10,
                                 ),
                                 Text(
-                                  'Mobile Number*',
+                                  'Mobile Number',
                                   style: TextStyle(
                                     color: Color(0xFF292D32),
                                     fontSize: 16,
@@ -387,7 +403,9 @@ class _HomeScreenProfileState extends State<HomeScreenProfile> {
                                   height: 10,
                                 ),
                                 Text(
-                                  controller.data.value?.businessType.toString() ?? '-',
+                                  controller.data.value?.businessType
+                                          .toString() ??
+                                      '-',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     color: Color(0xFF292D32),
@@ -414,7 +432,9 @@ class _HomeScreenProfileState extends State<HomeScreenProfile> {
                                   height: 10,
                                 ),
                                 Text(
-                                  controller.data.value?.businessName.toString() ?? '-',
+                                  controller.data.value?.businessName
+                                          .toString() ??
+                                      '-',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     color: Color(0xFF292D32),
@@ -428,7 +448,7 @@ class _HomeScreenProfileState extends State<HomeScreenProfile> {
                                   height: 10,
                                 ),
                                 Text(
-                                  'Business Catagory*',
+                                  'Business Catagory',
                                   style: TextStyle(
                                     color: Color(0xFF292D32),
                                     fontSize: 16,
@@ -441,7 +461,9 @@ class _HomeScreenProfileState extends State<HomeScreenProfile> {
                                   height: 10,
                                 ),
                                 Text(
-                                  controller.data.value?.partnerType.toString() ?? '-',
+                                  controller.data.value?.partnerType
+                                          .toString() ??
+                                      '-',
                                   style: TextStyle(
                                     color: Color(0xFF292D32),
                                     fontSize: 16,
@@ -467,7 +489,8 @@ class _HomeScreenProfileState extends State<HomeScreenProfile> {
                                   height: 10,
                                 ),
                                 Text(
-                                  controller.data.value?.headOfficeAddress.toString() ??
+                                  controller.data.value?.headOfficeAddress
+                                          .toString() ??
                                       '-',
                                   style: TextStyle(
                                     color: Color(0xFF292D32),
