@@ -15,7 +15,7 @@ import '../networking/SharedPref.dart';
 class HistoryController extends GetxController {
   final isLoading = false.obs;
   final _userRepository = UserRepository();
-  final data = Rx<DashboardData?>(null);
+  final data = Rx<DemandsAgainstPartnerData?>(null);
   void getAllDemandsData() async {
     isLoading.value = true;
     update();
@@ -26,7 +26,7 @@ class HistoryController extends GetxController {
     try {
       var res = await _userRepository.getAllDemands(parameter: parameter);
       if (res.statusCode == 200) {
-        data.value = DemandsAgainstPartnerData().fromJson(res.data);
+        data.value = DemandsAgainstPartnerData.fromJson(res.data) ;
         print(res);
       }
     } catch (e) {

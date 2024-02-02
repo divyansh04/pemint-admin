@@ -53,7 +53,7 @@ class _HomeScreenHistoryState extends State<HomeScreenHistory> {
 
   TransactionDetailData? transactionDetailData;
   Future<void> getTransactionDetail(String transactionId) async {
-    isLoading = true;
+    // isLoading = true;
     setState(() {});
     try {
       final allDemandsRes = await _userRepository.getTransactionDetailById(
@@ -65,12 +65,13 @@ class _HomeScreenHistoryState extends State<HomeScreenHistory> {
     } on Exception catch (e) {
       print(e.toString());
     }
-    isLoading = false;
+    // isLoading = false;
     setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
+
     return Stack(
       children: [
         SafeArea(
@@ -468,7 +469,8 @@ class _HomeScreenHistoryState extends State<HomeScreenHistory> {
           ),
         )),
         isLoading == true
-            ? Container(
+            ?
+    Container(
                 color: Colors.black.withOpacity(0.5),
                 child: Center(
                   child: CircularProgressIndicator.adaptive(

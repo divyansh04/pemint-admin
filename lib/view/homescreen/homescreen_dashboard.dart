@@ -668,7 +668,8 @@ class _HomeScreenDashboardState extends State<HomeScreenDashboard> {
               : Container()
         ],
       );
-    });
+    }
+    );
   }
 }
 
