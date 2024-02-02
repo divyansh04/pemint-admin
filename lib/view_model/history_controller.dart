@@ -1,14 +1,8 @@
-import 'package:contacts_service/contacts_service.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:pemint_admin_app/helper/ToastHelper.dart';
-import 'package:pemint_admin_app/model/api_response/create_demand_response.dart';
-import 'package:pemint_admin_app/model/api_response/dashboard_data_response.dart';
 import 'package:pemint_admin_app/model/api_response/demands_against_partner_response.dart';
+import 'package:pemint_admin_app/model/api_response/transaction_detail_by_id_response.dart';
 import 'package:pemint_admin_app/networking/repository/user_repository.dart';
-import 'package:pemint_admin_app/view/homescreen/create_group.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 import '../networking/SharedPref.dart';
 
@@ -21,12 +15,11 @@ class HistoryController extends GetxController {
     update();
     Map parameter = {
       "partnerId": SharedPref.partnerId,
-
     };
     try {
       var res = await _userRepository.getAllDemands(parameter: parameter);
       if (res.statusCode == 200) {
-        data.value = DemandsAgainstPartnerData.fromJson(res.data) ;
+        data.value = DemandsAgainstPartnerData.fromJson(res.data);
         print(res);
       }
     } catch (e) {
@@ -37,5 +30,20 @@ class HistoryController extends GetxController {
     isLoading.value = false;
     update();
   }
-}
 
+  TransactionDetailData? transactionDetailData;
+  Future<void> getTransactionDetail(String transactionId) async {
+    isLoading.value = true;
+    try {
+      final allDemandsRes = await _userRepository.getTransactionDetailById(
+          transactionId: transactionId);
+      if (allDemandsRes.statusCode == 200) {
+        transactionDetailData =
+            TransactionDetailData.fromJson(allDemandsRes.data);
+      }
+    } on Exception catch (e) {
+      print(e.toString());
+    }
+    isLoading.value = false;
+  }
+}
