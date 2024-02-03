@@ -30,7 +30,8 @@ class ContactsController extends GetxController {
     update();
 
     Map parameter = {
-      "partnerId": await SharedPref().getPartnerId(),
+
+      "PartnerId": await SharedPref().getPartnerId(),
       "CustomerMobileNo": contact.phones?.first.value ?? "-",
       "CustomerName": contact.displayName,
       "Amount":
@@ -62,7 +63,7 @@ class ContactsController extends GetxController {
         Share.share(data.tinyUrl);
       }
     } catch (e) {
-      print(e.toString());
+      print(e.toString());print(contact.phones?.first.value.toString());
       ToastHelper().showErrorToast(message: "Something Went Wrong. Try again.");
     }
 

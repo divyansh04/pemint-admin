@@ -324,7 +324,7 @@ class _HomeScreenHistoryState extends State<HomeScreenHistory> {
                                     final demand = demandsData[i];
                                     final isSuccess = demand.paymentStatus
                                         .toLowerCase()
-                                        .contains('success');
+                                        .contains('Success');
                                     return GestureDetector(
                                       onTap: () async {
                                         if (isSuccess) {

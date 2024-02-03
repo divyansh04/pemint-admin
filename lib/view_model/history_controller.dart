@@ -7,6 +7,7 @@ import 'package:pemint_admin_app/networking/repository/user_repository.dart';
 import '../networking/SharedPref.dart';
 
 class HistoryController extends GetxController {
+  String abc=  SharedPref().getPartnerId().toString();
   final isLoading = false.obs;
   final _userRepository = UserRepository();
   final data = Rx<DemandsAgainstPartnerData?>(null);
@@ -14,7 +15,9 @@ class HistoryController extends GetxController {
     isLoading.value = true;
     update();
     Map parameter = {
-      "partnerId": SharedPref.partnerId,
+      "partnerId": await SharedPref().getPartnerId(),
+      "offset":0,
+
     };
     try {
       var res = await _userRepository.getAllDemands(parameter: parameter);

@@ -19,9 +19,9 @@ class DashboardController extends GetxController {
     isLoading.value = true;
     update();
     Map parameter = {
-    "partnerId": SharedPref.partnerId,
+      "partnerId": await SharedPref().getPartnerId(),
       "fromDate": "2023-12-01",
-      "toDate": "2023-12-18",
+      "toDate": "2024-02-03",
     };
     try {
       var res = await _userRepository.getDashboardData(parameter: parameter);
