@@ -16,16 +16,19 @@ class HistoryController extends GetxController {
     update();
     Map parameter = {
       "partnerId": await SharedPref().getPartnerId(),
-      "offset":0,
+
 
     };
     try {
       var res = await _userRepository.getAllDemands(parameter: parameter);
       if (res.statusCode == 200) {
-        data.value = DemandsAgainstPartnerData.fromJson(res.data);
-        print(res);
+        // data.value = DemandsAgainstPartnerData.fromJson(res.data);
+        print(res.data.toString());
+
       }
     } catch (e) {
+      print(data.value);
+
       print(e.toString());
       ToastHelper().showErrorToast(message: "Something Went Wrong. Try again.");
     }

@@ -43,78 +43,78 @@ class DemandsAgainstPartnerResponse {
 }
 
 class DemandsAgainstPartnerData {
-  String invoiceNo;
+  // String invoiceNo;
   DateTime invoiceDate;
-  String orderNo;
-  String description;
+  // String orderNo;
+  // String description;
   String transactionId;
   String transactionUrl;
-  String customerId;
-  String createdAt;
-  String demandId;
+  // String customerId;
+  // String createdAt;
+  // String demandId;
   String paymentStatus;
-  String partnerId;
-  String customerEmailId;
+  // String partnerId;
+  // String customerEmailId;
   int amount;
-  String customerMobileNo;
+  // String customerMobileNo;
   DateTime dueDate;
   String customerName;
 
   DemandsAgainstPartnerData({
-    required this.invoiceNo,
+    // required this.invoiceNo,
     required this.invoiceDate,
-    required this.orderNo,
-    required this.description,
+    // required this.orderNo,
+    // required this.description,
     required this.transactionId,
     required this.transactionUrl,
-    required this.customerId,
-    required this.createdAt,
-    required this.demandId,
+    // required this.customerId,
+    // required this.createdAt,
+    // required this.demandId,
     required this.paymentStatus,
-    required this.partnerId,
-    required this.customerEmailId,
+    // required this.partnerId,
+    // required this.customerEmailId,
     required this.amount,
-    required this.customerMobileNo,
+    // required this.customerMobileNo,
     required this.dueDate,
     required this.customerName,
   });
 
   factory DemandsAgainstPartnerData.fromJson(Map<String, dynamic> json) =>
       DemandsAgainstPartnerData(
-        invoiceNo: json["InvoiceNo"],
+        // invoiceNo: json["InvoiceNo"],
         invoiceDate: DateTime.parse(json["InvoiceDate"]),
-        orderNo: json["OrderNo"],
-        description: json["Description"],
+        // orderNo: json["OrderNo"],
+        // description: json["Description"],
         transactionId: json["TransactionId"],
         transactionUrl: json["TransactionUrl"],
-        customerId: json["CustomerId"],
-        createdAt: json["Created_At"],
-        demandId: json["DemandId"],
+        // customerId: json["CustomerId"],
+        // createdAt: json["Created_At"],
+        // demandId: json["DemandId"],
         paymentStatus: json["PaymentStatus"],
-        partnerId: json["PartnerId"],
-        customerEmailId: json["CustomerEmailId"],
+        // partnerId: json["PartnerId"],
+        // customerEmailId: json["CustomerEmailId"],
         amount: json["Amount"],
-        customerMobileNo: json["CustomerMobileNo"],
+        // customerMobileNo: json["CustomerMobileNo"],
         dueDate: DateTime.parse(json["DueDate"]),
         customerName: json["CustomerName"],
       );
 
   Map<String, dynamic> toJson() => {
-        "InvoiceNo": invoiceNo,
+        // "InvoiceNo": invoiceNo,
         "InvoiceDate":
             "${invoiceDate.year.toString().padLeft(4, '0')}-${invoiceDate.month.toString().padLeft(2, '0')}-${invoiceDate.day.toString().padLeft(2, '0')}",
-        "OrderNo": orderNo,
-        "Description": description,
+        // "OrderNo": orderNo,
+        // "Description": description,
         "TransactionId": transactionId,
         "TransactionUrl": transactionUrl,
-        "CustomerId": customerId,
-        "Created_At": createdAt,
-        "DemandId": demandId,
+        // "CustomerId": customerId,
+        // "Created_At": createdAt,
+        // "DemandId": demandId,
         "PaymentStatus": paymentStatus,
-        "PartnerId": partnerId,
-        "CustomerEmailId": customerEmailId,
+        // "PartnerId": partnerId,
+        // "CustomerEmailId": customerEmailId,
         "Amount": amount,
-        "CustomerMobileNo": customerMobileNo,
+        // "CustomerMobileNo": customerMobileNo,
         "DueDate":
             "${dueDate.year.toString().padLeft(4, '0')}-${dueDate.month.toString().padLeft(2, '0')}-${dueDate.day.toString().padLeft(2, '0')}",
         "CustomerName": customerName,
