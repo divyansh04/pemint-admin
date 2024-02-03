@@ -83,8 +83,8 @@ class _MyAppState extends State<MyApp> {
           primarySwatch: Colors.blue,
         ),
         home:
-        // isLogin ?
-        // HomeScreenContact() :
+        isLogin ?
+        HomeScreenContact() :
       InitialScreen());
   }
 }

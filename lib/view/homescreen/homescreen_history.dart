@@ -29,27 +29,6 @@ class _HomeScreenHistoryState extends State<HomeScreenHistory> {
 
   bool isLoading = true;
   final _userRepository = UserRepository();
-  List<DemandsAgainstPartnerData> demandsData = [];
-  // Future<void> getAllDemands() async {
-  //   isLoading = true;
-  //   setState(() {});
-  //
-  //   try {
-  //     final allDemandsRes = await _userRepository.getAllDemands(
-  //         partnerId: await SharedPref().getPartnerId() ?? "-");
-  //     if (allDemandsRes.statusCode == 200) {
-  //       demandsData = allDemandsRes.data
-  //           .map<DemandsAgainstPartnerData>(
-  //               (json) => DemandsAgainstPartnerData.fromJson(json))
-  //           .toList();
-  //     }
-  //   } on Exception catch (e) {
-  //
-  //     print(e.toString());
-  //   }
-  //   isLoading = false;
-  //   setState(() {});
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -319,9 +298,12 @@ class _HomeScreenHistoryState extends State<HomeScreenHistory> {
                               height: 300,
                               width: 250,
                               child: ListView.builder(
-                                  itemCount: demandsData.length,
+                                  itemCount: controller.demanddata.value
+                                          ?.demandResponse.length ??
+                                      0,
                                   itemBuilder: (_, i) {
-                                    final demand = demandsData[i];
+                                    final demand = controller
+                                        .demanddata.value!.demandResponse[i];
                                     final isSuccess = demand.paymentStatus
                                         .toLowerCase()
                                         .contains('Success');
