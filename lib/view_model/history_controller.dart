@@ -11,25 +11,51 @@ class HistoryController extends GetxController {
   final isLoading = false.obs;
   final _userRepository = UserRepository();
   final demanddata = Rx<DemandsAgainstPartnerData?>(null);
-  void getAllDemandsData() async {
+  // void getAllDemandsData() async {
+  //   isLoading.value = true;
+  //   update();
+  //   Map parameter = {
+  //     "partnerId": await SharedPref().getPartnerId(),
+  //   };
+  //   try {
+  //     var res = await _userRepository.getAllDemands(parameter: parameter);
+  //     if (res.statusCode == 200) {
+  //       demanddata.value = DemandsAgainstPartnerData.fromJson(res.data);
+  //       print(res.data.toString());
+  //     }
+  //   } catch (e) {
+  //     print(demanddata.value);
+
+  //     print(e.toString());
+  //     ToastHelper().showErrorToast(message: "Something Went Wrong. Try again.");
+  //   }
+
+  //   isLoading.value = false;
+  //   update();
+  // }
+
+  void getAllDemandsData(
+      {int offset = 0, Map<String, dynamic>? lastEvaluatedKey}) async {
     isLoading.value = true;
     update();
-    Map parameter = {
+    Map<String, dynamic> parameters = {
       "partnerId": await SharedPref().getPartnerId(),
+      "offset": offset,
     };
+    if (lastEvaluatedKey != null) {
+      parameters["lastEvaluatedKey"] = lastEvaluatedKey;
+    }
     try {
-      var res = await _userRepository.getAllDemands(parameter: parameter);
+      var res = await _userRepository.getAllDemands(parameter: parameters);
       if (res.statusCode == 200) {
         demanddata.value = DemandsAgainstPartnerData.fromJson(res.data);
         print(res.data.toString());
       }
     } catch (e) {
       print(demanddata.value);
-
       print(e.toString());
       ToastHelper().showErrorToast(message: "Something Went Wrong. Try again.");
     }
-
     isLoading.value = false;
     update();
   }

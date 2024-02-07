@@ -21,10 +21,33 @@ class HomeScreenHistory extends StatefulWidget {
 
 class _HomeScreenHistoryState extends State<HomeScreenHistory> {
   final HistoryController controller = Get.put(HistoryController());
+  // @override
+  // void initState() {
+  //   controller.getAllDemandsData();
+  //   super.initState();
+  // }
+  int offset = 0;
+  final ScrollController _scrollController = ScrollController();
+
   @override
   void initState() {
-    controller.getAllDemandsData();
     super.initState();
+    controller.getAllDemandsData(offset: offset);
+    _scrollController.addListener(_scrollListener);
+  }
+
+  void _scrollListener() {
+    if (_scrollController.position.pixels ==
+        _scrollController.position.maxScrollExtent) {
+      offset += 10;
+      controller.getAllDemandsData(offset: offset);
+    }
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 
   bool isLoading = true;
@@ -298,136 +321,267 @@ class _HomeScreenHistoryState extends State<HomeScreenHistory> {
                               height: 300,
                               width: 250,
                               child: ListView.builder(
-                                  itemCount: controller.demanddata.value
-                                          ?.demandResponse.length ??
-                                      0,
-                                  itemBuilder: (_, i) {
-                                    final demand = controller
-                                        .demanddata.value!.demandResponse[i];
-                                    final isSuccess = demand.paymentStatus
-                                        .toLowerCase()
-                                        .contains('Success');
-                                    return GestureDetector(
-                                      onTap: () async {
-                                        if (isSuccess) {
-                                          await controller.getTransactionDetail(
-                                              demand.transactionId);
-                                          Get.dialog(TransactionDetailDialog(
-                                            transactionDetailData: controller
-                                                .transactionDetailData!,
-                                          ));
-                                        } else {
-                                          Get.dialog(TransactionLinkDialog(
-                                            url: demand.transactionUrl,
-                                          ));
-                                        }
-                                        print('abc');
-                                      },
-                                      child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(bottom: 20),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            Row(
-                                              children: [
-                                                CircleAvatar(
-                                                  backgroundColor:
-                                                      const Color(0xFF2E1762),
-                                                  child: Icon(
-                                                    isSuccess
-                                                        ? Icons.check
-                                                        : Icons.priority_high,
-                                                    color: AppColor.whiteColor,
+                                controller: _scrollController,
+                                itemCount: controller.demanddata.value
+                                        ?.demandResponse.length ??
+                                    0,
+                                itemBuilder: (_, i) {
+                                  final demand = controller
+                                      .demanddata.value!.demandResponse[i];
+                                  final isSuccess = demand.paymentStatus
+                                      .toLowerCase()
+                                      .contains('Success');
+                                  return GestureDetector(
+                                    onTap: () async {
+                                      if (isSuccess) {
+                                        await controller.getTransactionDetail(
+                                            demand.transactionId);
+                                        Get.dialog(TransactionDetailDialog(
+                                          transactionDetailData:
+                                              controller.transactionDetailData!,
+                                        ));
+                                      } else {
+                                        Get.dialog(TransactionLinkDialog(
+                                          url: demand.transactionUrl,
+                                        ));
+                                      }
+                                      print('abc');
+                                    },
+                                    child: Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 20),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              CircleAvatar(
+                                                backgroundColor:
+                                                    const Color(0xFF2E1762),
+                                                child: Icon(
+                                                  isSuccess
+                                                      ? Icons.check
+                                                      : Icons.priority_high,
+                                                  color: AppColor.whiteColor,
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                width: 15,
+                                              ),
+                                              Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    demand.customerName,
+                                                    textAlign: TextAlign.start,
+                                                    style: const TextStyle(
+                                                      color: Color(0xFF292D32),
+                                                      fontSize: 14,
+                                                      fontFamily: 'Cairo',
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                    ),
                                                   ),
-                                                ),
-                                                const SizedBox(
-                                                  width: 15,
-                                                ),
-                                                Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.start,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      demand.customerName,
-                                                      textAlign:
-                                                          TextAlign.start,
-                                                      style: const TextStyle(
-                                                        color:
-                                                            Color(0xFF292D32),
-                                                        fontSize: 14,
-                                                        fontFamily: 'Cairo',
-                                                        fontWeight:
-                                                            FontWeight.w400,
-                                                      ),
+                                                  const SizedBox(
+                                                    height: 5,
+                                                  ),
+                                                  Text(
+                                                    '${controller.transactionDetailData}',
+                                                    textAlign: TextAlign.start,
+                                                    style: TextStyle(
+                                                      color: Color(0xFF9888A4),
+                                                      fontSize: 12,
+                                                      fontFamily: 'Cairo',
+                                                      fontWeight:
+                                                          FontWeight.w400,
                                                     ),
-                                                    const SizedBox(
-                                                      height: 5,
-                                                    ),
-                                                    Text(
-                                                      '${controller.transactionDetailData}',
-                                                      textAlign:
-                                                          TextAlign.start,
-                                                      style: TextStyle(
-                                                        color:
-                                                            Color(0xFF9888A4),
-                                                        fontSize: 12,
-                                                        fontFamily: 'Cairo',
-                                                        fontWeight:
-                                                            FontWeight.w400,
-                                                      ),
-                                                    )
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
+                                                  )
+                                                ],
+                                              ),
+                                            ],
+                                          ),
 
-                                            // SizedBox(width: Get.width / 9),
-                                            Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.end,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  '₹ ' +
-                                                      demand.amount.toString(),
-                                                  style: TextStyle(
-                                                    color: Color(0xFF292D32),
-                                                    fontSize: 12,
-                                                    fontFamily: 'Cairo',
-                                                    fontWeight: FontWeight.w700,
-                                                  ),
+                                          // SizedBox(width: Get.width / 9),
+                                          Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                '₹ ' + demand.amount.toString(),
+                                                style: TextStyle(
+                                                  color: Color(0xFF292D32),
+                                                  fontSize: 12,
+                                                  fontFamily: 'Cairo',
+                                                  fontWeight: FontWeight.w700,
                                                 ),
-                                                const SizedBox(
-                                                  height: 5,
+                                              ),
+                                              const SizedBox(
+                                                height: 5,
+                                              ),
+                                              Text(
+                                                demand.paymentStatus,
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                  color: isSuccess
+                                                      ? Color(0xFF54F15A)
+                                                      : Color(0xFF00BBF2),
+                                                  fontSize: 10,
+                                                  fontFamily: 'Cairo',
+                                                  fontWeight: FontWeight.w700,
                                                 ),
-                                                Text(
-                                                  demand.paymentStatus,
-                                                  textAlign: TextAlign.center,
-                                                  style: TextStyle(
-                                                    color: isSuccess
-                                                        ? Color(0xFF54F15A)
-                                                        : Color(0xFF00BBF2),
-                                                    fontSize: 10,
-                                                    fontFamily: 'Cairo',
-                                                    fontWeight: FontWeight.w700,
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          ],
-                                        ),
+                                              )
+                                            ],
+                                          ),
+                                        ],
                                       ),
-                                    );
-                                  }),
+                                    ),
+                                  );
+                                },
+                              ),
                             ),
+                            // SizedBox(
+                            //   height: 300,
+                            //   width: 250,
+                            //   child: ListView.builder(
+                            //       itemCount: controller.demanddata.value
+                            //               ?.demandResponse.length ??
+                            //           0,
+                            //       itemBuilder: (_, i) {
+                            //         final demand = controller
+                            //             .demanddata.value!.demandResponse[i];
+                            //         final isSuccess = demand.paymentStatus
+                            //             .toLowerCase()
+                            //             .contains('Success');
+                            //         return GestureDetector(
+                            //           onTap: () async {
+                            //             if (isSuccess) {
+                            //               await controller.getTransactionDetail(
+                            //                   demand.transactionId);
+                            //               Get.dialog(TransactionDetailDialog(
+                            //                 transactionDetailData: controller
+                            //                     .transactionDetailData!,
+                            //               ));
+                            //             } else {
+                            //               Get.dialog(TransactionLinkDialog(
+                            //                 url: demand.transactionUrl,
+                            //               ));
+                            //             }
+                            //             print('abc');
+                            //           },
+                            //           child: Padding(
+                            //             padding:
+                            //                 const EdgeInsets.only(bottom: 20),
+                            //             child: Row(
+                            //               mainAxisAlignment:
+                            //                   MainAxisAlignment.spaceBetween,
+                            //               crossAxisAlignment:
+                            //                   CrossAxisAlignment.center,
+                            //               mainAxisSize: MainAxisSize.min,
+                            //               children: [
+                            //                 Row(
+                            //                   children: [
+                            //                     CircleAvatar(
+                            //                       backgroundColor:
+                            //                           const Color(0xFF2E1762),
+                            //                       child: Icon(
+                            //                         isSuccess
+                            //                             ? Icons.check
+                            //                             : Icons.priority_high,
+                            //                         color: AppColor.whiteColor,
+                            //                       ),
+                            //                     ),
+                            //                     const SizedBox(
+                            //                       width: 15,
+                            //                     ),
+                            //                     Column(
+                            //                       mainAxisAlignment:
+                            //                           MainAxisAlignment.start,
+                            //                       crossAxisAlignment:
+                            //                           CrossAxisAlignment.start,
+                            //                       children: [
+                            //                         Text(
+                            //                           demand.customerName,
+                            //                           textAlign:
+                            //                               TextAlign.start,
+                            //                           style: const TextStyle(
+                            //                             color:
+                            //                                 Color(0xFF292D32),
+                            //                             fontSize: 14,
+                            //                             fontFamily: 'Cairo',
+                            //                             fontWeight:
+                            //                                 FontWeight.w400,
+                            //                           ),
+                            //                         ),
+                            //                         const SizedBox(
+                            //                           height: 5,
+                            //                         ),
+                            //                         Text(
+                            //                           '${controller.transactionDetailData}',
+                            //                           textAlign:
+                            //                               TextAlign.start,
+                            //                           style: TextStyle(
+                            //                             color:
+                            //                                 Color(0xFF9888A4),
+                            //                             fontSize: 12,
+                            //                             fontFamily: 'Cairo',
+                            //                             fontWeight:
+                            //                                 FontWeight.w400,
+                            //                           ),
+                            //                         )
+                            //                       ],
+                            //                     ),
+                            //                   ],
+                            //                 ),
+
+                            //                 // SizedBox(width: Get.width / 9),
+                            //                 Column(
+                            //                   mainAxisAlignment:
+                            //                       MainAxisAlignment.end,
+                            //                   crossAxisAlignment:
+                            //                       CrossAxisAlignment.start,
+                            //                   children: [
+                            //                     Text(
+                            //                       '₹ ' +
+                            //                           demand.amount.toString(),
+                            //                       style: TextStyle(
+                            //                         color: Color(0xFF292D32),
+                            //                         fontSize: 12,
+                            //                         fontFamily: 'Cairo',
+                            //                         fontWeight: FontWeight.w700,
+                            //                       ),
+                            //                     ),
+                            //                     const SizedBox(
+                            //                       height: 5,
+                            //                     ),
+                            //                     Text(
+                            //                       demand.paymentStatus,
+                            //                       textAlign: TextAlign.center,
+                            //                       style: TextStyle(
+                            //                         color: isSuccess
+                            //                             ? Color(0xFF54F15A)
+                            //                             : Color(0xFF00BBF2),
+                            //                         fontSize: 10,
+                            //                         fontFamily: 'Cairo',
+                            //                         fontWeight: FontWeight.w700,
+                            //                       ),
+                            //                     )
+                            //                   ],
+                            //                 ),
+                            //               ],
+                            //             ),
+                            //           ),
+                            //         );
+                            //       }),
+                            // ),
                           ],
                         ),
                       ],
