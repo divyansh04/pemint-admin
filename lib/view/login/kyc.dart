@@ -19,6 +19,8 @@ class _KYCState extends State<KYC> {
   final DocumentsController controller = Get.put(DocumentsController());
   final BusinessController viewModel = Get.put(BusinessController());
 
+  String aadharCardFrontFile = '-';
+
   @override
   Widget build(BuildContext context) {
     return Obx(() {
@@ -227,11 +229,13 @@ class _KYCState extends State<KYC> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              GestureDetector(onTap:(){
-                                print(controller.aadharCardFrontFile.toString());
-                              },
+                              GestureDetector(
+                                onTap: () {
+                                  print(controller.aadharCardFrontFile
+                                      .toString());
+                                },
                                 child: Text(
-                                  controller.aadharCardFrontFile?.path ?? '-',
+                                  aadharCardFrontFile,
                                   style: const TextStyle(
                                     color: Color(0xFF292D32),
                                     fontSize: 20,
@@ -241,11 +245,14 @@ class _KYCState extends State<KYC> {
                                 ),
                               ),
                               GestureDetector(
-                                  onTap: () {
-                                    controller.selectfile(
-                                        fileName:
-                                            controller.aadharCardFrontFile,
-                                        fileKey: 'AadharCardFrontSide');
+                                  onTap: () async {
+                                    aadharCardFrontFile =
+                                        await controller.selectfile(
+                                            fileName:
+                                                controller.aadharCardFrontFile,
+                                            fileKey: 'AadharCardFrontSide');
+
+                                    setState(() {});
                                   },
                                   child: Container(
                                     height: 30,

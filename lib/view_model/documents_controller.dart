@@ -24,21 +24,24 @@ class DocumentsController extends GetxController {
   File? otherDocumentsFile;
   File? cancelledCheque;
 
-
-
   RxBool isLoading = false.obs;
 
-  void selectfile({required File? fileName, required String fileKey}) async {
+  Future<String> selectfile(
+      {required File? fileName, required String fileKey}) async {
     fileName = await pickFile();
     if (fileName != null) {
       addOrUpdateValue(fileKey, fileName);
-      Fluttertoast.showToast(msg: "File Selected Succesfully", toastLength: Toast.LENGTH_SHORT,
+      Fluttertoast.showToast(
+          msg: "File Selected Succesfully",
+          toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 1,
           textColor: Colors.white,
           fontSize: 16.0);
+      return fileName.path;
     }
     update();
+    return '-';
   }
 
   Future<File?> pickFile() async {
