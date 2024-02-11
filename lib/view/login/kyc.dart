@@ -227,13 +227,17 @@ class _KYCState extends State<KYC> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                controller.aadharCardFrontFile?.path ?? '-',
-                                style: const TextStyle(
-                                  color: Color(0xFF292D32),
-                                  fontSize: 20,
-                                  fontFamily: 'Cairo',
-                                  fontWeight: FontWeight.w600,
+                              GestureDetector(onTap:(){
+                                print(controller.aadharCardFrontFile.toString());
+                              },
+                                child: Text(
+                                  controller.aadharCardFrontFile?.path ?? '-',
+                                  style: const TextStyle(
+                                    color: Color(0xFF292D32),
+                                    fontSize: 20,
+                                    fontFamily: 'Cairo',
+                                    fontWeight: FontWeight.w600,
+                                  ),
                                 ),
                               ),
                               GestureDetector(

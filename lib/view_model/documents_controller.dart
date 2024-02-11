@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:file_picker/file_picker.dart';
 import 'dart:io';
@@ -31,6 +32,11 @@ class DocumentsController extends GetxController {
     fileName = await pickFile();
     if (fileName != null) {
       addOrUpdateValue(fileKey, fileName);
+      Fluttertoast.showToast(msg: "File Selected Succesfully", toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          textColor: Colors.white,
+          fontSize: 16.0);
     }
     update();
   }

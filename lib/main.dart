@@ -8,6 +8,7 @@ import 'package:pemint_admin_app/view/login/bank_details.dart';
 import 'package:pemint_admin_app/view/login/business_type.dart';
 import 'package:pemint_admin_app/view/login/initial_screen.dart';
 import 'package:pemint_admin_app/view/login/kyc.dart';
+import 'package:pemint_admin_app/view/login/otp.dart';
 import 'package:pemint_admin_app/view/login/sole_prop.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -83,8 +84,8 @@ class _MyAppState extends State<MyApp> {
           primarySwatch: Colors.blue,
         ),
         home:
-        isLogin ?
-        HomeScreenContact() :
-      InitialScreen());
+        // isLogin ?
+        // HomeScreenContact() :
+     InitialScreen());
   }
 }

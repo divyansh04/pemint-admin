@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:pemint_admin_app/helper/ToastHelper.dart';
 import 'package:pemint_admin_app/model/api_response/login_response.dart';
@@ -102,7 +103,9 @@ class MobRegController extends GetxController {
         await getUserMeResponse();
       }
     } catch (e) {
+
       print(e.toString());
+
       ToastHelper().showErrorToast(message: "Something Went Wrong. Try again.");
     }
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:pemint_admin_app/utilities/app_colors.dart';
 import 'package:pemint_admin_app/view/login/business_type.dart';
@@ -99,7 +100,7 @@ class _Enter_OTPState extends State<Enter_OTP> {
                       borderRadius: BorderRadius.circular(15),
                     ),
                     child: Center(
-                        child: TextFormField(
+                        child: TextFormField( inputFormatters: [FilteringTextInputFormatter.allow(new RegExp("[0-9]"))],
                       controller: viewModel.otpController,
                       textAlign: TextAlign.center,
                       style: TextStyle(
@@ -110,6 +111,7 @@ class _Enter_OTPState extends State<Enter_OTP> {
                       ),
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
+
                           hintText: '******',
                           alignLabelWithHint: true,
                           hintStyle: TextStyle(
@@ -119,7 +121,12 @@ class _Enter_OTPState extends State<Enter_OTP> {
                             fontWeight: FontWeight.w600,
                             height: 0,
                           ),
+                          counterStyle:
+                          TextStyle(height: double.minPositive),
+                          counterText: "",
                           border: InputBorder.none),
+                          maxLength: 6,
+
                     )),
                   ),
                 ),
